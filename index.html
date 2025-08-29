@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <meta name="description" content="DJ Posaxa - Música per a festes i esdeveniments a Granollers i BCN. Especialista en mashups, reggaeton, dembow i música catalana." />
+<meta name="description" content="DJ Posaxa — Música para fiestas y eventos en Granollers y Barcelona. Especialista en mashups, reggaeton, dembow y música catalana. Sesiones en vivo y animación de fiestas." />
   <meta name="keywords" content="DJ, música, festa, esdeveniments, Gr nb anollers, BCN, mashup, reggaeton, dembow" />
   <meta property="og:title" content="DJ Posaxa — DJ per festes i esdeveniments" />
   <meta property="og:description" content="Música per a festes i esdeveniments a Granollers i BCN." />
@@ -659,23 +659,6 @@
     </div>
   </header>
 
-  <!-- Hero / Anunci esdeveniment -->
-  <section class="hero">
-    <div class="hero-badge">🎵 PRÒXIM ESDEVENIMENT</div>
-    <h1>DJ Posaxa a Can Trullàs</h1>
-    <div class="event-details">
-      <div class="event-info">
-        <span class="location">📍 Granollers</span>
-        <span class="date">📅 Dimecres 17</span>
-        <span class="time">🕘 21:00h</span>
-      </div>
-    </div>
-    <p>Nit de festa, llums i bona música! DJ Posaxa et farà ballar amb els millors ritmes electrònics.</p>
-    <div class="hero-cta">
-      <a href="esdeveniments.html" class="cta-badge">✨ ENTRADA LLIURE ✨</a>
-    </div>
-  </section>
-
   <main class="container">
     <!-- Sección 1: Izquierda imagen, derecha texto -->
     <div class="grid">
@@ -843,7 +826,7 @@
         
         const response = await puter.ai.chat(msg, { 
           model: "gpt-4o-mini",
-          system_prompt: "Eres Sigma AI, un asistente inteligente especializado en DJ Posaxa. Esta es la página principal de inicio que presenta a DJ Posaxa como experto en música para festes i esdeveniments, especializado en creación de ambientes y remixes únicos. Ofrece mashups en vivo, sesiones de baile personalizadas y música de ambiente. Tiene un próximo evento en Can Trullàs (Granollers) el miércoles 17 a las 22:00h con entrada libre. Responde en español/catalán, usa emojis y ayuda con información general sobre sus servicios."
+          system_prompt: "Eres Sigma AI, un asistente inteligente especializado en DJ Posaxa. Esta es la página principal de inicio que presenta a DJ Posaxa como experto en música para festes i esdeveniments, especializado en creación de ambientes y remixes únicos. Ofrece mashups en vivo, sesiones de baile personalizadas y música de ambiente. Responde en español/catalán, usa emojis y ayuda con información general sobre sus servicios."
         });
         
         sigmaMessages.removeChild(typingDiv);
@@ -871,7 +854,7 @@
     // Mensaje de bienvenida
     document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
-        addSigmaMessage("", "¡Hola! 👋 Soy Sigma AI, tu asistente para DJ Posaxa. Puedo ayudarte con información sobre sus servicios de música para fiestas y eventos, su próximo show en Can Trullàs (Granollers), o cualquier consulta que tengas. ¿En qué puedo ayudarte? 🎵✨");
+        addSigmaMessage("", "¡Hola! 👋 Soy Sigma AI, tu asistente para DJ Posaxa. Puedo ayudarte con información sobre sus servicios de música para fiestas y eventos, disponibilidad, precios y cualquier consulta que tengas. ¿En qué puedo ayudarte? 🎵✨");
       }, 2000);
     });
   </script>

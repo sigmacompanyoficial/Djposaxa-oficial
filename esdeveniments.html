@@ -407,7 +407,7 @@
 
   <section class="hero">
     <h1>Esdeveniments</h1>
-    <p>Aquest estiu comença amb força i DJ Posaxa té preparada una temporada plena de música, energia i festa. L'objectiu és clar: encendre cada nit amb sessions plenes de ritme, bones vibracions i aquella connexió especial amb el públic que el fa únic.</p>
+    <p>Consulta aquí fotos i records dels esdeveniments de DJ Posaxa. Estem preparant noves dates — torna aviat!</p>
   </section>
 
   <main class="container">
@@ -415,20 +415,8 @@
       <article class="card reveal" style="grid-column: 1 / -1;">
         <div class="content">
           <div class="esdeveniments">
-            <h2>Esdeveniments</h2>
-            <p>Aquest estiu comença amb força i <strong>DJ Posaxa</strong> arriba amb una temporada plena de <strong>música, energia i festa</strong>. Cada nit està pensada per encendre el públic amb sessions carregades de ritme, bones vibracions i una connexió especial que només ell sap crear.</p>
-            <p>El tret de sortida serà a <strong>Granollers</strong>, en un lloc amb història i molt d'ambient: la <strong>Plaça de Can Trullàs</strong>. Aquesta primera nit està dissenyada especialment per als joves, amb sorpreses, moments inesperats i la promesa que serà <strong>només la primera de moltes nits espectaculars</strong>.</p>
-            <ul>
-              <li>🎧 <strong>Disco Inferno XS amb DJ Posaxa</strong></li>
-              <li>📅 <strong>Dimecres 17 d'agost</strong></li>
-              <li>🕘 21:00h</li>
-              <li>📍 Plaça de Can Trullàs (Granollers)</li>
-              <li>👥 Activitat per a joves de 12 a 17 anys</li>
-            </ul>
-            <p>Prepara't per a una experiència única: <strong>llums que ballen amb la música, beats que no et deixaran parar de moure els peus i un ambient carregat de bona energia</strong>. DJ Posaxa combinarà els millors temes electrònics, els hits més actuals i un toc personal que transformarà cada moment en pura festa.</p>
-            <p>A més, la nit comptarà amb <strong>espais per socialitzar, zones per descansar i una atmosfera pensada perquè cada jove se senti protagonista</strong>. Porta els teus amics i gaudeix d'una sessió que promet quedar gravada en la memòria de tothom.</p>
-            <p>Aquest és només el començament d'una sèrie de nits inoblidables amb <strong>Disco Inferno XS</strong>. No deixis passar l'oportunitat de formar part d'aquesta festa i descobrir tot el que hem preparat per a tu aquest estiu.</p>
-            <p>👉 <strong>Organitza:</strong> Blancs – Blancs to hell</p>
+            <h2>Galeria</h2>
+            <p>Explora les fotos dels shows i festes. Usa els botons per canviar d’imatge.</p>
           </div>
         </div>
       </article>
@@ -444,13 +432,87 @@
       </article>
     </div>
 
-    <div class="grid" style="margin-top:18px">
-      <article class="card reveal" style="grid-column: 1 / -1;">
-        <div class="content" style="padding:0;">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.227210335518!2d2.2828126749790525!3d41.60759817127278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4c7e6d56938bd%3A0x84f39841e988f660!2sPlaza%20de%20Can%20Trull%C3%A0s!5e0!3m2!1ses!2ses!4v1755598892038!5m2!1ses!2ses" width="100%" height="360" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </article>
-    </div>
+   <!-- Galería de 19 fotos con botones -->
+   <div class="grid" style="margin-top:18px">
+     <article class="card reveal" style="grid-column: 1 / -1;">
+       <div class="content" style="padding:0;">
+         <div id="event-gallery" style="position:relative; background:#000; border-radius:15px; overflow:hidden;">
+           <img id="event-gallery-image" src="Fotos/inici 1.jpg" alt="Galería de eventos DJ Posaxa" style="display:block; width:100%; height:360px; object-fit:cover;">
+           <button id="prevPhoto" aria-label="Foto anterior" style="position:absolute; top:50%; left:10px; transform:translateY(-50%); background:rgba(255,255,255,0.85); border:none; border-radius:50%; width:44px; height:44px; font-size:22px; cursor:pointer;">‹</button>
+           <button id="nextPhoto" aria-label="Foto siguiente" style="position:absolute; top:50%; right:10px; transform:translateY(-50%); background:rgba(255,255,255,0.85); border:none; border-radius:50%; width:44px; height:44px; font-size:22px; cursor:pointer;">›</button>
+         </div>
+       </div>
+     </article>
+   </div>
+
+   <script>
+     (function(){
+       const photos = [
+        "Fotos/PNC.jpg",
+"Fotos/PNC1.jpg",
+"Fotos/PNC2.jpg",
+"Fotos/PNC3.jpg",
+"Fotos/PNC4.jpg",
+"Fotos/PNC5.jpg",
+"Fotos/PNC6.jpg",
+"Fotos/PNC7.jpg",
+"Fotos/PNC8.jpg",
+"Fotos/PNC9.jpg",
+"Fotos/PNC10.jpg",
+"Fotos/PNC11.jpg",
+"Fotos/PNC12.jpg",
+"Fotos/PNC13.jpg",
+"Fotos/PNC14.jpg",
+"Fotos/PNC15.jpg",
+"Fotos/PNC16.jpg",
+"Fotos/PNC17.jpg",
+"Fotos/PNC18.jpg"
+
+     
+
+       ];
+       const imgEl = document.getElementById('event-gallery-image');
+       const prevBtn = document.getElementById('prevPhoto');
+       const nextBtn = document.getElementById('nextPhoto');
+       if (!imgEl || !prevBtn || !nextBtn) return;
+
+       let idx = 0;
+       function show(i){
+         idx = (i + photos.length) % photos.length;
+         imgEl.src = photos[idx];
+         imgEl.style.objectFit = 'contain'; // no recorta
+         imgEl.style.background = '#000';
+       }
+
+       prevBtn.addEventListener('click', ()=> show(idx - 1));
+       nextBtn.addEventListener('click', ()=> show(idx + 1));
+
+       document.addEventListener('keydown', (e)=>{
+         if (e.key === 'ArrowLeft') show(idx - 1);
+         if (e.key === 'ArrowRight') show(idx + 1);
+       });
+
+       function preloadNext(){
+         const nextIndex = (idx + 1) % photos.length;
+         const im = new Image();
+         im.src = photos[nextIndex];
+       }
+       imgEl.addEventListener('load', preloadNext);
+
+       function adjustHeight(){
+         // Altura adaptativa. Como las fotos son horizontales, mantenemos rango cómodo.
+         const base = Math.min(window.innerWidth, 1200);
+         const h = Math.max(220, Math.min(520, base * 0.45));
+         imgEl.style.height = h + 'px';
+       }
+       window.addEventListener('resize', adjustHeight);
+       adjustHeight();
+       show(0);
+     })();
+   </script>
+
+   <!-- Mapa -->
+  
 
     <script>
       // Animación de luces mejorada tipo cono usando canvas
@@ -618,7 +680,7 @@
         
         const response = await puter.ai.chat(msg, { 
           model: "gpt-4o-mini",
-          system_prompt: "Eres Sigma AI, un asistente inteligente especializado en DJ Posaxa. Esta página trata sobre 'Esdeveniments' - eventos y fiestas de DJ Posaxa. Destaca el evento 'Disco Inferno XS' el 17 de agosto en Can Trullàs (Granollers) a las 21:00h para joves de 12-17 años, organizado por 'Blancs – Blancs to hell'. Incluye información sobre la experiencia musical, ambiente de fiesta, luces, y planes futuros. Responde en español/catalán, usa emojis de fiesta y ayuda con información sobre eventos."
+          system_prompt: "Eres Sigma AI, un asistente inteligente especializado en DJ Posaxa. Esta página muestra una galería de fotos de eventos y fiestas anteriores. Responde en español/catalán, usa emojis y ayuda con información sobre servicios, disponibilidad y precios."
         });
         
         sigmaMessages.removeChild(typingDiv);
@@ -646,7 +708,7 @@
     // Mensaje de bienvenida contextual
     document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
-        addSigmaMessage("", "¡Hola! 🎉 Soy Sigma AI. Esta página muestra los próximos eventos de DJ Posaxa. ¡El evento destacado es 'Disco Inferno XS' el 17 de agosto en Can Trullàs (Granollers) a las 21:00h! Es para jóvenes de 12-17 años con luces espectaculares y la mejor música. ¿Te interesa saber más sobre este o futuros eventos? 🎪🔥");
+        addSigmaMessage("", "¡Hola! 🎉 Soy Sigma AI. Esta página muestra una galería de fotos de eventos anteriores de DJ Posaxa. Si necesitas info sobre servicios, disponibilidad o precios, dime y te ayudo. 📸🎵");
       }, 1500);
     });
   </script>

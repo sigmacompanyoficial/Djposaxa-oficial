@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-translate="page_title">El Meu Perfil — DJ Posaxa</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM90QK9QJX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PM90QK9QJX');
+  </script>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/modern-style.css" />
+  <link rel="icon" type="image/png" href="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png">
+</head>
+<body onload="applyTheme()">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png" alt="DJ Posaxa Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-translate="nav_home">Inici</a></li>
+          <li class="nav-item"><a class="nav-link" href="en-què-em-centro.html" data-translate="nav_focus">En què em centro</a></li>
+          <li class="nav-item"><a class="nav-link" href="per-què-escollir-me.html" data-translate="nav_why">Per què escollir-me</a></li>
+          <li class="nav-item"><a class="nav-link" href="esdeveniments.html" data-translate="nav_events">Esdeveniments</a></li>
+          <li class="nav-item"><a class="nav-link" href="opinionse486.html" data-translate="nav_reviews">Opinions</a></li>
+          <li class="nav-item"><a class="nav-link" href="preus.html" data-translate="nav_pricing">Preus</a></li>
+          <li class="nav-item"><a class="nav-link" href="mashups.html" data-translate="nav_mashups">Mashups</a></li>
+          <li class="nav-item"><a class="nav-link" href="configuracio.html" aria-label="Configuració">⚙️</a></li>
+          <li class="nav-item" id="auth-container"></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero" style="padding: 8rem 0;">
+    <div class="container">
+      <h1 class="display-4" data-translate="profile_title">El Meu Perfil</h1>
+      <p class="lead" data-translate="profile_subtitle">Personalitza les teves preferències per a una millor experiència.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="feature-card p-4">
+          <div class="text-center mb-4">
+            <img id="user-photo" src="https://via.placeholder.com/100" alt="Foto de perfil" class="rounded-circle" style="width: 100px; height: 100px;">
+            <h3 id="user-name" class="mt-2"></h3>
+            <p id="user-email" class="text-white-50"></p>
+          </div>
+          <form id="profile-form">
+            <div class="mb-3">
+              <label for="displayName" class="form-label" data-translate="form_display_name">Nom a mostrar</label>
+              <input type="text" class="form-control" id="displayName" required>
+            </div>
+            <div class="mb-3">
+              <label for="favoriteGenre" class="form-label" data-translate="form_favorite_genre">Gènere Musical Preferit</label>
+              <select class="form-select" id="favoriteGenre">
+                <option value="reggaeton">Reggaeton</option>
+                <option value="dembow">Dembow</option>
+                <option value="techno">Techno</option>
+                <option value="catalana">Música Catalana</option>
+                <option value="pachangueo">Pachangueo</option>
+                <option value="altres">Altres</option>
+              </select>
+            </div>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="submit" class="btn btn-primary" data-translate="form_save_button">Desar Canvis</button>
+                <button type="button" id="sign-out-button" class="btn btn-danger" data-translate="form_signout_button">Tancar Sessió</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer mt-auto py-4">
+    <div class="container d-md-flex justify-content-between align-items-center text-center text-md-start">
+      <div class="mb-3 mb-md-0">
+        <p class="mb-1">&copy; <span id="year"></span> DJ Posaxa. <span data-translate="footer_rights">Tots els drets reservats.</span></p>
+        <p class="mb-1"><span data-translate="footer_location">Granollers · BCN</span></p>
+        <div class="social-icons mt-2">
+          <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok"><img src="Fotos/Png tik.png" alt="TikTok" style="width: 24px; height: 24px;"></a>
+          <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener" aria-label="Instagram"><img src="Fotos/pngwing.com.png" alt="Instagram" style="width: 24px; height: 24px;"></a>
+        </div>
+      </div>
+      <div class="sigma-projects">
+        <p class="mb-1"><span data-translate="footer_dev">Desenvolupat per Sigma Company</span></p>
+        <p class="mb-2"><span data-translate="footer_more_projects">Més projectes de Sigma Company</span></p>
+        <a href="http://www.sigmagames.ct.ws" class="btn btn-primary text-white" target="_blank" rel="noopener">SigmaGames</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
+      authDomain: "dj-posaxa-web.firebaseapp.com",
+      databaseURL: "https://dj-posaxa-web-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "dj-posaxa-web",
+      storageBucket: "dj-posaxa-web.appspot.com",
+      messagingSenderId: "647042791526",
+      appId: "1:647042791526:web:3b870e05ab0ed34cbd95a7",
+      measurementId: "G-C8R4Z4TLE1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app);
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        // Sincronitzem les preferències per carregar el tema, idioma, etc. correctament
+        window.syncPreferencesWithFirebase(auth, database, get, ref, update);
+
+        document.getElementById('user-photo').src = user.photoURL || 'https://via.placeholder.com/100';
+        document.getElementById('user-name').textContent = user.displayName || 'Usuari';
+        document.getElementById('user-email').textContent = user.email;
+
+        // Carregar dades de perfil existents
+        const userRef = ref(database, 'users/' + user.uid);
+        get(userRef).then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            document.getElementById('displayName').value = data.displayName || user.displayName;
+            document.getElementById('favoriteGenre').value = data.favoriteGenre || 'reggaeton';
+          } else {
+            document.getElementById('displayName').value = user.displayName;
+          }
+        });
+
+      } else {
+        window.location.href = 'index.html';
+      }
+    });
+
+    document.getElementById('profile-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = auth.currentUser;
+      if (user) {
+        const displayName = document.getElementById('displayName').value;
+        const favoriteGenre = document.getElementById('favoriteGenre').value;
+
+        // Dades del perfil
+        const profileData = {
+          displayName: displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          favoriteGenre: favoriteGenre,
+          lastLogin: new Date().toISOString(),
+          role: 'cliente' // Assignació del rol per defecte
+        };
+
+        // Dades de preferències (per si s'actualitzen aquí)
+        const preferencesData = {
+            // language: localStorage.getItem('language') || 'ca', // Eliminat per no desar l'idioma
+            theme: localStorage.getItem('theme') || 'dark',
+            fontSize: localStorage.getItem('fontSize') || 'normal'
+        };
+        update(ref(database, 'users/' + user.uid), { ...profileData, preferences: preferencesData }).then(() => {
+          alert('Perfil desat correctament!');
+          window.location.href = 'index.html';
+        }).catch((error) => {
+          console.error("Error al desar les dades: ", error);
+          alert('Hi ha hagut un error en desar el perfil.');
+        });
+      }
+    });
+
+    document.getElementById('sign-out-button').addEventListener('click', () => {
+        signOut(auth).then(() => {
+            window.location.href = 'index.html';
+        }).catch(error => {
+            console.error("Error en tancar sessió: ", error);
+        });
+    });
+
+  </script>
+
+  <!-- i18n & Theme Script -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      window.pageTranslations = {
+        ca: {
+          page_title: "El Meu Perfil — DJ Posaxa",
+          profile_title: "El Meu Perfil",
+          profile_subtitle: "Personalitza les teves preferències per a una millor experiència.",
+          form_display_name: "Nom a mostrar",
+          form_favorite_genre: "Gènere Musical Preferit",
+          form_save_button: "Desar Canvis",
+          form_signout_button: "Tancar Sessió",
+          footer_rights: "Tots els drets reservats.",
+          footer_location: "Granollers · BCN",
+          footer_dev: "Desenvolupat per Sigma Company",
+          footer_more_projects: "Més projectes de Sigma Company"
+        },
+        // Pots afegir més traduccions aquí (es, en, fr, de)
+      };
+      initializePage(window.pageTranslations);
+    });
+  </script>
+
+</body>
+</html>

@@ -79,8 +79,8 @@
 
   <!-- Main Content -->
   <main class="container my-5">
-    <!-- Botó per deixar opinió (només visible per a usuaris loguejats) -->
-    <div id="leave-review-section" class="text-center mb-5" style="display: none;">
+    <!-- Botó per deixar opinió (ara sempre visible) -->
+    <div id="leave-review-section" class="text-center mb-5">
       <button id="leave-review-btn" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#reviewModal" data-translate="leave_review_button">Deixa la teva opinió</button>
     </div>
 
@@ -142,9 +142,6 @@
         </div>
       </div>
       <!-- Les opinions dinàmiques es carregaran aquí -->
-      <div id="dynamic-reviews-placeholder" class="col-12">
-        <!-- Dynamic reviews will be loaded here -->
-      </div>
     </div>
   </main>
 
@@ -207,7 +204,7 @@
   <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
     import { getDatabase, ref, get, update, push, serverTimestamp, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
     const firebaseConfig = {
@@ -224,10 +221,11 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const database = getDatabase(app);
-    const provider = new GoogleAuthProvider();
     const authContainer = document.getElementById('auth-container');
     const leaveReviewSection = document.getElementById('leave-review-section');
+    const leaveReviewBtn = document.getElementById('leave-review-btn');
     const reviewForm = document.getElementById('review-form');
+    
     const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
 
     function showToast(title, message) {
@@ -237,32 +235,40 @@
         toast.show();
     }
 
+    // Exposa les funcions de Firebase per a main.js
+    window.exposeFirebase(auth, database, ref, update, get, { GoogleAuthProvider, signInWithPopup });
+
+    // Inicialitza la lògica d'autenticació (incloent listeners del modal)
+    window.initAuth();
+
     // Carregar opinions aprovades
     const reviewsList = document.getElementById('reviews-list');
-    const publishedReviewsRef = ref(database, 'reviews/published');
+    const publishedReviewsRef = ref(database, 'reviews/published'); // No need for query here, we sort client-side
+
     onValue(publishedReviewsRef, (snapshot) => {
-        const dynamicReviewsPlaceholder = document.getElementById('dynamic-reviews-placeholder');
-        dynamicReviewsPlaceholder.innerHTML = ''; // Clear only the dynamic content area
-        let hasReviews = false;
+        // Neteja només les opinions dinàmiques prèvies
+        document.querySelectorAll('.dynamic-review').forEach(el => el.remove());
+
         if (snapshot.exists()) {
-            hasReviews = true;
-            let dynamicReviewsHTML = '';
+            const reviews = [];
             snapshot.forEach((childSnapshot) => {
-                const review = childSnapshot.val();
-                const reviewHTML = `
-                    <div class="col-md-6 col-lg-4">
-                        <div class="feature-card text-center">
-                            <img src="${review.userPhotoURL || 'Fotos/default-profile.png'}" alt="Foto de ${review.userName}" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
-                            <p class="fst-italic">"${review.text}"</p>
-                            <p class="fw-bold mt-2">- ${review.userName}</p>
-                        </div>
-                    </div>
-                `;
-                dynamicReviewsHTML += reviewHTML;
+                reviews.push(childSnapshot.val());
             });
-            dynamicReviewsPlaceholder.innerHTML = dynamicReviewsHTML;
-        } else if (!hasReviews) {
-            dynamicReviewsPlaceholder.innerHTML = `<div class="col-12"><p class="text-center" data-translate="no_new_reviews">Encara no hi ha opinions noves. Sigues el primer!</p></div>`;
+
+            // Ordena les opinions de la més nova a la més vella
+            reviews.sort((a, b) => b.createdAt - a.createdAt);
+
+            reviews.forEach(review => {
+                const reviewEl = document.createElement('div');
+                reviewEl.className = 'col-md-6 col-lg-4 dynamic-review'; // Classe per identificar-les
+                reviewEl.innerHTML = `
+                    <div class="feature-card text-center">
+                        <img src="${review.userPhotoURL || 'Fotos/default-profile.png'}" alt="Foto de ${review.userName}" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                        <p class="fst-italic">"${review.text}"</p>
+                        <p class="fw-bold mt-2">- ${review.userName}</p>
+                    </div>`;
+                reviewsList.prepend(reviewEl); // Afegeix al principi
+            });
         }
 
         // Re-translate if needed
@@ -271,11 +277,15 @@
 
     onAuthStateChanged(auth, user => {
       if (user) {
+        // L'usuari ha iniciat sessió
         window.syncPreferencesWithFirebase(auth, database, get, ref, update);
-        authContainer.innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
-        leaveReviewSection.style.display = 'block';
+        
+        // Configura el botó per obrir el modal d'opinió
+        leaveReviewBtn.setAttribute('data-bs-target', '#reviewModal');
+        leaveReviewBtn.removeAttribute('data-bs-toggle-auth'); // Neteja l'atribut per si de cas
 
-        reviewForm.addEventListener('submit', (e) => {
+        // Afegeix el listener per enviar el formulari només una vegada
+        const submitHandler = (e) => {
             e.preventDefault();
             const reviewText = document.getElementById('review-text').value;
             if (!reviewText.trim()) return;
@@ -295,20 +305,20 @@
                 showToast('Error', 'No s\'ha pogut enviar la teva opinió. Intenta-ho de nou.');
                 console.error("Error al enviar opinió: ", error);
             });
-        });
+        };
+        
+        // Per evitar múltiples listeners, el clonem i el substituïm
+        const newReviewForm = reviewForm.cloneNode(true);
+        reviewForm.parentNode.replaceChild(newReviewForm, reviewForm);
+        newReviewForm.addEventListener('submit', submitHandler);
+        
       } else {
-        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary">Inicia Sessió</button>`;
-        document.getElementById('login-button').addEventListener('click', () => {
-          signInWithPopup(auth, provider)
-            .then((result) => {
-              const user = result.user;
-              const userRef = ref(database, 'users/' + user.uid);
-              get(userRef).then((snapshot) => {
-                if (!snapshot.exists()) { window.location.href = 'perfil.html'; } 
-                else { window.syncPreferencesWithFirebase(auth, database, get, ref, update); }
-              });
-            }).catch(console.error);
-        });
+        // L'usuari no ha iniciat sessió
+        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#authModal" data-translate="login_button">Inicia Sessió</button>`;
+        
+        // Configura el botó per obrir el modal d'autenticació
+        leaveReviewBtn.setAttribute('data-bs-target', '#authModal');
+        leaveReviewBtn.setAttribute('data-bs-toggle-auth', 'true'); // Atribut personalitzat
       }
     });
   </script>

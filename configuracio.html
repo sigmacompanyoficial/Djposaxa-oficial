@@ -107,6 +107,35 @@
           </div>
         </div>
       </div>
+
+      <!-- Accessibility Settings -->
+      <div class="col-md-6">
+        <div class="feature-card p-4">
+          <h3 class="mb-3" data-translate="accessibility_title">Accessibilitat</h3>
+          <div class="form-check form-switch mb-3">
+            <input class="form-check-input" type="checkbox" role="switch" id="highContrastSwitch" onchange="toggleHighContrast(this.checked)">
+            <label class="form-check-label" for="highContrastSwitch" data-translate="accessibility_contrast">Mode de Contrast Alt</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="animationsSwitch" onchange="toggleAnimations(this.checked)" checked>
+            <label class="form-check-label" for="animationsSwitch" data-translate="accessibility_animations">Activar Animacions</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reset Settings -->
+      <div class="col-md-6">
+        <div class="feature-card p-4">
+          <h3 class="mb-3" data-translate="reset_title">Restablir Configuració</h3>
+          <p data-translate="reset_text">Això esborrarà totes les teves preferències visuals i d'idioma i tornarà als valors per defecte.</p>
+          <button class="btn btn-danger" onclick="resetSettings()" data-translate="reset_button">Restablir Preferències</button>
+        </div>
+      </div>
+
+      <div class="col-md-6" id="admin-panel-link-container" style="display: none;">
+        <div class="feature-card p-4">
+        </div>
+      </div>
     </div>
   </main>
 
@@ -197,6 +226,12 @@
           font_size_small: "Petita",
           font_size_normal: "Normal",
           font_size_large: "Gran",
+          accessibility_title: "Accessibilitat",
+          accessibility_contrast: "Mode de Contrast Alt",
+          accessibility_animations: "Activar Animacions",
+          reset_title: "Restablir Configuració",
+          reset_text: "Això esborrarà totes les teves preferències visuals i d'idioma i tornarà als valors per defecte.",
+          reset_button: "Restablir Preferències",
           footer_rights: "Tots els drets reservats.", footer_location: "Granollers · BCN", footer_dev: "Desenvolupat per Sigma Company", footer_more_projects: "Més projectes de Sigma Company",
         },
         es: {
@@ -215,6 +250,12 @@
           font_size_small: "Pequeña",
           font_size_normal: "Normal",
           font_size_large: "Grande",
+          accessibility_title: "Accesibilidad",
+          accessibility_contrast: "Modo de Alto Contraste",
+          accessibility_animations: "Activar Animaciones",
+          reset_title: "Restablecer Configuración",
+          reset_text: "Esto borrará todas tus preferencias visuales y de idioma y volverá a los valores por defecto.",
+          reset_button: "Restablecer Preferencias",
           footer_rights: "Todos los derechos reservados.", footer_location: "Granollers · BCN", footer_dev: "Desarrollado por Sigma Company", footer_more_projects: "Más proyectos de Sigma Company",
         },
         en: {
@@ -233,6 +274,12 @@
           font_size_small: "Small",
           font_size_normal: "Normal",
           font_size_large: "Large",
+          accessibility_title: "Accessibility",
+          accessibility_contrast: "High Contrast Mode",
+          accessibility_animations: "Enable Animations",
+          reset_title: "Reset Settings",
+          reset_text: "This will clear all your visual and language preferences and revert to the default values.",
+          reset_button: "Reset Preferences",
           footer_rights: "All rights reserved.", footer_location: "Granollers · BCN", footer_dev: "Developed by Sigma Company", footer_more_projects: "More projects from Sigma Company",
         },
         fr: {
@@ -251,6 +298,12 @@
           font_size_small: "Petite",
           font_size_normal: "Normale",
           font_size_large: "Grande",
+          accessibility_title: "Accessibilité",
+          accessibility_contrast: "Mode Contraste Élevé",
+          accessibility_animations: "Activer les Animations",
+          reset_title: "Réinitialiser les Paramètres",
+          reset_text: "Ceci effacera toutes vos préférences visuelles et linguistiques et reviendra aux valeurs par défaut.",
+          reset_button: "Réinitialiser les Préférences",
           footer_rights: "Tous droits réservés.", footer_location: "Granollers · BCN", footer_dev: "Développé par Sigma Company", footer_more_projects: "Plus de projets de Sigma Company",
         },
         de: {
@@ -269,10 +322,25 @@
           font_size_small: "Klein",
           font_size_normal: "Normal",
           font_size_large: "Groß",
+          accessibility_title: "Barrierefreiheit",
+          accessibility_contrast: "Hoher Kontrastmodus",
+          accessibility_animations: "Animationen aktivieren",
+          reset_title: "Einstellungen zurücksetzen",
+          reset_text: "Dadurch werden alle Ihre visuellen und sprachlichen Einstellungen gelöscht und auf die Standardwerte zurückgesetzt.",
+          reset_button: "Einstellungen zurücksetzen",
           footer_rights: "Alle Rechte vorbehalten.", footer_location: "Granollers · BCN", footer_dev: "Entwickelt von Sigma Company", footer_more_projects: "Weitere Projekte von Sigma Company",
         }
       };
-      initializePage(window.pageTranslations);
+      initializePage(window.pageTranslations, () => {
+        // Sincronitza l'estat dels interruptors amb localStorage
+        const highContrast = localStorage.getItem('highContrast') === 'true';
+        const animations = localStorage.getItem('animations') !== 'false'; // Activat per defecte
+        document.getElementById('highContrastSwitch').checked = highContrast;
+        document.getElementById('animationsSwitch').checked = animations;
+        // Aplica els estats a la càrrega
+        document.body.classList.toggle('high-contrast', highContrast);
+        document.body.classList.toggle('no-animations', !animations);
+      });
     });
   </script>
 

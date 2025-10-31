@@ -66,8 +66,13 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="feature-card p-4">
-          <div class="text-center mb-4">
-            <img id="user-photo" src="https://via.placeholder.com/100" alt="Foto de perfil" class="rounded-circle" style="width: 100px; height: 100px;">
+          <div class="text-center mb-4 position-relative" id="photo-container" style="cursor: pointer; display: inline-block;">
+            <img id="user-photo" src="Fotos/default-profile.png" alt="Foto de perfil" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+            <div class="position-absolute bottom-0 end-0 bg-primary rounded-circle p-1">
+              <span style="font-size: 0.8rem;">✏️</span>
+            </div>
+            <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+            <div id="upload-feedback" class="form-text text-white-50 mt-2"></div>
             <h3 id="user-name" class="mt-2"></h3>
             <p id="user-email" class="text-white-50"></p>
           </div>
@@ -86,6 +91,20 @@
                 <option value="pachangueo">Pachangueo</option>
                 <option value="altres">Altres</option>
               </select>
+            </div>
+            <div class="mb-3">
+              <label for="userBio" class="form-label" data-translate="form_bio">Biografia Breu</label>
+              <textarea class="form-control" id="userBio" rows="3" placeholder="Explica'ns una mica sobre tu..."></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="userInstagram" class="form-label" data-translate="form_instagram">Nom d'usuari d'Instagram</label>
+              <input type="text" class="form-control" id="userInstagram" placeholder="el_teu_usuari">
+            </div>
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" value="" id="emailNotifications">
+              <label class="form-check-label" for="emailNotifications" data-translate="form_notifications_label">
+                Vull rebre notificacions per correu sobre nous mashups i esdeveniments.
+              </label>
             </div>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                 <button type="submit" class="btn btn-primary" data-translate="form_save_button">Desar Canvis</button>
@@ -121,9 +140,10 @@
 
   <!-- Firebase -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+    import { getAuth, onAuthStateChanged, signOut, updateProfile } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+    import { getDatabase, ref, get, update } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
+    import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js';
 
     const firebaseConfig = {
       apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
@@ -139,13 +159,14 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const database = getDatabase(app);
+    const storage = getStorage(app);
 
     onAuthStateChanged(auth, user => {
       if (user) {
         // Sincronitzem les preferències per carregar el tema, idioma, etc. correctament
         window.syncPreferencesWithFirebase(auth, database, get, ref, update);
 
-        document.getElementById('user-photo').src = user.photoURL || 'https://via.placeholder.com/100';
+        document.getElementById('user-photo').src = user.photoURL || 'Fotos/default-profile.png';
         document.getElementById('user-name').textContent = user.displayName || 'Usuari';
         document.getElementById('user-email').textContent = user.email;
 
@@ -156,6 +177,9 @@
             const data = snapshot.val();
             document.getElementById('displayName').value = data.displayName || user.displayName;
             document.getElementById('favoriteGenre').value = data.favoriteGenre || 'reggaeton';
+            document.getElementById('userBio').value = data.bio || '';
+            document.getElementById('userInstagram').value = data.instagram || '';
+            document.getElementById('emailNotifications').checked = data.preferences?.emailNotifications || false;
           } else {
             document.getElementById('displayName').value = user.displayName;
           }
@@ -166,17 +190,74 @@
       }
     });
 
+    // Lògica per canviar la foto de perfil
+    document.getElementById('photo-container').addEventListener('click', () => {
+        document.getElementById('photoUpload').click();
+    });
+
+    document.getElementById('photoUpload').addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        const user = auth.currentUser;
+        const feedbackEl = document.getElementById('upload-feedback');
+
+        if (!file || !user) return;
+
+        // Validació del tipus d'arxiu i mida
+        if (!file.type.startsWith('image/')) {
+            feedbackEl.textContent = 'Si us plau, selecciona un arxiu d\'imatge.';
+            return;
+        }
+        if (file.size > 5 * 1024 * 1024) { // 5 MB
+            feedbackEl.textContent = 'La imatge és massa gran (màx. 5 MB).';
+            return;
+        }
+
+        feedbackEl.textContent = 'Pujant imatge...';
+
+        try {
+            // 1. Crear una referència única per a l'arxiu
+            const filePath = `profile_pictures/${user.uid}/${Date.now()}_${file.name}`;
+            const fileRef = storageRef(storage, filePath);
+
+            // 2. Pujar l'arxiu
+            await uploadBytes(fileRef, file);
+
+            // 3. Obtenir la URL de descàrrega
+            const url = await getDownloadURL(fileRef);
+
+            // 4. Actualitzar el perfil d'autenticació i la base de dades
+            await updateProfile(user, { photoURL: url });
+            await update(ref(database, 'users/' + user.uid), { photoURL: url });
+
+            // 5. Actualitzar la UI
+            document.getElementById('user-photo').src = url;
+            feedbackEl.textContent = 'Foto actualitzada!';
+            setTimeout(() => feedbackEl.textContent = '', 3000);
+        } catch (error) {
+            console.error("Error en pujar la imatge: ", error);
+            feedbackEl.textContent = 'Error en pujar la imatge.';
+        }
+    });
+
+
+
+
     document.getElementById('profile-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const user = auth.currentUser;
       if (user) {
         const displayName = document.getElementById('displayName').value;
         const favoriteGenre = document.getElementById('favoriteGenre').value;
+        const bio = document.getElementById('userBio').value;
+        const instagram = document.getElementById('userInstagram').value;
+        const emailNotifications = document.getElementById('emailNotifications').checked;
 
         // Dades del perfil
         const profileData = {
           displayName: displayName,
           email: user.email,
+          bio: bio,
+          instagram: instagram,
           photoURL: user.photoURL,
           favoriteGenre: favoriteGenre,
           lastLogin: new Date().toISOString(),
@@ -185,9 +266,9 @@
 
         // Dades de preferències (per si s'actualitzen aquí)
         const preferencesData = {
-            // language: localStorage.getItem('language') || 'ca', // Eliminat per no desar l'idioma
             theme: localStorage.getItem('theme') || 'dark',
-            fontSize: localStorage.getItem('fontSize') || 'normal'
+            fontSize: localStorage.getItem('fontSize') || 'normal',
+            emailNotifications: emailNotifications
         };
         update(ref(database, 'users/' + user.uid), { ...profileData, preferences: preferencesData }).then(() => {
           alert('Perfil desat correctament!');
@@ -220,6 +301,9 @@
           profile_subtitle: "Personalitza les teves preferències per a una millor experiència.",
           form_display_name: "Nom a mostrar",
           form_favorite_genre: "Gènere Musical Preferit",
+          form_bio: "Biografia Breu",
+          form_instagram: "Nom d'usuari d'Instagram",
+          form_notifications_label: "Vull rebre notificacions per correu sobre nous mashups i esdeveniments.",
           form_save_button: "Desar Canvis",
           form_signout_button: "Tancar Sessió",
           footer_rights: "Tots els drets reservats.",

@@ -200,9 +200,9 @@
   <!-- Firebase -->
   <script type="module">
     // Importa les funcions que necessites dels SDKs
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+    import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+    import { getDatabase, ref, get, update } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
 
     const firebaseConfig = {
       apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
@@ -219,40 +219,25 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const database = getDatabase(app);
-    const provider = new GoogleAuthProvider();
 
     // Exposa les funcions de Firebase per a main.js
-    window.exposeFirebase(auth, database, ref, update, get);
+    window.exposeFirebase(auth, database, ref, update, get, { GoogleAuthProvider, signInWithPopup });
+
+    // Inicialitza la lògica d'autenticació (incloent listeners del modal)
+    // Això garanteix que s'executa DESPRÉS que Firebase estigui llest.
+    window.initAuth();
 
     const authContainer = document.getElementById('auth-container');
 
     onAuthStateChanged(auth, user => {
       if (user) {
-        // L'usuari ha iniciat sessió: mostra la icona de perfil
         // Sincronitzem les preferències amb Firebase
         window.syncPreferencesWithFirebase(auth, database, get, ref, update); // Això ara gestiona la UI
       } else {
-        // L'usuari no ha iniciat sessió: mostra el botó d'inici de sessió
-        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary">Inicia Sessió</button>`;
-        document.getElementById('login-button').addEventListener('click', () => {
-          signInWithPopup(auth, provider)
-            .then((result) => {
-              const user = result.user;
-              const userRef = ref(database, 'users/' + user.uid);
-              // Comprova si l'usuari és nou per redirigir-lo a la pàgina de perfil
-              get(userRef).then((snapshot) => {
-                if (!snapshot.exists()) {
-                  // Usuari nou, el portem a personalitzar el perfil
-                  window.location.href = 'perfil.html';
-                } else {
-                  // Usuari existent, sincronitzem preferències
-                  window.syncPreferencesWithFirebase(auth, database, get, ref, update);
-                }
-              });
-            }).catch((error) => {
-              console.error("Error d'autenticació: ", error);
-            });
-        });
+        // L'usuari no ha iniciat sessió: mostra el botó que obre el modal d'autenticació.
+        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#authModal" data-translate="login_button">Inicia Sessió</button>`;
+        // La traducció s'aplicarà quan la pàgina es carregui
+        if (window.pageTranslations) setLanguage(getLanguage());
       }
     });
   </script>

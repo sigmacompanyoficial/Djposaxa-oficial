@@ -1,0 +1,22 @@
+<!-- Auth Modal -->
+<div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="authModalLabel" data-translate="auth_modal_title">Inicia Sessió</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="auth-feedback" class="alert" style="display:none;"></div>
+        <p class="text-center" data-translate="auth_google_prompt">Fes servir el teu compte de Google per accedir de forma ràpida i segura.</p>
+        <!-- Google Sign-In -->
+        <div class="d-grid mt-4">
+          <button id="google-signin-btn" class="btn btn-light d-flex align-items-center justify-content-center">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" width="20" height="20" class="me-2">
+            <span data-translate="auth_google_btn">Continua amb Google</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -134,7 +134,7 @@
         toast.show();
     }
 
-    window.exposeFirebase(auth, database, ref, update, get);
+    window.exposeFirebase(auth, database, ref, update, get, {});
 
     onAuthStateChanged(auth, user => {
       if (user) {
@@ -229,7 +229,7 @@
                 remove(reviewRef).then(() => {
                     showToast('Eliminada', 'L\'opinió ha estat rebutjada.');
                 });
-            };
+            }
 
           } else {
             // No és admin o no existeix, el redirigim

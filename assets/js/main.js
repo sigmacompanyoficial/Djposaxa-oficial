@@ -32,12 +32,12 @@ function setLanguage(lang) {
 
 window.changeLanguage = function(lang) {
     localStorage.setItem('language', lang);
-    // updateFirebasePreference('language', lang); // Eliminat per evitar desar l'idioma a Firebase
     // Recarreguem les traduccions i apliquem l'idioma a l'instant
     if (window.pageTranslations) {
-        initializePage(window.pageTranslations);
+        currentTranslations = window.pageTranslations;
+        setLanguage(lang);
     }
-}
+};
 
 function getTheme() {
     return localStorage.getItem('theme') || 'dark'; // Default to dark
@@ -80,9 +80,12 @@ window.changeFontSize = function(size) {
 }
 
 
-function initializePage(translations, specialLogic = null) {
+async function initializePage(translations, specialLogic = null) {
     currentTranslations = translations;
-    
+
+    // Injectar el modal d'autenticació
+    await injectAuthModal();
+
     // Set year
     const yearSpan = document.getElementById('year');
     if (yearSpan) {
@@ -112,11 +115,10 @@ function initializePage(translations, specialLogic = null) {
  */
 function updateFirebasePreference(key, value) {
     // Aquesta funció depèn que Firebase estigui inicialitzat a la finestra.
-    if (window.auth && window.database && window.auth.currentUser) {
-        const { auth, database, ref, update } = window;
+    if (window.auth && window.database && window.ref && window.update && window.auth.currentUser) {
+        const { auth, database, ref, update } = window; // Utilitzem les funcions exposades
         const user = auth.currentUser;
-        const preferenceRef = ref(database, `users/${user.uid}/preferences/${key}`);
-        update(ref(database, `users/${user.uid}/preferences`), { [key]: value });
+        update(ref(database, `users/${user.uid}/preferences`), { [key]: value }).catch(console.error);
     }
 }
 
@@ -141,7 +143,6 @@ window.syncPreferencesWithFirebase = function(auth, database, get, ref, update) 
 
             // L'usuari té preferències guardades, les carreguem.
             console.log('Preferències carregades des de Firebase:', prefs);
-            // if (prefs.language) localStorage.setItem('language', prefs.language); // Eliminat per no carregar l'idioma des de Firebase
 
             // Gestió de Rols
             const userRole = userData.role || 'cliente';
@@ -149,11 +150,13 @@ window.syncPreferencesWithFirebase = function(auth, database, get, ref, update) 
             const authContainer = document.getElementById('auth-container');
 
             // Actualitza la icona de perfil i l'enllaç d'admin
+            const photoURL = user.photoURL || 'Fotos/default-profile.png'; // Imatge per defecte
+
             if (userRole === 'administrador') {
-                if (authContainer) authContainer.innerHTML = `<a class="nav-link" href="admin.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
+                if (authContainer) authContainer.innerHTML = `<a class="nav-link" href="admin.html" aria-label="Perfil"><img src="${photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
                 if (adminLinkContainer) adminLinkContainer.innerHTML = `<a class="nav-link" href="admin.html">Admin Panel</a>`;
             } else {
-                if (authContainer) authContainer.innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
+                if (authContainer) authContainer.innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
                 if (adminLinkContainer) adminLinkContainer.innerHTML = ''; // Buidem el contenidor si no és admin
             }
 
@@ -162,7 +165,7 @@ window.syncPreferencesWithFirebase = function(auth, database, get, ref, update) 
 
             if (prefs.theme) localStorage.setItem('theme', prefs.theme);
             if (prefs.fontSize) localStorage.setItem('fontSize', prefs.fontSize);
-            if (prefs.djPosaxaFollowVerified) localStorage.setItem('djPosaxaFollowVerified', prefs.djPosaxaFollowVerified);
+            localStorage.setItem('djPosaxaFollowVerified', prefs.djPosaxaFollowVerified || 'false');
 
             // Apliquem la configuració carregada
             applyTheme();
@@ -172,21 +175,101 @@ window.syncPreferencesWithFirebase = function(auth, database, get, ref, update) 
             // L'usuari no té preferències, guardem les actuals del localStorage.
             console.log('Primer inici de sessió o sense preferències. Desant configuració actual a Firebase.');
             const currentPrefs = {
-                // language: localStorage.getItem('language') || 'ca', // Eliminat per no desar l'idioma a Firebase
                 theme: localStorage.getItem('theme') || 'dark',
                 fontSize: localStorage.getItem('fontSize') || 'normal',
-                djPosaxaFollowVerified: localStorage.getItem('djPosaxaFollowVerified') || 'false'
+                djPosaxaFollowVerified: localStorage.getItem('djPosaxaFollowVerified') || 'false' // Assegura que sempre hi hagi un valor
             };
             update(ref(database, `users/${user.uid}/preferences`), currentPrefs);
         }
     });
 };
 
-// Exposa les funcions de Firebase a l'objecte window perquè siguin accessibles globalment
-window.exposeFirebase = function(auth, database, ref, update, get) {
+async function injectAuthModal() {
+    // Evita injectar el modal si ja existeix
+    if (document.getElementById('authModal')) return;
+    
+    try {
+        const response = await fetch('/auth-modal.html'); // Usar ruta absoluta
+        if (!response.ok) {
+            throw new Error(`No s'ha pogut carregar auth-modal.html: ${response.statusText}`);
+        }
+        const modalHtml = await response.text();
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    } catch (error) {
+        console.error("Error injectant el modal d'autenticació:", error);
+    }
+}
+
+
+function setupAuthModalListeners(auth, database, ref, get, update, firebaseAuth) {
+    const { GoogleAuthProvider, signInWithPopup } = firebaseAuth;
+
+    const authModal = new bootstrap.Modal(document.getElementById('authModal'));
+    const googleSigninBtn = document.getElementById('google-signin-btn');
+    const authFeedback = document.getElementById('auth-feedback');
+
+    function showFeedback(element, message, isError = true) {
+        element.textContent = message;
+        element.className = `alert ${isError ? 'alert-danger' : 'alert-success'}`;
+        element.style.display = 'block';
+    }
+
+    // Inici de sessió amb Google
+    googleSigninBtn.addEventListener('click', () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const user = result.user;
+                const userRef = ref(database, 'users/' + user.uid);
+                get(userRef).then((snapshot) => {
+                    if (!snapshot.exists()) {
+                        window.location.href = 'perfil.html';
+                    } else {
+                        window.syncPreferencesWithFirebase(auth, database, get, ref, update);
+                    }
+                });
+                authModal.hide();
+            }).catch((error) => {
+                showFeedback(authFeedback, `Error amb Google: ${error.message}`);
+            });
+    });
+
+    // Netejar feedback quan es tanca el modal
+    document.getElementById('authModal').addEventListener('hidden.bs.modal', () => {
+        authFeedback.style.display = 'none';
+    });
+}
+
+
+/**
+ * Exposa les funcions de Firebase a l'objecte window perquè siguin accessibles globalment
+ * @param {object} auth - Instància d'autenticació de Firebase.
+ * @param {object} database - Instància de la base de dades de Firebase.
+ * @param {function} ref - Funció 'ref' de Firebase Database.
+ * @param {function} update - Funció 'update' de Firebase Database.
+ * @param {function} get - Funció 'get' de Firebase Database.
+ * @param {object} firebaseAuth - Objecte amb funcions d'autenticació.
+ */
+window.exposeFirebase = function(auth, database, ref, update, get, firebaseAuth) {
     window.auth = auth;
     window.database = database;
     window.ref = ref;
     window.update = update;
     window.get = get;
+    window.firebaseAuth = firebaseAuth;
+};
+
+/**
+ * Funció principal d'inicialització que s'assegura que tot es carrega en ordre.
+ * Aquesta funció és cridada des dels fitxers HTML després que Firebase s'hagi inicialitzat.
+ */
+window.initAuth = async function() {
+    // 1. Injecta el modal d'autenticació i espera que estigui al DOM.
+    await injectAuthModal();
+
+    // 2. Ara que el modal existeix, configura els seus listeners.
+    // Aquest codi només s'executa si Firebase s'ha carregat correctament (perquè window.auth existirà).
+    if (window.auth && window.firebaseAuth) {
+        setupAuthModalListeners(window.auth, window.database, window.ref, window.get, window.update, window.firebaseAuth);
+    }
 };

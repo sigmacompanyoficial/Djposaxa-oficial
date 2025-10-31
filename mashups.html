@@ -444,6 +444,7 @@
                     statusText.innerHTML = '✅ <b>Verificat:</b> S\'ha detectat que segueixes a DJ Posaxa.';
                     statusText.style.color = 'var(--bs-success)';
                     localStorage.setItem('djPosaxaFollowVerified', 'true');
+                    updateFirebasePreference('djPosaxaFollowVerified', 'true');
 
                     setTimeout(() => {
                         modal.style.display = 'none';

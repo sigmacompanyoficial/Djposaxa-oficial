@@ -64,6 +64,21 @@
           </div>
         </div>
       </div>
+      <div class="col-12 mt-4">
+        <div class="feature-card p-4">
+          <h2>Gestió d'Opinions Pendents</h2>
+          <div class="table-responsive">
+            <table class="table table-dark table-striped table-hover">
+              <thead>
+                <tr><th>Usuari</th><th>Opinió</th><th>Data</th><th>Accions</th></tr>
+              </thead>
+              <tbody id="pending-reviews-list">
+                <!-- Les opinions pendents es carregaran aquí -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -74,6 +89,20 @@
     </div>
   </footer>
 
+  <!-- Toast Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="notificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-dark text-white">
+        <strong class="me-auto" id="toast-title">Notificació</strong>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" id="toast-body">
+        Missatge.
+      </div>
+    </div>
+  </div>
+
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
@@ -81,7 +110,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getDatabase, ref, get, update, onValue, remove, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
@@ -98,6 +127,13 @@
     const auth = getAuth(app);
     const database = getDatabase(app);
 
+    function showToast(title, message) {
+        document.getElementById('toast-title').innerText = title;
+        document.getElementById('toast-body').innerText = message;
+        const toast = new bootstrap.Toast(document.getElementById('notificationToast'));
+        toast.show();
+    }
+
     window.exposeFirebase(auth, database, ref, update, get);
 
     onAuthStateChanged(auth, user => {
@@ -109,7 +145,7 @@
             document.getElementById('auth-container').innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
             document.getElementById('admin-link-container').innerHTML = `<a class="nav-link active" href="admin.html">Admin Panel</a>`;
 
-            // Carregar tots els usuaris
+            // --- Càrrega d'usuaris ---
             const allUsersRef = ref(database, 'users');
             get(allUsersRef).then((allUsersSnapshot) => {
               const userList = document.getElementById('user-list');
@@ -137,6 +173,64 @@
                 userList.innerHTML += row;
               });
             });
+
+            // --- Càrrega d'opinions pendents ---
+            const pendingReviewsRef = ref(database, 'reviews/pending');
+            onValue(pendingReviewsRef, (snapshot) => {
+                const reviewsList = document.getElementById('pending-reviews-list');
+                reviewsList.innerHTML = '';
+                if (snapshot.exists()) {
+                    snapshot.forEach((childSnapshot) => {
+                        const reviewId = childSnapshot.key;
+                        const reviewData = childSnapshot.val();
+                        const reviewDate = reviewData.createdAt ? new Date(reviewData.createdAt).toLocaleString('ca-ES') : 'N/A';
+                        const row = `
+                            <tr>
+                                <td>${reviewData.userName || 'N/A'}</td>
+                                <td style="max-width: 400px; overflow-wrap: break-word;">${reviewData.text}</td>
+                                <td>${reviewDate}</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm approve-btn" data-id="${reviewId}">Aprovar</button>
+                                    <button class="btn btn-danger btn-sm reject-btn" data-id="${reviewId}">Rebutjar</button>
+                                </td>
+                            </tr>`;
+                        reviewsList.innerHTML += row;
+                    });
+
+                    // Afegir event listeners als botons
+                    document.querySelectorAll('.approve-btn').forEach(button => {
+                        button.addEventListener('click', () => approveReview(button.dataset.id));
+                    });
+                    document.querySelectorAll('.reject-btn').forEach(button => {
+                        button.addEventListener('click', () => rejectReview(button.dataset.id));
+                    });
+
+                } else {
+                    reviewsList.innerHTML = '<tr><td colspan="4" class="text-center">No hi ha opinions pendents de revisió.</td></tr>';
+                }
+            });
+
+            window.approveReview = (reviewId) => {
+                const pendingReviewRef = ref(database, `reviews/pending/${reviewId}`);
+                get(pendingReviewRef).then((snapshot) => {
+                    if(snapshot.exists()) {
+                        const reviewData = snapshot.val();
+                        const publishedReviewRef = ref(database, `reviews/published/${reviewId}`);
+                        set(publishedReviewRef, reviewData).then(() => {
+                            remove(pendingReviewRef);
+                            showToast('Èxit', 'Opinió aprovada i publicada.');
+                        });
+                    }
+                });
+            };
+
+            window.rejectReview = (reviewId) => {
+                const reviewRef = ref(database, `reviews/pending/${reviewId}`);
+                remove(reviewRef).then(() => {
+                    showToast('Eliminada', 'L\'opinió ha estat rebutjada.');
+                });
+            };
+
           } else {
             // No és admin o no existeix, el redirigim
             window.location.href = 'index.html';

@@ -79,72 +79,108 @@
 
   <!-- Main Content -->
   <main class="container my-5">
-    <div class="row g-4">
-      <!-- Opinion 1 -->
+    <!-- Botó per deixar opinió (només visible per a usuaris loguejats) -->
+    <div id="leave-review-section" class="text-center mb-5" style="display: none;">
+      <button id="leave-review-btn" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#reviewModal" data-translate="leave_review_button">Deixa la teva opinió</button>
+    </div>
+
+    <!-- Llistat d'opinions -->
+    <div id="reviews-list" class="row g-4">
+      <!-- Opinions Estàtiques -->
       <div class="col-md-6 col-lg-4">
         <div class="feature-card text-center">
           <img src="Fotos/o1.jpg" alt="Opinió 1" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
           <p class="fst-italic" data-translate="review1">"Opino que DJ Posaxa te les millors cançons i tria els millors moments per ficar-les en una festa. És de lo millor que he vist mai i té molt futur 🔥🔥"</p>
         </div>
       </div>
-      <!-- Opinion 2 -->
       <div class="col-md-6 col-lg-4">
         <div class="feature-card text-center">
           <img src="Fotos/o2.jpg" alt="Opinió 2" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
           <p class="fst-italic" data-translate="review2">"DJ Posaxa té molt futur. He anat a un bolo seu i ja estic dessitjant poder anar a un altre. Si segueix així arribarà molt lluny ja que amb només 14 anys ja ho està petant."</p>
         </div>
       </div>
-      <!-- Opinion 3 -->
       <div class="col-md-6 col-lg-4">
         <div class="feature-card text-center">
           <img src="Fotos/o3.jpg" alt="Opinió 3" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
           <p class="fst-italic" data-translate="review3">"DJ Posaxa és molt amable i estic molt agrait. El seu show va fer una nit màgica i inolvidable per a molta gent 🔥👌"</p>
         </div>
       </div>
-      <!-- Opinion 4 -->
       <div class="col-md-6 col-lg-4">
         <div class="feature-card text-center">
           <img src="Fotos/04.jpg" alt="Opinió 4" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
           <p class="fst-italic" data-translate="review4">"Fa molt bona música, té molt bones cançons versionades a techno i troba cada moment de una festa per a que la gent disfruti al màxim 🤩"</p>
         </div>
       </div>
-      <!-- Opinion 5 -->
       <div class="col-md-6 col-lg-4">
         <div class="feature-card text-center">
           <img src="Fotos/o5.jpg" alt="Opinió 5" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
           <p class="fst-italic" data-translate="review5">"DJ Posaxa és un DJ amb molt futur. Tant de bó pugui punxar algun dia per festa major de Granollers 👌👌"</p>
         </div>
       </div>
-      <!-- Opinion 6 -->
       <div class="col-md-6 col-lg-4">
         <div class="feature-card text-center">
           <img src="Fotos/o6.jpg" alt="Opinió 6" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
           <p class="fst-italic" data-translate="review6">"És el millor DJ que he sentit mai en directe, crec que quan cumpleixi els 18 anys, estarà cada cap de setmana punxant a totes les discoteques i festivals del mon. 🔥🔥🔥🔥"</p>
         </div>
       </div>
-      <!-- Opinion 7 -->
       <div class="col-md-6 col-lg-4">
         <div class="feature-card text-center">
           <img src="Fotos/o7.jpg" alt="Opinió 7" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
           <p class="fst-italic" data-translate="review7">"DJ Posaxa és de lo millor que hi ha ara mateix. Crec que arribarà molt lluny ja que el seu nivell d'esforç és insuperable 🔥🔥"</p>
         </div>
       </div>
-      <!-- Opinion 8 -->
       <div class="col-md-6 col-lg-4">
         <div class="feature-card text-center">
           <img src="Fotos/o8.jpg" alt="Opinió 8" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
           <p class="fst-italic" data-translate="review8">"Té les millors barreges de música entre Dembow, reggaeton i música catalana. A més a més, vaig tenir la sort de poder parlar amb ell i és un xaval molt divertit 🤩"</p>
         </div>
       </div>
-      <!-- Opinion 9 -->
       <div class="col-md-6 col-lg-4">
         <div class="feature-card text-center">
           <img src="Fotos/o9.jpg" alt="Opinió 9" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
           <p class="fst-italic" data-translate="review9">"M'agraden molt els seus mashups en directe i fa que la festa es torni loca en menys de 2 segons 🔥🔥🤩"</p>
         </div>
       </div>
+      <!-- Les opinions dinàmiques es carregaran aquí -->
+      <div id="dynamic-reviews-placeholder" class="col-12">
+        <!-- Dynamic reviews will be loaded here -->
+      </div>
     </div>
   </main>
+
+  <!-- Modal per deixar opinió -->
+  <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reviewModalLabel" data-translate="modal_title">La teva Opinió</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="review-form">
+            <div class="mb-3">
+              <label for="review-text" class="form-label" data-translate="modal_label">Escriu el teu missatge:</label>
+              <textarea class="form-control" id="review-text" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" data-translate="modal_submit">Enviar Opinió</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="notificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-dark text-white">
+        <strong class="me-auto" id="toast-title">Notificació</strong>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" id="toast-body">
+        Missatge.
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer mt-auto">
@@ -172,7 +208,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getDatabase, ref, get, update, push, serverTimestamp, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
@@ -190,11 +226,76 @@
     const database = getDatabase(app);
     const provider = new GoogleAuthProvider();
     const authContainer = document.getElementById('auth-container');
+    const leaveReviewSection = document.getElementById('leave-review-section');
+    const reviewForm = document.getElementById('review-form');
+    const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
+
+    function showToast(title, message) {
+        document.getElementById('toast-title').innerText = title;
+        document.getElementById('toast-body').innerText = message;
+        const toast = new bootstrap.Toast(document.getElementById('notificationToast'));
+        toast.show();
+    }
+
+    // Carregar opinions aprovades
+    const reviewsList = document.getElementById('reviews-list');
+    const publishedReviewsRef = ref(database, 'reviews/published');
+    onValue(publishedReviewsRef, (snapshot) => {
+        const dynamicReviewsPlaceholder = document.getElementById('dynamic-reviews-placeholder');
+        dynamicReviewsPlaceholder.innerHTML = ''; // Clear only the dynamic content area
+        let hasReviews = false;
+        if (snapshot.exists()) {
+            hasReviews = true;
+            let dynamicReviewsHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const review = childSnapshot.val();
+                const reviewHTML = `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="feature-card text-center">
+                            <img src="${review.userPhotoURL || 'Fotos/default-profile.png'}" alt="Foto de ${review.userName}" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                            <p class="fst-italic">"${review.text}"</p>
+                            <p class="fw-bold mt-2">- ${review.userName}</p>
+                        </div>
+                    </div>
+                `;
+                dynamicReviewsHTML += reviewHTML;
+            });
+            dynamicReviewsPlaceholder.innerHTML = dynamicReviewsHTML;
+        } else if (!hasReviews) {
+            dynamicReviewsPlaceholder.innerHTML = `<div class="col-12"><p class="text-center" data-translate="no_new_reviews">Encara no hi ha opinions noves. Sigues el primer!</p></div>`;
+        }
+
+        // Re-translate if needed
+        window.translateAll();
+    });
 
     onAuthStateChanged(auth, user => {
       if (user) {
         window.syncPreferencesWithFirebase(auth, database, get, ref, update);
         authContainer.innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
+        leaveReviewSection.style.display = 'block';
+
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const reviewText = document.getElementById('review-text').value;
+            if (!reviewText.trim()) return;
+
+            const pendingReviewRef = ref(database, 'reviews/pending');
+            push(pendingReviewRef, {
+                userId: user.uid,
+                userName: user.displayName,
+                userPhotoURL: user.photoURL,
+                text: reviewText,
+                createdAt: serverTimestamp()
+            }).then(() => {
+                reviewModal.hide();
+                reviewForm.reset();
+                showToast('Opinió Enviada', 'Els administradors revisaran el missatge i el publicaran d\'aquí a poc.');
+            }).catch(error => {
+                showToast('Error', 'No s\'ha pogut enviar la teva opinió. Intenta-ho de nou.');
+                console.error("Error al enviar opinió: ", error);
+            });
+        });
       } else {
         authContainer.innerHTML = `<button id="login-button" class="btn btn-primary">Inicia Sessió</button>`;
         document.getElementById('login-button').addEventListener('click', () => {
@@ -229,6 +330,12 @@
         nav_language: "Idioma",
         reviews_title: "Opinions",
         reviews_subtitle: "La paraula dels clients: experiències reals en esdeveniments reals.",
+        leave_review_button: "Deixa la teva opinió",
+        modal_title: "La teva Opinió",
+        modal_label: "Escriu el teu missatge:",
+        modal_submit: "Enviar Opinió",
+        no_new_reviews: "Encara no hi ha opinions noves. Sigues el primer!",
+        // Les claus 'review1' a 'review9' ja no són necessàries si es carreguen dinàmicament
         review1: "\"Opino que DJ Posaxa te les millors cançons i tria els millors moments per ficar-les en una festa. És de lo millor que he vist mai i té molt futur 🔥🔥\"",
         review2: "\"DJ Posaxa té molt futur. He anat a un bolo seu i ja estic dessitjant poder anar a un altre. Si segueix així arribarà molt lluny ja que amb només 14 anys ja ho està petant.\"",
         review3: "\"DJ Posaxa és molt amable i estic molt agrait. El seu show va fer una nit màgica i inolvidable per a molta gent 🔥👌\"",
@@ -255,6 +362,11 @@
         nav_language: "Idioma",
         reviews_title: "Opiniones",
         reviews_subtitle: "La palabra de los clientes: experiencias reales en eventos reales.",
+        leave_review_button: "Deja tu opinión",
+        modal_title: "Tu Opinión",
+        modal_label: "Escribe tu mensaje:",
+        modal_submit: "Enviar Opinión",
+        no_new_reviews: "Aún no hay opiniones nuevas. ¡Sé el primero!",
         review1: "\"Opino que DJ Posaxa tiene las mejores canciones y elige los mejores momentos para ponerlas en una fiesta. Es de lo mejor que he visto nunca y tiene mucho futuro 🔥🔥\"",
         review2: "\"DJ Posaxa tiene mucho futuro. He ido a un bolo suyo y ya estoy deseando poder ir a otro. Si sigue así llegará muy lejos ya que con solo 14 años ya lo está petando.\"",
         review3: "\"DJ Posaxa es muy amable y estoy muy agradecido. Su show hizo una noche mágica e inolvidable para mucha gente 🔥👌\"",
@@ -281,6 +393,11 @@
         nav_language: "Language",
         reviews_title: "Reviews",
         reviews_subtitle: "The clients' word: real experiences at real events.",
+        leave_review_button: "Leave your review",
+        modal_title: "Your Review",
+        modal_label: "Write your message:",
+        modal_submit: "Send Review",
+        no_new_reviews: "No new reviews yet. Be the first!",
         review1: "\"I think DJ Posaxa has the best songs and chooses the best moments to play them at a party. He is one of the best I have ever seen and has a great future 🔥🔥\"",
         review2: "\"DJ Posaxa has a great future. I went to one of his gigs and I'm already looking forward to going to another. If he continues like this he will go very far since at only 14 years old he is already killing it.\"",
         review3: "\"DJ Posaxa is very friendly and I am very grateful. His show made for a magical and unforgettable night for many people 🔥👌\"",
@@ -307,6 +424,11 @@
         nav_language: "Langue",
         reviews_title: "Avis",
         reviews_subtitle: "La parole des clients : des expériences réelles lors d'événements réels.",
+        leave_review_button: "Laissez votre avis",
+        modal_title: "Votre Avis",
+        modal_label: "Écrivez votre message :",
+        modal_submit: "Envoyer l'avis",
+        no_new_reviews: "Aucun nouvel avis pour le moment. Soyez le premier !",
         review1: "\"Je pense que DJ Posaxa a les meilleures chansons et choisit les meilleurs moments pour les jouer lors d'une fête. C'est l'un des meilleurs que j'aie jamais vus et il a un grand avenir 🔥🔥\"",
         review2: "\"DJ Posaxa a un grand avenir. Je suis allé à l'un de ses concerts et j'ai déjà hâte d'aller à un autre. S'il continue comme ça, il ira très loin car à seulement 14 ans, il déchire déjà.\"",
         review3: "\"DJ Posaxa est très sympathique et je suis très reconnaissant. Son spectacle a rendu la nuit magique et inoubliable pour beaucoup de gens 🔥👌\"",
@@ -333,6 +455,11 @@
         nav_language: "Sprache",
         reviews_title: "Bewertungen",
         reviews_subtitle: "Das Wort der Kunden: echte Erlebnisse bei echten Events.",
+        leave_review_button: "Hinterlassen Sie Ihre Bewertung",
+        modal_title: "Ihre Bewertung",
+        modal_label: "Schreiben Sie Ihre Nachricht:",
+        modal_submit: "Bewertung senden",
+        no_new_reviews: "Noch keine neuen Bewertungen. Seien Sie der Erste!",
         review1: "\"Ich denke, DJ Posaxa hat die besten Songs und wählt die besten Momente, um sie auf einer Party zu spielen. Er ist einer der besten, die ich je gesehen habe und hat eine große Zukunft 🔥🔥\"",
         review2: "\"DJ Posaxa hat eine große Zukunft. Ich war bei einem seiner Auftritte und freue mich schon auf den nächsten. Wenn er so weitermacht, wird er es sehr weit bringen, denn mit nur 14 Jahren rockt er schon.\"",
         review3: "\"DJ Posaxa ist sehr freundlich und ich bin sehr dankbar. Seine Show hat für viele Menschen eine magische und unvergessliche Nacht gemacht 🔥👌\"",

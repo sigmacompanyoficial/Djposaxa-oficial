@@ -171,18 +171,8 @@
         window.syncPreferencesWithFirebase(auth, database, get, ref, update);
         authContainer.innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
       } else {
-        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary">Inicia Sessió</button>`;
-        document.getElementById('login-button').addEventListener('click', () => {
-          signInWithPopup(auth, provider)
-            .then((result) => {
-              const user = result.user;
-              const userRef = ref(database, 'users/' + user.uid);
-              get(userRef).then((snapshot) => {
-                if (!snapshot.exists()) { window.location.href = 'perfil.html'; } 
-                else { window.syncPreferencesWithFirebase(auth, database, get, ref, update); }
-              });
-            }).catch(console.error);
-        });
+        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#authModal" data-translate="login_button">Inicia Sessió</button>`;
+        if (window.pageTranslations) window.translateAll();
       }
     });
 

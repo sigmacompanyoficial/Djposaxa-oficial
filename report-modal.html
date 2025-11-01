@@ -1,0 +1,22 @@
+<!-- Report Problem Modal -->
+<div class="modal fade" id="reportProblemModal" tabindex="-1" aria-labelledby="reportProblemModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reportProblemModalLabel">Reportar un Problema</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="report-feedback" class="alert" style="display:none;"></div>
+        <form id="report-problem-form">
+          <div class="mb-3">
+            <label for="problem-description" class="form-label">Descriu el problema que has trobat:</label>
+            <textarea class="form-control" id="problem-description" rows="4" required></textarea>
+            <div class="form-text text-white-50">La pàgina actual (<span id="report-page-url"></span>) s'inclourà automàticament.</div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Enviar Informe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

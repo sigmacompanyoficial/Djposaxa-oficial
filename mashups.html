@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-translate="page_title">Mashups Exclusius — DJ Posaxa</title>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PM90QK9QJX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PM90QK9QJX');
+</script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/modern-style.css" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Descarrega mashups i edits exclusius de DJ Posaxa. Accedeix a contingut únic per a DJs verificant el teu seguiment a les xarxes socials." data-translate="meta_description" />
+  <meta name="keywords" content="DJ, mashups, edits, descàrregues DJ, música exclusiva, DJ Posaxa, reggaeton, dembow, techno" data-translate="meta_keywords" />
+  <meta property="og:title" content="Mashups Exclusius — DJ Posaxa" data-translate="og_title" />
+  <meta property="og:description" content="Descarrega mashups i edits exclusius de DJ Posaxa per a les teves sessions." data-translate="og_description" />
+  <meta property="og:image" content="Fotos/VIRTUAL DIVA IMAGE.png" />
+  <meta property="og:url" content="https://djposaxa.com/mashups.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ca_ES" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mashups Exclusius — DJ Posaxa" data-translate="twitter_title" />
+  <meta name="twitter:description" content="Descarrega mashups i edits exclusius de DJ Posaxa per a les teves sessions." data-translate="twitter_description" />
+  <meta name="twitter:image" content="Fotos/VIRTUAL DIVA IMAGE.png" />
+
+  <link rel="icon" type="image/png" href="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png">
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v5.1.0/dist/tesseract.min.js"></script>
+  <!-- Theme styles are now in modern-style.css -->
+  <style>
+    #mashups-content { display: none; }
+    .modal-overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(8px);
+        z-index: 1055; /* Bootstrap modal z-index is 1050 */
+        display: none; /* Hidden by default */
+        align-items: center;
+        justify-content: center;
+    }
+  </style>
+</head>
+<body onload="applyTheme()">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png" alt="DJ Posaxa Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html" data-translate="nav_home">Inici</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="en-què-em-centro.html" data-translate="nav_focus">En què em centro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="per-què-escollir-me.html" data-translate="nav_why">Per què escollir-me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="esdeveniments.html" data-translate="nav_events">Esdeveniments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="opinionse486.html" data-translate="nav_reviews">Opinions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="preus.html" data-translate="nav_pricing">Preus</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="mashups.html" data-translate="nav_mashups">Mashups</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="configuracio.html" aria-label="Configuració">⚙️</a></li>
+          <li class="nav-item" id="auth-container"></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container my-5" style="padding-top: 6rem;">
+    <div id="follow-gate" class="text-center feature-card p-5">
+        <h1 class="display-5" data-translate="gate_title">Desbloqueja els Mashups Exclusius</h1>
+        <p class="lead" data-translate="gate_subtitle">Per accedir, primer segueix a <strong>@dj.posaxa</strong> a Instagram. Després, verifica-ho aquí amb una captura.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <a href="https://www.instagram.com/dj.posaxa/" target="_blank" class="btn btn-primary btn-lg">1. <span data-translate="gate_button_follow">Seguir a Instagram</span></a>
+            <button id="verify-button" class="btn btn-outline-light btn-lg">2. <span data-translate="gate_button_verify">Ja el segueixo, verificar</span></button>
+        </div>
+    </div>
+
+    <div id="mashups-content" style="display: none;">
+        <header class="text-center mb-5">
+            <h1 class="display-4" data-translate="mashups_title">Mashups Exclusius</h1>
+            <p class="lead" data-translate="mashups_subtitle">Descobreix les meves creacions úniques. Llestes per descarregar i utilitzar a les teves sessions.</p>
+        </header>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card text-center">
+                    <img src="Fotos/VIRTUAL DIVA IMAGE.png" alt="Diva Virtual Mashup" class="img-fluid rounded mb-3">
+                    <h3 data-translate="mashup1_title">Diva Virtual Mashup</h3>
+                    <a href="diva-virtual-mashup.html" class="btn btn-primary" data-translate="mashup1_button">Veure Detalls</a>
+                </div>
+            </div>
+            <!-- Add more mashup cards here -->
+        </div>
+    </div>
+  </main>
+
+  <!-- Verification Modal -->
+  <div id="verification-modal" class="modal-overlay">
+      <div class="modal-content feature-card p-4">
+          <h3 data-translate="modal_title">Verificació amb IA</h3>
+          <p data-translate="modal_text">Per confirmar, puja una captura de pantalla on es vegi que segueixes el perfil <strong>@dj.posaxa</strong>.</p>
+          <input type="file" id="screenshot-input" accept="image/*" style="display: none;" />
+          <div id="upload-area" class="border border-2 border-dashed rounded p-4 text-center cursor-pointer" style="cursor: pointer;">
+              <span id="upload-text" data-translate="modal_upload_text">Fes clic aquí per seleccionar una imatge</span>
+          </div>
+          <div id="progress-container" class="progress mt-3" style="height: 10px; display: none;">
+              <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;"></div>
+          </div>
+          <p id="verification-status" class="mt-3 fw-bold"></p>
+          <div class="text-center mt-3">
+              <button id="cancel-verification" class="btn btn-secondary" data-translate="modal_cancel">Cancel·lar</button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer mt-auto">
+    <div class="container d-md-flex justify-content-between align-items-center text-center text-md-start">
+      <div class="mb-3 mb-md-0">
+        <p class="mb-1">&copy; <span id="year"></span> DJ Posaxa. <span data-translate="footer_rights">Tots els drets reservats.</span></p>
+        <p class="mb-1"><span data-translate="footer_location">Granollers · BCN</span></p>
+        <div class="social-icons mt-2">
+          <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok"><img src="Fotos/Png tik.png" alt="TikTok" style="width: 24px; height: 24px;"></a>
+          <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener" aria-label="Instagram"><img src="Fotos/pngwing.com.png" alt="Instagram" style="width: 24px; height: 24px;"></a>
+        </div>
+      </div>
+      <div class="sigma-projects">
+        <p class="mb-1"><span data-translate="footer_dev">Desenvolupat per Sigma Company</span></p>
+        <p class="mb-2"><span data-translate="footer_more_projects">Més projectes de Sigma Company</span></p>
+        <a href="http://www.sigmagames.ct.ws" class="btn btn-primary text-white" target="_blank" rel="noopener">SigmaGames</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
+      authDomain: "dj-posaxa-web.firebaseapp.com",
+      databaseURL: "https://dj-posaxa-web-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "dj-posaxa-web",
+      storageBucket: "dj-posaxa-web.appspot.com",
+      messagingSenderId: "647042791526",
+      appId: "1:647042791526:web:3b870e05ab0ed34cbd95a7",
+      measurementId: "G-C8R4Z4TLE1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app);
+    const provider = new GoogleAuthProvider();
+    const authContainer = document.getElementById('auth-container');
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        window.syncPreferencesWithFirebase(auth, database, get, ref, update);
+        authContainer.innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
+      } else {
+        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary">Inicia Sessió</button>`;
+        document.getElementById('login-button').addEventListener('click', () => {
+          signInWithPopup(auth, provider)
+            .then((result) => {
+              const user = result.user;
+              const userRef = ref(database, 'users/' + user.uid);
+              get(userRef).then((snapshot) => {
+                if (!snapshot.exists()) { window.location.href = 'perfil.html'; } 
+                else { window.syncPreferencesWithFirebase(auth, database, get, ref, update); }
+              });
+            }).catch(console.error);
+        });
+      }
+    });
+  </script>
+
+  <!-- i18n & Theme Script -->
+  <script src="assets/js/main.js"></script>
+  <!-- Scripts -->
+  <script>
+    window.pageTranslations = {
+      ca: {
+        page_title: "Mashups Exclusius — DJ Posaxa",
+        meta_description: "Descarrega mashups i edits exclusius de DJ Posaxa. Accedeix a contingut únic per a DJs verificant el teu seguiment a les xarxes socials.",
+        meta_keywords: "DJ, mashups, edits, descàrregues DJ, música exclusiva, DJ Posaxa, reggaeton, dembow, techno",
+        og_title: "Mashups Exclusius — DJ Posaxa",
+        og_description: "Descarrega mashups i edits exclusius de DJ Posaxa per a les teves sessions.",
+        twitter_title: "Mashups Exclusius — DJ Posaxa",
+        twitter_description: "Descarrega mashups i edits exclusius de DJ Posaxa per a les teves sessions.",
+        nav_home: "Inici",
+        nav_focus: "En què em centro",
+        nav_why: "Per què escollir-me",
+        nav_events: "Esdeveniments",
+        nav_reviews: "Opinions",
+        nav_pricing: "Preus",
+        nav_mashups: "Mashups",
+        nav_language: "Idioma",
+        gate_title: "Desbloqueja els Mashups Exclusius",
+        gate_subtitle: "Per accedir, primer segueix a <strong>@dj.posaxa</strong> a Instagram. Després, verifica-ho aquí amb una captura.",
+        gate_button_follow: "Seguir a Instagram",
+        gate_button_verify: "Ja el segueixo, verificar",
+        mashups_title: "Mashups Exclusius",
+        mashups_subtitle: "Descobreix les meves creacions úniques. Llestes per descarregar i utilitzar a les teves sessions.",
+        mashup1_title: "Diva Virtual Mashup",
+        mashup1_button: "Veure Detalls",
+        modal_title: "Verificació amb IA",
+        modal_text: "Per confirmar, puja una captura de pantalla on es vegi que segueixes el perfil <strong>@dj.posaxa</strong>.",
+        modal_upload_text: "Fes clic aquí per seleccionar una imatge",
+        modal_cancel: "Cancel·lar",
+        footer_rights: "Tots els drets reservats.",
+        footer_location: "Granollers · BCN",
+        footer_dev: "Desenvolupat per Sigma Company",
+        footer_more_projects: "Més projectes de Sigma Company"
+      },
+      es: {
+        page_title: "Mashups Exclusivos — DJ Posaxa",
+        meta_description: "Descarga mashups y edits exclusivos de DJ Posaxa. Accede a contenido único para DJs verificando tu seguimiento en las redes sociales.",
+        meta_keywords: "DJ, mashups, edits, descargas DJ, música exclusiva, DJ Posaxa, reggaeton, dembow, techno",
+        og_title: "Mashups Exclusivos — DJ Posaxa",
+        og_description: "Descarga mashups y edits exclusivos de DJ Posaxa para tus sesiones.",
+        twitter_title: "Mashups Exclusivos — DJ Posaxa",
+        twitter_description: "Descarga mashups y edits exclusivos de DJ Posaxa para tus sesiones.",
+        nav_home: "Inicio",
+        nav_focus: "En qué me centro",
+        nav_why: "Por qué elegirme",
+        nav_events: "Eventos",
+        nav_reviews: "Opiniones",
+        nav_pricing: "Precios",
+        nav_mashups: "Mashups",
+        nav_language: "Idioma",
+        gate_title: "Desbloquea los Mashups Exclusivos",
+        gate_subtitle: "Para acceder, primero sigue a <strong>@dj.posaxa</strong> en Instagram. Luego, verifícalo aquí con una captura.",
+        gate_button_follow: "Seguir en Instagram",
+        gate_button_verify: "Ya lo sigo, verificar",
+        mashups_title: "Mashups Exclusivos",
+        mashups_subtitle: "Descubre mis creaciones únicas. Listas para descargar y usar en tus sesiones.",
+        mashup1_title: "Diva Virtual Mashup",
+        mashup1_button: "Ver Detalles",
+        modal_title: "Verificación con IA",
+        modal_text: "Para confirmar, sube una captura de pantalla donde se vea que sigues el perfil <strong>@dj.posaxa</strong>.",
+        modal_upload_text: "Haz clic aquí para seleccionar una imagen",
+        modal_cancel: "Cancelar",
+        footer_rights: "Todos los derechos reservados.",
+        footer_location: "Granollers · BCN",
+        footer_dev: "Desarrollado por Sigma Company",
+        footer_more_projects: "Más proyectos de Sigma Company"
+      },
+      en: {
+        page_title: "Exclusive Mashups — DJ Posaxa",
+        meta_description: "Download exclusive mashups and edits by DJ Posaxa. Access unique content for DJs by verifying you follow on social media.",
+        meta_keywords: "DJ, mashups, edits, DJ downloads, exclusive music, DJ Posaxa, reggaeton, dembow, techno",
+        og_title: "Exclusive Mashups — DJ Posaxa",
+        og_description: "Download exclusive mashups and edits by DJ Posaxa for your sets.",
+        twitter_title: "Exclusive Mashups — DJ Posaxa",
+        twitter_description: "Download exclusive mashups and edits by DJ Posaxa for your sets.",
+        nav_home: "Home",
+        nav_focus: "What I Focus On",
+        nav_why: "Why Choose Me",
+        nav_events: "Events",
+        nav_reviews: "Reviews",
+        nav_pricing: "Pricing",
+        nav_mashups: "Mashups",
+        nav_language: "Language",
+        gate_title: "Unlock Exclusive Mashups",
+        gate_subtitle: "To access, first follow <strong>@dj.posaxa</strong> on Instagram. Then, verify it here with a screenshot.",
+        gate_button_follow: "Follow on Instagram",
+        gate_button_verify: "I already follow, verify",
+        mashups_title: "Exclusive Mashups",
+        mashups_subtitle: "Discover my unique creations. Ready to download and use in your sets.",
+        mashup1_title: "Diva Virtual Mashup",
+        mashup1_button: "View Details",
+        modal_title: "AI Verification",
+        modal_text: "To confirm, upload a screenshot showing that you follow the <strong>@dj.posaxa</strong> profile.",
+        modal_upload_text: "Click here to select an image",
+        modal_cancel: "Cancel",
+        footer_rights: "All rights reserved.",
+        footer_location: "Granollers · BCN",
+        footer_dev: "Developed by Sigma Company",
+        footer_more_projects: "More projects from Sigma Company"
+      },
+      // fr and de translations
+      fr: {
+        page_title: "Mashups Exclusifs — DJ Posaxa",
+        meta_description: "Téléchargez des mashups et edits exclusifs de DJ Posaxa. Accédez à du contenu unique pour les DJ en vérifiant votre suivi sur les réseaux sociaux.",
+        meta_keywords: "DJ, mashups, edits, téléchargements DJ, musique exclusive, DJ Posaxa, reggaeton, dembow, techno",
+        og_title: "Mashups Exclusifs — DJ Posaxa",
+        og_description: "Téléchargez des mashups et edits exclusifs de DJ Posaxa pour vos sets.",
+        twitter_title: "Mashups Exclusifs — DJ Posaxa",
+        twitter_description: "Téléchargez des mashups et edits exclusifs de DJ Posaxa pour vos sets.",
+        nav_home: "Accueil",
+        nav_focus: "Sur quoi je me concentre",
+        nav_why: "Pourquoi me choisir",
+        nav_events: "Événements",
+        nav_reviews: "Avis",
+        nav_pricing: "Tarifs",
+        nav_mashups: "Mashups",
+        nav_language: "Langue",
+        gate_title: "Débloquez les Mashups Exclusifs",
+        gate_subtitle: "Pour y accéder, suivez d'abord <strong>@dj.posaxa</strong> sur Instagram. Ensuite, vérifiez-le ici avec une capture d'écran.",
+        gate_button_follow: "Suivre sur Instagram",
+        gate_button_verify: "Je suis déjà, vérifier",
+        mashups_title: "Mashups Exclusifs",
+        mashups_subtitle: "Découvrez mes créations uniques. Prêtes à être téléchargées et utilisées dans vos sets.",
+        mashup1_title: "Diva Virtual Mashup",
+        mashup1_button: "Voir les détails",
+        modal_title: "Vérification par IA",
+        modal_text: "Pour confirmer, téléchargez une capture d'écran montrant que vous suivez le profil <strong>@dj.posaxa</strong>.",
+        modal_upload_text: "Cliquez ici pour sélectionner une image",
+        modal_cancel: "Annuler",
+        footer_rights: "Tous droits réservés.",
+        footer_location: "Granollers · BCN",
+        footer_dev: "Développé par Sigma Company",
+        footer_more_projects: "Plus de projets de Sigma Company"
+      },
+      de: {
+        page_title: "Exklusive Mashups — DJ Posaxa",
+        meta_description: "Laden Sie exklusive Mashups und Edits von DJ Posaxa herunter. Greifen Sie auf einzigartige Inhalte für DJs zu, indem Sie Ihr Follow in sozialen Netzwerken verifizieren.",
+        meta_keywords: "DJ, Mashups, Edits, DJ-Downloads, exklusive Musik, DJ Posaxa, Reggaeton, Dembow, Techno",
+        og_title: "Exklusive Mashups — DJ Posaxa",
+        og_description: "Laden Sie exklusive Mashups und Edits von DJ Posaxa für Ihre Sets herunter.",
+        twitter_title: "Exklusive Mashups — DJ Posaxa",
+        twitter_description: "Laden Sie exklusive Mashups und Edits von DJ Posaxa für Ihre Sets herunter.",
+        nav_home: "Startseite",
+        nav_focus: "Worauf ich mich konzentriere",
+        nav_why: "Warum Sie mich wählen sollten",
+        nav_events: "Veranstaltungen",
+        nav_reviews: "Bewertungen",
+        nav_pricing: "Preise",
+        nav_mashups: "Mashups",
+        nav_language: "Sprache",
+        gate_title: "Exklusive Mashups freischalten",
+        gate_subtitle: "Um darauf zuzugreifen, folgen Sie zuerst <strong>@dj.posaxa</strong> auf Instagram. Überprüfen Sie es dann hier mit einem Screenshot.",
+        gate_button_follow: "Auf Instagram folgen",
+        gate_button_verify: "Ich folge bereits, überprüfen",
+        mashups_title: "Exklusive Mashups",
+        mashups_subtitle: "Entdecken Sie meine einzigartigen Kreationen. Bereit zum Herunterladen und Verwenden in Ihren Sets.",
+        mashup1_title: "Diva Virtual Mashup",
+        mashup1_button: "Details anzeigen",
+        modal_title: "KI-Verifizierung",
+        modal_text: "Zur Bestätigung laden Sie bitte einen Screenshot hoch, der zeigt, dass Sie dem Profil <strong>@dj.posaxa</strong> folgen.",
+        modal_upload_text: "Klicken Sie hier, um ein Bild auszuwählen",
+        modal_cancel: "Abbrechen",
+        footer_rights: "Alle Rechte vorbehalten.",
+        footer_location: "Granollers · BCN",
+        footer_dev: "Entwickelt von Sigma Company",
+        footer_more_projects: "Weitere Projekte von Sigma Company"
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initializePage(window.pageTranslations, (translations, getLanguage) => {
+
+        const followGate = document.getElementById('follow-gate');
+        const mashupsContent = document.getElementById('mashups-content');
+        const verifyButton = document.getElementById('verify-button');
+        const modal = document.getElementById('verification-modal');
+        const cancelBtn = document.getElementById('cancel-verification');
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('screenshot-input');
+        const uploadText = document.getElementById('upload-text');
+        const statusText = document.getElementById('verification-status');
+        const progressContainer = document.getElementById('progress-container');
+        const progressBar = document.getElementById('progress-bar');
+        
+        if (localStorage.getItem('djPosaxaFollowVerified') === 'true') {
+            followGate.style.display = 'none';
+            mashupsContent.style.display = 'block';
+        }
+
+        verifyButton.addEventListener('click', () => {
+            // Comprovem si l'usuari ha iniciat sessió abans de verificar
+            if (window.auth && window.auth.currentUser) {
+                modal.style.display = 'flex';
+            } else {
+                // Si no ha iniciat sessió, obrim el modal d'autenticació
+                new bootstrap.Modal(document.getElementById('authModal')).show();
+            }
+        });
+        cancelBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+        uploadArea.addEventListener('click', () => { fileInput.click(); });
+
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            uploadText.textContent = `Arxiu: ${file.name}`;
+            statusText.innerHTML = "Analitzant amb Sigma AI...";
+            statusText.style.color = 'var(--bs-primary)';
+            progressBar.style.width = '0%';
+            progressContainer.style.display = 'flex';
+
+            const followWords = [
+                // Castellà, Català, Anglès i altres
+                "siguiendo", "following", "seguint", "sigues a", "follows you",
+                "suivi", "suivant", "gefolgt", "folgen", "seguito", "seguindo", 
+                "volgend", "takiptesin", "читаю", "подписан", "متابع", "フォロー中", "팔로잉", "正在关注"
+            ];
+
+            try {
+                const { data: { text } } = await Tesseract.recognize(file, 'eng+spa+fra+deu+por+ita+tur+rus+ara+jpn+kor+chi_sim+hin+ind', {
+                    logger: m => {
+                        if (m.status === 'recognizing text') {
+                            const progress = m.progress * 100;
+                            progressBar.style.width = `${progress}%`;
+                            statusText.innerHTML = `Analitzant amb Sigma AI... (${Math.round(progress)}%)`;
+                        }
+                    }
+                });
+                
+                progressContainer.style.display = 'none';
+                const texto = text.toLowerCase();
+                const follows = followWords.some(word => texto.includes(word));
+                const hasName = texto.includes("dj.posaxa") || texto.includes("dj posaxa");
+
+                if (follows && hasName) {
+                    statusText.innerHTML = '✅ <b>Verificat:</b> S\'ha detectat que segueixes a DJ Posaxa.';
+                    statusText.style.color = 'var(--bs-success)';
+                    localStorage.setItem('djPosaxaFollowVerified', 'true');
+                    window.updateFirebasePreference('djPosaxaFollowVerified', 'true');
+
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        followGate.style.display = 'none';
+                        mashupsContent.style.display = 'block';
+                    }, 2000);
+                } else {
+                    statusText.innerHTML = '❌ <b>No verificat.</b><br>Assegura\'t que la captura mostri el nom \'dj.posaxa\' i el botó de "Seguint" o "Following".';
+                    statusText.style.color = 'var(--bs-danger)';
+                    fileInput.value = '';
+                    uploadText.innerHTML = translations[getLanguage()].modal_upload_text; // Reset upload text
+                }
+            } catch (err) {
+                progressContainer.style.display = 'none';
+                statusText.innerHTML = "⚠️ Error en processar la imatge. Intenta-ho de nou.";
+                statusText.style.color = 'var(--bs-danger)';
+                console.error(err);
+                fileInput.value = '';
+                uploadText.innerHTML = translations[getLanguage()].modal_upload_text; // Reset upload text
+            }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

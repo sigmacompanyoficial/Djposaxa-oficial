@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-translate="page_title">Diva Virtual Mashup — DJ Posaxa</title>
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PM90QK9QJX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PM90QK9QJX');
+</script>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/modern-style.css" />
+
+  <link rel="icon" type="image/png" href="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png">
+  
+  <!-- Theme styles are now in modern-style.css -->
+</head>
+<body onload="applyTheme()">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png" alt="DJ Posaxa Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html" data-translate="nav_home">Inici</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="en-què-em-centro.html" data-translate="nav_focus">En què em centro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="per-què-escollir-me.html" data-translate="nav_why">Per què escollir-me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="esdeveniments.html" data-translate="nav_events">Esdeveniments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="opinionse486.html" data-translate="nav_reviews">Opinions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="preus.html" data-translate="nav_pricing">Preus</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="mashups.html" data-translate="nav_mashups">Mashups</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="configuracio.html" aria-label="Configuració">⚙️</a></li>
+          <li class="nav-item" id="auth-container"></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container" style="padding-top: 8rem;">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="feature-card p-4">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <img src="Fotos/VIRTUAL DIVA IMAGE.png" alt="Carátula del Mashup" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-6">
+                        <h1 class="mb-3">Diva Virtual Mashup</h1>
+                        <p class="text-white-50" data-translate="mashup_description">Descarga este mashup y optimiza tu próximo set. Con un tempo y estructura rítmica diseñados para una transición fluida, este track proporciona una herramienta versátil y de calidad profesional para elevar cualquier actuación. Rendimiento garantizado en cabina.</p>
+                        <div class="my-4">
+                            <p><strong>BPM:</strong> 119</p>
+                            <p><strong>Key:</strong> 1A</p>
+                            <p><strong data-translate="mashup_artists">Artistas/Temas Incluidos:</strong> Virtual Diva x Trap Pea</p>
+                            <p><strong data-translate="mashup_download">Descarga:</strong> MP3 / WAV</p>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex">
+                            <a href="audio/Diva virtual (DJ Posaxa MASHUP).mp3" id="download-mp3-btn" class="btn btn-primary" download data-translate="mashup_download_mp3">Descargar MP3</a>
+                            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#wavModal" data-translate="mashup_download_wav">Descargar WAV</button>
+                            <a href="mashups.html" class="btn btn-outline-light" data-translate="mashup_back">Tornar a Mashups</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </main>
+
+  <!-- WAV Modal -->
+  <div class="modal fade" id="wavModal" tabindex="-1" aria-labelledby="wavModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="wavModalLabel" data-translate="modal_title">Arxiu WAV Exclusiu</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p data-translate="modal_text">Per obtenir la versió WAV d'alta qualitat, envia un missatge directe a DJ Posaxa a Instagram.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="https://www.instagram.com/dj.posaxa/" target="_blank" class="btn btn-primary" data-translate="modal_instagram">Anar a Instagram</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-translate="modal_close">Tancar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer mt-auto">
+    <div class="container d-md-flex justify-content-between align-items-center text-center text-md-start">
+      <div class="mb-3 mb-md-0">
+        <p class="mb-1">&copy; <span id="year"></span> DJ Posaxa. <span data-translate="footer_rights">Tots els drets reservats.</span></p>
+        <p class="mb-1"><span data-translate="footer_location">Granollers · BCN</span></p>
+        <div class="social-icons mt-2">
+          <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok"><img src="Fotos/Png tik.png" alt="TikTok" style="width: 24px; height: 24px;"></a>
+          <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener" aria-label="Instagram"><img src="Fotos/pngwing.com.png" alt="Instagram" style="width: 24px; height: 24px;"></a>
+        </div>
+      </div>
+      <div class="sigma-projects">
+        <p class="mb-1"><span data-translate="footer_dev">Desenvolupat per Sigma Company</span></p>
+        <p class="mb-2"><span data-translate="footer_more_projects">Més projectes de Sigma Company</span></p>
+        <a href="http://www.sigmagames.ct.ws" class="btn btn-primary text-white" target="_blank" rel="noopener">SigmaGames</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
+      authDomain: "dj-posaxa-web.firebaseapp.com",
+      databaseURL: "https://dj-posaxa-web-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "dj-posaxa-web",
+      storageBucket: "dj-posaxa-web.appspot.com",
+      messagingSenderId: "647042791526",
+      appId: "1:647042791526:web:3b870e05ab0ed34cbd95a7",
+      measurementId: "G-C8R4Z4TLE1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app);
+    const provider = new GoogleAuthProvider();
+    const authContainer = document.getElementById('auth-container');
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        window.syncPreferencesWithFirebase(auth, database, get, ref, update);
+        authContainer.innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
+      } else {
+        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary">Inicia Sessió</button>`;
+        document.getElementById('login-button').addEventListener('click', () => {
+          signInWithPopup(auth, provider)
+            .then((result) => {
+              const user = result.user;
+              const userRef = ref(database, 'users/' + user.uid);
+              get(userRef).then((snapshot) => {
+                if (!snapshot.exists()) { window.location.href = 'perfil.html'; } 
+                else { window.syncPreferencesWithFirebase(auth, database, get, ref, update); }
+              });
+            }).catch(console.error);
+        });
+      }
+    });
+
+    // Registrar descàrrega
+    document.getElementById('download-mp3-btn').addEventListener('click', () => {
+        const user = auth.currentUser;
+        if (user) {
+            const mashupId = 'Diva Virtual Mashup'; // Identificador únic del mashup
+            const downloadData = {
+                timestamp: new Date().toISOString(),
+                format: 'mp3'
+            };
+            const downloadRef = ref(database, `users/${user.uid}/downloads/${mashupId}`);
+            update(downloadRef, downloadData).then(() => {
+                console.log(`Descàrrega de "${mashupId}" registrada per a l'usuari ${user.uid}`);
+            }).catch(error => console.error("Error en registrar la descàrrega: ", error));
+        }
+    });
+  </script>
+
+  <!-- i18n & Theme Script -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      window.pageTranslations = {
+      ca: {
+        page_title: "Diva Virtual Mashup — DJ Posaxa",
+        nav_home: "Inici",
+        nav_focus: "En què em centro",
+        nav_why: "Per què escollir-me",
+        nav_events: "Esdeveniments",
+        nav_reviews: "Opinions",
+        nav_pricing: "Preus",
+        nav_mashups: "Mashups",
+        nav_language: "Idioma",
+        mashup_description: "Descarga este mashup y optimiza tu próximo set. Con un tempo y estructura rítmica diseñados para una transición fluida, este track proporciona una herramienta versátil y de calidad profesional para elevar cualquier actuación. Rendimiento garantizado en cabina.",
+        mashup_artists: "Artistas/Temas Incluidos:",
+        mashup_download: "Descarga:",
+        mashup_download_mp3: "Descargar MP3",
+        mashup_download_wav: "Descargar WAV",
+        mashup_back: "Tornar a Mashups",
+        modal_title: "Arxiu WAV Exclusiu",
+        modal_text: "Per obtenir la versió WAV d'alta qualitat, envia un missatge directe a DJ Posaxa a Instagram.",
+        modal_instagram: "Anar a Instagram",
+        modal_close: "Tancar",
+        footer_rights: "Tots els drets reservats.",
+        footer_location: "Granollers · BCN",
+        footer_dev: "Desenvolupat per Sigma Company",
+        footer_more_projects: "Més projectes de Sigma Company"
+      },
+      es: {
+        page_title: "Diva Virtual Mashup — DJ Posaxa",
+        nav_home: "Inicio",
+        nav_focus: "En qué me centro",
+        nav_why: "Por qué elegirme",
+        nav_events: "Eventos",
+        nav_reviews: "Opiniones",
+        nav_pricing: "Precios",
+        nav_mashups: "Mashups",
+        nav_language: "Idioma",
+        mashup_description: "Descarga este mashup y optimiza tu próximo set. Con un tempo y estructura rítmica diseñados para una transición fluida, este track proporciona una herramienta versátil y de calidad profesional para elevar cualquier actuación. Rendimiento garantizado en cabina.",
+        mashup_artists: "Artistas/Temas Incluidos:",
+        mashup_download: "Descarga:",
+        mashup_download_mp3: "Descargar MP3",
+        mashup_download_wav: "Descargar WAV",
+        mashup_back: "Volver a Mashups",
+        modal_title: "Archivo WAV Exclusivo",
+        modal_text: "Para obtener la versión WAV de alta calidad, envía un mensaje directo a DJ Posaxa en Instagram.",
+        modal_instagram: "Ir a Instagram",
+        modal_close: "Cerrar",
+        footer_rights: "Todos los derechos reservados.",
+        footer_location: "Granollers · BCN",
+        footer_dev: "Desarrollado por Sigma Company",
+        footer_more_projects: "Más proyectos de Sigma Company"
+      },
+      en: {
+        page_title: "Diva Virtual Mashup — DJ Posaxa",
+        nav_home: "Home",
+        nav_focus: "What I Focus On",
+        nav_why: "Why Choose Me",
+        nav_events: "Events",
+        nav_reviews: "Reviews",
+        nav_pricing: "Pricing",
+        nav_mashups: "Mashups",
+        nav_language: "Language",
+        mashup_description: "Download this mashup and optimize your next set. With a tempo and rhythmic structure designed for a smooth transition, this track provides a versatile and professional quality tool to elevate any performance. Guaranteed performance in the booth.",
+        mashup_artists: "Artists/Tracks Included:",
+        mashup_download: "Download:",
+        mashup_download_mp3: "Download MP3",
+        mashup_download_wav: "Download WAV",
+        mashup_back: "Back to Mashups",
+        modal_title: "Exclusive WAV File",
+        modal_text: "To get the high-quality WAV version, send a direct message to DJ Posaxa on Instagram.",
+        modal_instagram: "Go to Instagram",
+        modal_close: "Close",
+        footer_rights: "All rights reserved.",
+        footer_location: "Granollers · BCN",
+        footer_dev: "Developed by Sigma Company",
+        footer_more_projects: "More projects from Sigma Company"
+      },
+      fr: {
+        page_title: "Diva Virtual Mashup — DJ Posaxa",
+        nav_home: "Accueil",
+        nav_focus: "Sur quoi je me concentre",
+        nav_why: "Pourquoi me choisir",
+        nav_events: "Événements",
+        nav_reviews: "Avis",
+        nav_pricing: "Tarifs",
+        nav_mashups: "Mashups",
+        nav_language: "Langue",
+        mashup_description: "Téléchargez ce mashup et optimisez votre prochain set. Avec un tempo et une structure rythmique conçus pour une transition en douceur, ce morceau constitue un outil polyvalent et de qualité professionnelle pour rehausser toute performance. Performance garantie en cabine.",
+        mashup_artists: "Artistes/Titres inclus:",
+        mashup_download: "Télécharger:",
+        mashup_download_mp3: "Télécharger MP3",
+        mashup_download_wav: "Télécharger WAV",
+        mashup_back: "Retour aux Mashups",
+        modal_title: "Fichier WAV Exclusif",
+        modal_text: "Pour obtenir la version WAV de haute qualité, envoyez un message direct à DJ Posaxa sur Instagram.",
+        modal_instagram: "Aller sur Instagram",
+        modal_close: "Fermer",
+        footer_rights: "Tous droits réservés.",
+        footer_location: "Granollers · BCN",
+        footer_dev: "Développé par Sigma Company",
+        footer_more_projects: "Plus de projets de Sigma Company"
+      },
+      de: {
+        page_title: "Diva Virtual Mashup — DJ Posaxa",
+        nav_home: "Startseite",
+        nav_focus: "Worauf ich mich konzentriere",
+        nav_why: "Warum Sie mich wählen sollten",
+        nav_events: "Veranstaltungen",
+        nav_reviews: "Bewertungen",
+        nav_pricing: "Preise",
+        nav_mashups: "Mashups",
+        nav_language: "Sprache",
+        mashup_description: "Laden Sie dieses Mashup herunter und optimieren Sie Ihr nächstes Set. Mit einem Tempo und einer rhythmischen Struktur, die für einen reibungslosen Übergang ausgelegt sind, bietet dieser Track ein vielseitiges und professionelles Werkzeug, um jede Performance aufzuwerten. Garantierte Leistung in der Kabine.",
+        mashup_artists: "Enthaltene Künstler/Tracks:",
+        mashup_download: "Herunterladen:",
+        mashup_download_mp3: "MP3 herunterladen",
+        mashup_download_wav: "WAV herunterladen",
+        mashup_back: "Zurück zu den Mashups",
+        modal_title: "Exklusive WAV-Datei",
+        modal_text: "Um die hochwertige WAV-Version zu erhalten, senden Sie eine Direktnachricht an DJ Posaxa auf Instagram.",
+        modal_instagram: "Gehe zu Instagram",
+        modal_close: "Schließen",
+        footer_rights: "Alle Rechte vorbehalten.",
+        footer_location: "Granollers · BCN",
+        footer_dev: "Entwickelt von Sigma Company",
+        footer_more_projects: "Weitere Projekte von Sigma Company"
+      }
+    };
+
+      initializePage(window.pageTranslations, () => {
+        // Follow Gate Script
+        if (localStorage.getItem('djPosaxaFollowVerified') !== 'true') {
+          window.location.href = 'index.html?follow_gate=true';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

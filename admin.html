@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panell d'Administració — DJ Posaxa</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/modern-style.css" />
+  <link rel="icon" type="image/png" href="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png">
+</head>
+<body onload="applyTheme()">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png" alt="DJ Posaxa Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inici</a></li>
+          <li class="nav-item"><a class="nav-link" href="mashups.html">Mashups</a></li>
+          <li class="nav-item"><a class="nav-link" href="configuracio.html" aria-label="Configuració">⚙️</a></li>
+          <li class="nav-item" id="auth-container"></li>
+          <li class="nav-item" id="admin-link-container"></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero" style="padding: 8rem 0;">
+    <div class="container">
+      <h1 class="display-4">Panell d'Administració</h1>
+      <p class="lead">Benvingut, administrador. Aquí podràs gestionar usuaris, contingut i més.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+<main class="container my-5">
+    <!-- KPIs -->
+    <div class="row g-4 mb-4 text-center">
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="feature-card p-3 text-center h-100">
+          <h5 class="text-white-50">Total Usuaris</h5>
+          <p class="display-6" id="total-users-kpi">0</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="feature-card p-3 text-center h-100">
+          <h5 class="text-white-50">Usuaris Actius (7d)</h5>
+          <p class="display-6" id="active-users-kpi">0</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="feature-card p-3 text-center h-100">
+          <h5 class="text-white-50">Opinions Pendents</h5>
+          <p class="display-6" id="pending-reviews-kpi">0</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="feature-card p-3 text-center h-100">
+          <h5 class="text-white-50">Seguidors Verificats</h5>
+          <p class="display-6" id="verified-followers-kpi">0</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="feature-card p-3 text-center h-100">
+          <h5 class="text-white-50">Rols Admin</h5>
+          <p class="display-6" id="admin-roles-kpi">0</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="feature-card p-3 text-center h-100">
+          <h5 class="text-white-50">Total Descàrregues</h5>
+          <p class="display-6" id="total-downloads-kpi">0</p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="feature-card p-3 text-center h-100">
+          <h5 class="text-white-50">Noves Sol·licituds</h5>
+          <p class="display-6" id="booking-requests-kpi">0</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-4">
+            <div class="feature-card p-3"><h5 class="mb-3 text-center">Distribució de Rols</h5><canvas id="rolesChart"></canvas></div>
+        </div>
+        <div class="col-lg-4">
+            <div class="feature-card p-3"><h5 class="mb-3 text-center">Mashups Més Descarregats</h5><canvas id="mashupsChart"></canvas></div>
+        </div>
+        <div class="col-lg-4">
+            <div class="feature-card p-3"><h5 class="mb-3 text-center">Gèneres Preferits</h5><canvas id="genresChart"></canvas></div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-12 mt-4">
+        <div class="feature-card p-4">
+          <h2>Sol·licituds de Contractació</h2>
+          <div class="table-responsive">
+            <table class="table table-dark table-striped table-hover">
+              <thead>
+                <tr><th>Data Sol·licitud</th><th>Nom</th><th>Tipus Esdeveniment</th><th>Data Esdeveniment</th><th>Estat</th><th>Accions</th></tr>
+              </thead>
+              <tbody id="booking-requests-list">
+                <!-- Les sol·licituds es carregaran aquí -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mt-4">
+        <div class="feature-card p-4">
+          <h2>Gestió d'Opinions Pendents</h2>
+          <div class="table-responsive">
+            <table class="table table-dark table-striped table-hover">
+              <thead>
+                <tr><th>Usuari</th><th>Opinió</th><th>Data</th><th>Accions</th></tr>
+              </thead>
+              <tbody id="pending-reviews-list">
+                <!-- Les opinions pendents es carregaran aquí -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="feature-card p-4">
+          <h2>Gestió d'Usuaris</h2>
+          <div class="text-end mb-3">
+            <button id="export-csv-btn" class="btn btn-sm btn-outline-light">Exportar a CSV</button>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-dark table-striped table-hover">
+              <thead>
+                <tr><th>Nom a Mostrar</th><th>Email</th><th>Rol</th><th>Segueix a DJ Posaxa</th><th>Mashups Descarregats</th><th>Última Connexió</th><th>Accions</th></tr>
+              </thead>
+              <tbody id="user-list"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer mt-auto py-4">
+    <div class="container text-center">
+      <p class="mb-1">&copy; <span id="year"></span> DJ Posaxa. Tots els drets reservats.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="notificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-dark text-white">
+        <strong class="me-auto" id="toast-title">Notificació</strong>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" id="toast-body">
+        Missatge.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getDatabase, ref, get, update, onValue, remove, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
+      authDomain: "dj-posaxa-web.firebaseapp.com",
+      databaseURL: "https://dj-posaxa-web-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "dj-posaxa-web",
+      storageBucket: "dj-posaxa-web.appspot.com",
+      messagingSenderId: "647042791526",
+      appId: "1:647042791526:web:3b870e05ab0ed34cbd95a7",
+      measurementId: "G-C8R4Z4TLE1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app); 
+
+    function showToast(title, message) {
+        document.getElementById('toast-title').innerText = title;
+        document.getElementById('toast-body').innerText = message;
+        const toast = new bootstrap.Toast(document.getElementById('notificationToast'));
+        toast.show();
+    }
+
+    window.exposeFirebase(auth, database, ref, update, get, {});
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        const userRef = ref(database, 'users/' + user.uid);
+        get(userRef).then((userSnapshot) => {
+          if (userSnapshot.exists() && userSnapshot.val().role === 'administrador') {
+            // L'usuari és admin, pot estar aquí
+            document.getElementById('auth-container').innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
+            document.getElementById('admin-link-container').innerHTML = `<a class="nav-link active" href="admin.html">Admin Panel</a>`;
+
+            // --- Càrrega de dades i KPIs ---
+            const allUsersRef = ref(database, 'users');
+            get(allUsersRef).then((allUsersSnapshot) => {
+              const userList = document.getElementById('user-list');
+              userList.innerHTML = ''; // Neteja la llista
+
+              let totalUsers = 0;
+              let activeUsers = 0;
+              let totalDownloads = 0;
+              let verifiedFollowers = 0;
+              let newBookings = 0;
+              const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+              const rolesCount = { administrador: 0, cliente: 0 };
+              const mashupDownloadsCount = {};
+              const genresCount = {};
+
+              allUsersSnapshot.forEach((childSnapshot) => {
+                const userId = childSnapshot.key;
+                const userData = childSnapshot.val();
+                const prefs = userData.preferences || {};
+                const downloads = userData.downloads || {};
+
+                totalUsers++;
+
+                // KPI: Usuaris actius
+                if (userData.lastLogin && new Date(userData.lastLogin).getTime() > sevenDaysAgo) {
+                    activeUsers++;
+                }
+
+                // KPI: Seguidors verificats
+                if (prefs.djPosaxaFollowVerified === 'true') {
+                    verifiedFollowers++;
+                }
+
+                // KPI: Rols
+                rolesCount[userData.role || 'cliente']++;
+
+                // KPI: Gèneres
+                const genre = userData.favoriteGenre || 'No especificat';
+                genresCount[genre] = (genresCount[genre] || 0) + 1;
+
+                // KPI: Descàrregues
+                const downloadCount = Object.keys(downloads).length;
+                totalDownloads += downloadCount;
+                Object.keys(downloads).forEach(mashupId => {
+                    mashupDownloadsCount[mashupId] = (mashupDownloadsCount[mashupId] || 0) + 1;
+                });
+
+                const isVerified = prefs.djPosaxaFollowVerified === 'true';
+                const verificationSwitch = `
+                  <div class="form-check form-switch d-flex justify-content-center">
+                    <input class="form-check-input manual-verify-switch" type="checkbox" role="switch" data-user-id="${userId}" ${isVerified ? 'checked' : ''}>
+                  </div>
+                `;
+
+                const downloadedMashups = Object.keys(downloads).length > 0 
+                  ? Object.keys(downloads).join(', ') 
+                  : 'Cap';
+
+                const lastLogin = userData.lastLogin ? new Date(userData.lastLogin).toLocaleString('ca-ES') : 'N/A';
+                const isActive = userData.lastLogin && new Date(userData.lastLogin).getTime() > sevenDaysAgo;
+                const activeIndicator = `<span class="badge rounded-pill" style="background-color: ${isActive ? '#28a745' : '#6c757d'};">&nbsp;</span>`;
+
+                const roleSelector = `
+                  <select class="form-select form-select-sm bg-dark text-white role-selector" data-user-id="${userId}" ${userData.email === 'polsolanasramos@gmail.com' ? 'disabled' : ''}>
+                    <option value="cliente" ${userData.role === 'cliente' ? 'selected' : ''}>Cliente</option>
+                    <option value="administrador" ${userData.role === 'administrador' ? 'selected' : ''}>Admin</option>
+                  </select>
+                `;
+
+                const row = `
+                  <tr>
+                    <td>${userData.displayName || 'N/A'}</td>
+                    <td>${userData.email || 'N/A'}</td>
+                    <td>${roleSelector}</td>
+                    <td>${verificationSwitch}</td>
+                    <td>${downloadedMashups}</td>
+                    <td>${activeIndicator} ${lastLogin}</td>
+                    <td><button class="btn btn-sm btn-danger delete-user-btn" data-user-id="${userId}" data-user-email="${userData.email}" ${userData.email === 'polsolanasramos@gmail.com' ? 'disabled' : ''}>Eliminar</button></td>
+                  </tr>`;
+                userList.innerHTML += row;
+              });
+
+              // Actualitzar KPIs
+              document.getElementById('total-users-kpi').textContent = totalUsers;
+              document.getElementById('active-users-kpi').textContent = activeUsers;
+              document.getElementById('total-downloads-kpi').textContent = totalDownloads;
+              document.getElementById('verified-followers-kpi').textContent = verifiedFollowers;
+              document.getElementById('admin-roles-kpi').textContent = rolesCount.administrador || 0;
+              
+
+              // Inicialitzar gràfics
+              new Chart(document.getElementById('rolesChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Administradors', 'Clients'],
+                    datasets: [{
+                        data: [rolesCount.administrador, rolesCount.cliente],
+                        backgroundColor: ['#0d6efd', '#6c757d'],
+                    }]
+                },
+                options: { responsive: true, plugins: { legend: { labels: { color: '#fff' } } } }
+              });
+
+              const sortedMashups = Object.entries(mashupDownloadsCount).sort(([,a],[,b]) => b-a).slice(0, 10);
+
+              new Chart(document.getElementById('mashupsChart'), {
+                type: 'bar',
+                data: {
+                    labels: sortedMashups.map(item => item[0]),
+                    datasets: [{
+                        label: 'Descàrregues',
+                        data: sortedMashups.map(item => item[1]),
+                        backgroundColor: '#0d6efd',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { ticks: { color: '#fff', stepSize: 1 } },
+                        x: { ticks: { color: '#fff' } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+              });
+
+              new Chart(document.getElementById('genresChart'), {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(genresCount),
+                    datasets: [{
+                        data: Object.values(genresCount),
+                        backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545', '#0dcaf0', '#6c757d'],
+                    }]
+                },
+                options: { responsive: true, plugins: { legend: { labels: { color: '#fff' } } } }
+              });
+
+
+              // Afegir listeners per canviar rol
+              document.querySelectorAll('.role-selector').forEach(selector => {
+                selector.addEventListener('change', (event) => {
+                    const userId = event.target.dataset.userId;
+                    const newRole = event.target.value;
+                    const userRoleRef = ref(database, `users/${userId}/role`);
+                    set(userRoleRef, newRole)
+                        .then(() => showToast('Èxit', `Rol de l'usuari actualitzat a ${newRole}.`))
+                        .catch((error) => showToast('Error', `No s'ha pogut actualitzar el rol: ${error.message}`, 'danger'));
+                });
+              });
+
+              // Afegir listener per a la verificació manual
+              document.querySelectorAll('.manual-verify-switch').forEach(switchEl => {
+                  switchEl.addEventListener('change', (event) => {
+                      const userId = event.target.dataset.userId;
+                      const isChecked = event.target.checked;
+                      const prefRef = ref(database, `users/${userId}/preferences/djPosaxaFollowVerified`);
+                      set(prefRef, isChecked ? 'true' : 'false')
+                          .then(() => showToast('Èxit', `Estat de seguidor actualitzat.`))
+                          .catch((error) => showToast('Error', `No s'ha pogut actualitzar: ${error.message}`, 'danger'));
+                  });
+              });
+
+              // Afegir listeners per eliminar usuari
+              document.querySelectorAll('.delete-user-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const userId = event.target.dataset.userId;
+                    const userEmail = event.target.dataset.userEmail;
+
+                    if (confirm(`Estàs segur que vols eliminar l'usuari ${userEmail}? Aquesta acció no es pot desfer.`)) {
+                        const userRefToDelete = ref(database, `users/${userId}`);
+                        remove(userRefToDelete)
+                            .then(() => {
+                                showToast('Èxit', `L'usuari ${userEmail} ha estat eliminat.`);
+                                // Opcional: recarregar la pàgina o eliminar la fila de la taula dinàmicament
+                                location.reload(); 
+                            })
+                            .catch((error) => showToast('Error', `No s'ha pogut eliminar l'usuari: ${error.message}`, 'danger'));
+                    }
+                });
+              });
+
+              // Funció per exportar a CSV
+              document.getElementById('export-csv-btn').addEventListener('click', () => {
+                  let csvContent = "data:text/csv;charset=utf-8,";
+                  const headers = ["Nom a Mostrar", "Email", "Rol", "Seguidor Verificat", "Ultima Connexio", "Mashups Descarregats"];
+                  csvContent += headers.join(",") + "\r\n";
+
+                  allUsersSnapshot.forEach((childSnapshot) => {
+                      const userData = childSnapshot.val();
+                      const prefs = userData.preferences || {};
+                      const downloads = userData.downloads || {};
+
+                      const isVerified = prefs.djPosaxaFollowVerified === 'true' ? 'Si' : 'No';
+                      const lastLogin = userData.lastLogin ? new Date(userData.lastLogin).toLocaleString('ca-ES') : 'N/A';
+                      const downloadedMashups = Object.keys(downloads).join('; ') || 'Cap';
+
+                      const row = [
+                          `"${userData.displayName || 'N/A'}"`,
+                          `"${userData.email || 'N/A'}"`,
+                          `"${userData.role || 'cliente'}"`,
+                          `"${isVerified}"`,
+                          `"${lastLogin}"`,
+                          `"${downloadedMashups}"`
+                      ];
+                      csvContent += row.join(",") + "\r\n";
+                  });
+
+                  const encodedUri = encodeURI(csvContent);
+                  const link = document.createElement("a");
+                  link.setAttribute("href", encodedUri);
+                  const timestamp = new Date().toISOString().slice(0, 10);
+                  link.setAttribute("download", `informe_usuaris_${timestamp}.csv`);
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+              });
+            });
+
+            // --- Càrrega de sol·licituds de contractació ---
+            const bookingRequestsRef = ref(database, 'booking-requests');
+            onValue(bookingRequestsRef, (snapshot) => {
+                const requestsList = document.getElementById('booking-requests-list');
+                requestsList.innerHTML = '';
+                let pendingRequests = 0;
+
+                if (snapshot.exists()) {
+                    snapshot.forEach((childSnapshot) => {
+                        const bookingId = childSnapshot.key;
+                        const data = childSnapshot.val();
+                        if (data.status === 'pending') pendingRequests++;
+
+                        const submittedDate = new Date(data.submittedAt).toLocaleString('ca-ES');
+                        const eventDate = new Date(data.eventDate).toLocaleDateString('ca-ES');
+
+                        const row = `
+                            <tr class="booking-row" data-booking-id="${bookingId}">
+                                <td>${submittedDate}</td>
+                                <td>${data.contactName}</td>
+                                <td>${data.eventType}</td>
+                                <td>${eventDate}</td>
+                                <td><span class="badge bg-warning text-dark">${data.status}</span></td>
+                                <td><button class="btn btn-sm btn-info view-details-btn" data-booking-id="${bookingId}">Veure Detalls</button></td>
+                            </tr>
+                            <tr id="details-${bookingId}" class="booking-details-row" style="display: none;">
+                                <td colspan="6">
+                                    <div class="p-3 bg-secondary rounded">
+                                        <h5>Detalls de la Sol·licitud</h5>
+                                        <p><strong>Telèfon:</strong> ${data.contactPhone}</p>
+                                        <p><strong>Email:</strong> ${data.contactEmail || 'No proporcionat'}</p>
+                                        <p><strong>Lloc:</strong> ${data.eventLocation}</p>
+                                        <p><strong>Hora:</strong> ${data.eventTime}</p>
+                                        <p><strong>Assistents:</strong> ${data.attendees}</p>
+                                        <p><strong>Públic:</strong> ${data.audience}</p>
+                                        <p><strong>Durada:</strong> ${data.duration} hores</p>
+                                        <p><strong>Estil Musical:</strong> ${data.musicStyle}</p>
+                                        <p><strong>Equip Tècnic:</strong> ${data.tech}</p>
+                                        <p><strong>Comentaris:</strong> ${data.comments || 'Cap'}</p>
+                                        <button class="btn btn-sm btn-success mark-contacted-btn" data-booking-id="${bookingId}">Marcar com a Contactat</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                        requestsList.innerHTML += row;
+                    });
+
+                    document.getElementById('booking-requests-kpi').textContent = pendingRequests;
+
+                    // Listeners per als nous botons
+                    document.querySelectorAll('.view-details-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const id = e.target.dataset.bookingId;
+                            const detailsRow = document.getElementById(`details-${id}`);
+                            detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
+                        });
+                    });
+
+                    // Listener per marcar com a contactat
+                    document.querySelectorAll('.mark-contacted-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const bookingId = e.target.dataset.bookingId;
+                            const bookingStatusRef = ref(database, `booking-requests/${bookingId}/status`);
+
+                            set(bookingStatusRef, 'contacted')
+                                .then(() => {
+                                    showToast('Èxit', 'La sol·licitud ha estat marcada com a contactada.');
+                                    // Actualitza la UI a l'instant
+                                    const statusBadge = document.querySelector(`.booking-row[data-booking-id="${bookingId}"] .badge`);
+                                    if (statusBadge) {
+                                        statusBadge.className = 'badge bg-success';
+                                        statusBadge.textContent = 'contacted';
+                                    }
+                                    e.target.disabled = true;
+                                    e.target.textContent = 'Contactat';
+                                }).catch((error) => showToast('Error', `No s'ha pogut actualitzar l'estat: ${error.message}`, 'danger'));
+                        });
+                    });
+                } else {
+                    requestsList.innerHTML = '<tr><td colspan="6" class="text-center">No hi ha sol·licituds de contractació.</td></tr>';
+                    document.getElementById('booking-requests-kpi').textContent = 0;
+                }
+            });
+
+            // --- Càrrega d'opinions pendents ---
+            const pendingReviewsRef = ref(database, 'reviews/pending');
+            onValue(pendingReviewsRef, (snapshot) => {
+                const reviewsList = document.getElementById('pending-reviews-list');
+                const pendingCount = snapshot.size;
+                document.getElementById('pending-reviews-kpi').textContent = pendingCount;
+
+                reviewsList.innerHTML = '';
+                if (snapshot.exists()) {
+                    snapshot.forEach((childSnapshot) => {
+                        const reviewId = childSnapshot.key;
+                        const reviewData = childSnapshot.val();
+                        const reviewDate = reviewData.createdAt ? new Date(reviewData.createdAt).toLocaleString('ca-ES') : 'N/A';
+                        const row = `
+                            <tr>
+                                <td>${reviewData.userName || 'N/A'}</td>
+                                <td style="max-width: 400px; overflow-wrap: break-word;">${reviewData.text}</td>
+                                <td>${reviewDate}</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm approve-btn" data-id="${reviewId}">Aprovar</button>
+                                    <button class="btn btn-danger btn-sm reject-btn" data-id="${reviewId}">Rebutjar</button>
+                                </td>
+                            </tr>`;
+                        reviewsList.innerHTML += row;
+                    });
+
+                    // Afegir event listeners als botons
+                    document.querySelectorAll('.approve-btn').forEach(button => {
+                        button.addEventListener('click', () => approveReview(button.dataset.id));
+                    });
+                    document.querySelectorAll('.reject-btn').forEach(button => {
+                        button.addEventListener('click', () => rejectReview(button.dataset.id));
+                    });
+
+                } else {
+                    reviewsList.innerHTML = '<tr><td colspan="4" class="text-center">No hi ha opinions pendents de revisió.</td></tr>';
+                }
+            });
+
+            window.approveReview = (reviewId) => {
+                const pendingReviewRef = ref(database, `reviews/pending/${reviewId}`);
+                get(pendingReviewRef).then((snapshot) => {
+                    if(snapshot.exists()) {
+                        const reviewData = snapshot.val();
+                        const publishedReviewRef = ref(database, `reviews/published/${reviewId}`);
+                        set(publishedReviewRef, reviewData).then(() => {
+                            remove(pendingReviewRef);
+                            showToast('Èxit', 'Opinió aprovada i publicada.');
+                        });
+                    }
+                });
+            };
+
+            window.rejectReview = (reviewId) => {
+                const reviewRef = ref(database, `reviews/pending/${reviewId}`);
+                remove(reviewRef).then(() => {
+                    showToast('Eliminada', 'L\'opinió ha estat rebutjada.');
+                });
+            }
+
+          } else {
+            // No és admin o no existeix, el redirigim
+            window.location.href = 'index.html';
+          }
+        });
+      } else {
+        // No ha iniciat sessió, el redirigim
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+
+  <!-- i18n & Theme Script -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

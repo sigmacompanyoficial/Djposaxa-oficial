@@ -213,7 +213,10 @@
         get(userRef).then((userSnapshot) => {
           if (userSnapshot.exists() && userSnapshot.val().role === 'administrador') {
             // L'usuari és admin, pot estar aquí
-            document.getElementById('auth-container').innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
+            document.getElementById('auth-container').innerHTML = `
+              <a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>
+              <a class="nav-link" href="#" id="logout-btn" title="Tancar Sessió">🚪</a>
+            `;
             document.getElementById('admin-link-container').innerHTML = `<a class="nav-link active" href="admin.html">Admin Panel</a>`;
 
             // --- Càrrega de dades i KPIs ---
@@ -577,6 +580,14 @@
                 });
             }
 
+            // Listener per al botó de tancar sessió
+            const logoutBtn = document.getElementById('logout-btn');
+            if(logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    auth.signOut().then(() => window.location.href = 'index.html');
+                });
+            }
           } else {
             // No és admin o no existeix, el redirigim
             window.location.href = 'index.html';

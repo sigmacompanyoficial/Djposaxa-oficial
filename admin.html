@@ -456,7 +456,7 @@
                     });
 
                     requests.forEach(data => {
-                        const bookingId = childSnapshot.key;
+                        const bookingId = data.id;
                         if (data.status === 'pending') pendingRequests++;
 
                         const submittedDate = new Date(data.submittedAt).toLocaleString('ca-ES');

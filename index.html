@@ -3,144 +3,471 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DJ Posaxa — DJ per a Festes i Esdeveniments a Granollers</title>
-<meta name="description" content="DJ Posaxa: Música i animació per a festes a Granollers i Barcelona. Especialista en mashups, reggaeton i dembow per a esdeveniments inoblidables.">
+  <title>DJ Posaxa – DJ per a Festes i Esdeveniments a Granollers</title>
+  <meta name="description" content="DJ Posaxa: Música i animació per a festes a Granollers i Barcelona. Especialista en mashups, reggaeton i dembow per a esdeveniments inoblidables.">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM90QK9QJX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-PM90QK9QJX');
-  </script>
-  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/modern-style.css" />
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="DJ Posaxa — Música para fiestas y eventos en Granollers y Barcelona. Especialista en mashups, reggaeton, dembow y música catalana." data-translate="meta_description" />
-  <meta name="keywords" content="DJ, música, festa, esdeveniments, Granollers, BCN, mashup, reggaeton, dembow" data-translate="meta_keywords" />
-  <meta property="og:title" content="DJ Posaxa — DJ per festes i esdeveniments" data-translate="og_title" />
-  <meta property="og:description" content="Música per a festes i esdeveniments a Granollers i BCN." data-translate="og_description" />
-  <meta property="og:image" content="https://djposaxa.com/Fotos/hatGPT Image 20 d’ag. del 2025, 21_45_57.png" />
-  <meta property="og:url" content="https://djposaxa.com/index.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="ca_ES" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DJ Posaxa — DJ per festes i esdeveniments" data-translate="twitter_title" />
-  <meta name="twitter:description" content="Música per a festes i esdeveniments a Granollers i BCN." data-translate="twitter_description" />
-  <meta name="twitter:image" content="https://djposaxa.com/Fotos/inici 1.jpg" />
-  <link rel="icon" type="image/png" href="Fotos/ChatGPT Image 20 d'ag. del 2025, 21_45_57.png">
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://djposaxa.com/index.html" />
-
-  <!-- Hreflang Tags for Multilingual SEO -->
-  <link rel="alternate" hreflang="ca" href="https://djposaxa.com/index.html" />
-  <link rel="alternate" hreflang="es" href="https://djposaxa.com/index.html" />
-  <link rel="alternate" hreflang="en" href="https://djposaxa.com/index.html" />
-  <link rel="alternate" hreflang="fr" href="https://djposaxa.com/index.html" />
-  <link rel="alternate" hreflang="de" href="https://djposaxa.com/index.html" />
-  <link rel="alternate" hreflang="x-default" href="https://djposaxa.com/index.html" />
-
-  <!-- JSON-LD Structured Data (Schema.org) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MusicGroup",
-    "name": "DJ Posaxa",
-    "url": "https://djposaxa.com",
-    "image": "https://djposaxa.com/Fotos/inici 1.jpg",
-    "description": "DJ professional per a festes i esdeveniments a Granollers i Barcelona, especialitzat en reggaeton, dembow i mashups.",
-    "genre": ["Reggaeton", "Dembow", "Techno", "Música catalana", "Pop"],
-    "areaServed": {
-      "@type": "Place",
-      "name": "Granollers"
-    }
-  }
-  </script>
 
   <style>
-    /* Estilos adicionales para mejorar la página */
-    .btn-primary {
-      background: linear-gradient(135deg, var(--bs-primary), var(--bs-accent));
-      border: none;
-      padding: 0.875rem 2.5rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --accent-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --dark-bg: #0a0e27;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --text-primary: #ffffff;
+      --text-secondary: #a0aec0;
+      --glow-purple: 0 0 40px rgba(102, 126, 234, 0.3);
+      --glow-pink: 0 0 40px rgba(245, 87, 108, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(245, 87, 108, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Premium Navbar */
+    .navbar {
+      background: rgba(10, 14, 39, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar.scrolled {
+      padding: 1rem 0;
+      background: rgba(10, 14, 39, 0.95);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-brand img {
+      height: 50px;
+      filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-brand:hover img {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    .nav-link {
+      color: var(--text-primary);
+      font-weight: 500;
+      padding: 0.5rem 1.2rem;
+      margin: 0 0.3rem;
+      border-radius: 12px;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
 
-    .btn-primary::before {
+    .nav-link::before {
       content: '';
       position: absolute;
       top: 0;
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
+      background: var(--primary-gradient);
+      transition: left 0.4s ease;
+      z-index: -1;
+      opacity: 0.2;
     }
 
-    .btn-primary:hover::before {
+    .nav-link:hover::before,
+    .nav-link.active::before {
+      left: 0;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section - Premium */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(10, 14, 39, 0.9) 0%, rgba(10, 14, 39, 0.7) 100%), 
+                  url('../Fotos/inici 1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 40%, rgba(102, 126, 234, 0.2) 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, rgba(245, 87, 108, 0.2) 0%, transparent 60%);
+      animation: heroGlow 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroGlow {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, #667eea 50%, #f5576c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: textShimmer 3s ease-in-out infinite;
+      line-height: 1.2;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes textShimmer {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.2); }
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-premium {
+      background: var(--primary-gradient);
+      border: none;
+      padding: 1.2rem 3rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-premium::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s;
+    }
+
+    .btn-premium:hover::before {
       left: 100%;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    .btn-premium:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6), var(--glow-purple);
     }
 
-    .stats-section {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-      padding: 4rem 0;
+    /* Floating particles */
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: float 15s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% {
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+      }
+    }
+
+    /* Event Banner - Premium */
+    .event-banner {
+      background: var(--primary-gradient);
+      border-radius: 24px;
+      padding: 3rem;
       margin: 4rem 0;
-      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+    }
+
+    .event-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: rotateBanner 20s linear infinite;
+    }
+
+    @keyframes rotateBanner {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .event-banner h2 {
+      position: relative;
+      z-index: 2;
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    /* Stats Section - Premium */
+    .stats-section {
+      position: relative;
+      padding: 5rem 0;
+      background: var(--card-bg);
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 5rem 0;
+      overflow: hidden;
+    }
+
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--primary-gradient);
     }
 
     .stat-card {
       text-align: center;
       padding: 2rem;
+      position: relative;
     }
 
     .stat-number {
-      font-size: 3.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--bs-primary), var(--bs-accent));
+      font-size: 4.5rem;
+      font-weight: 900;
+      background: var(--primary-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      line-height: 1;
       margin-bottom: 0.5rem;
+      animation: countUp 2s ease-out;
+    }
+
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .stat-label {
-      font-size: 1.1rem;
-      color: var(--bs-body-color);
-      opacity: 0.8;
-      font-weight: 500;
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Feature Cards - Premium */
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 3rem;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--primary-gradient);
+      transform: scaleX(0);
+      transition: transform 0.5s ease;
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-15px);
+      border-color: rgba(102, 126, 234, 0.5);
+      box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3), var(--glow-purple);
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+
+    .feature-icon {
+      font-size: 4rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      transition: transform 0.5s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.2) rotate(10deg);
+      filter: drop-shadow(var(--glow-purple));
+    }
+
+    .feature-card h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Bio Section - Premium */
+    .bio-section {
+      padding: 6rem 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 4rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--accent-gradient);
+      border-radius: 2px;
     }
 
     .bio-image-wrapper {
       position: relative;
-      border-radius: 20px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
     }
 
     .bio-image-wrapper::before {
@@ -150,34 +477,120 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+      background: var(--primary-gradient);
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.5s ease;
       z-index: 1;
+      mix-blend-mode: multiply;
     }
 
     .bio-image-wrapper:hover::before {
-      opacity: 1;
+      opacity: 0.3;
     }
 
     .bio-image-wrapper img {
       width: 100%;
       height: auto;
       display: block;
-      transition: transform 0.5s ease;
+      transition: transform 0.8s ease;
     }
 
     .bio-image-wrapper:hover img {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
+    /* CTA Section - Premium */
+    .cta-section {
+      position: relative;
+      padding: 5rem 0;
+      background: var(--primary-gradient);
+      border-radius: 30px;
+      margin: 5rem 0;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.05) 10px,
+        rgba(255, 255, 255, 0.05) 20px
+      );
+      animation: moveDiagonal 20s linear infinite;
+    }
+
+    @keyframes moveDiagonal {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .cta-content h2 {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Footer - Premium */
+    .footer {
+      background: rgba(10, 14, 39, 0.95);
+      padding: 5rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--primary-gradient);
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      margin: 0 0.5rem;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1.5rem;
+      transition: all 0.4s ease;
+    }
+
+    .social-icons a:hover {
+      background: var(--primary-gradient);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: var(--glow-purple);
+    }
+
+    /* Scroll indicator */
     .scroll-indicator {
       position: absolute;
-      bottom: 2rem;
+      bottom: 3rem;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 3;
       animation: bounce 2s infinite;
+      cursor: pointer;
+      z-index: 3;
     }
 
     @keyframes bounce {
@@ -185,71 +598,52 @@
         transform: translateX(-50%) translateY(0);
       }
       40% {
-        transform: translateX(-50%) translateY(-10px);
+        transform: translateX(-50%) translateY(-15px);
       }
       60% {
-        transform: translateX(-50%) translateY(-5px);
+        transform: translateX(-50%) translateY(-8px);
       }
     }
 
     .scroll-indicator i {
-      font-size: 2rem;
-      color: rgba(255, 255, 255, 0.7);
+      font-size: 2.5rem;
+      color: rgba(255, 255, 255, 0.8);
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
     }
 
-    /* Mejoras en las feature cards */
-    .feature-card h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--bs-body-color);
-    }
-
-    .feature-card p {
-      font-size: 1rem;
-      line-height: 1.7;
-      opacity: 0.9;
-    }
-
-    /* Animación de aparición */
-    .fade-in-up {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-
-    /* Responsive adjustments */
+    /* Responsive */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem !important;
-      }
-      
-      .hero p {
-        font-size: 1.1rem;
+      .hero {
+        min-height: 90vh;
       }
 
       .stat-number {
-        font-size: 2.5rem;
+        font-size: 3rem;
       }
 
-      .section-title {
+      .feature-card {
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .event-banner {
+        padding: 2rem;
+      }
+
+      .cta-content h2 {
         font-size: 2rem;
       }
     }
   </style>
 </head>
-<body onload="applyTheme()">
+<body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png" alt="DJ Posaxa Logo">
+        <img src="Fotos/logo.png" alt="DJ Posaxa Logo">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -276,14 +670,12 @@
             <a class="nav-link" href="mashups.html" data-translate="nav_mashups">Mashups</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="configuracio.html" aria-label="Configuració">
+            <a class="nav-link" href="configuracio.html">
               <i class="bi bi-gear-fill"></i>
             </a>
           </li>
           <li class="nav-item" id="admin-link-container"></li>
-          <li class="nav-item" id="auth-container">
-            <!-- El botón de inicio de sesión o perfil se cargará aquí -->
-          </li>
+          <li class="nav-item" id="auth-container"></li>
         </ul>
       </div>
     </div>
@@ -291,48 +683,58 @@
 
   <!-- Hero Section -->
   <header class="hero">
-    <div class="container">
-      <h1 class="display-3 responsive-h1" data-translate="hero_title">Eleva la teva festa al següent nivell</h1>
-      <p class="lead" data-translate="hero_subtitle">Experiències musicals inoblidables per a qualsevol esdeveniment.</p>
-      <a href="preus.html" class="btn btn-primary btn-lg mt-3" data-translate="hero_cta">
+    <div class="particles">
+      <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+      <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+      <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+      <div class="particle" style="left: 40%; animation-delay: 6s;"></div>
+      <div class="particle" style="left: 50%; animation-delay: 8s;"></div>
+      <div class="particle" style="left: 60%; animation-delay: 3s;"></div>
+      <div class="particle" style="left: 70%; animation-delay: 5s;"></div>
+      <div class="particle" style="left: 80%; animation-delay: 7s;"></div>
+      <div class="particle" style="left: 90%; animation-delay: 1s;"></div>
+    </div>
+    <div class="hero-content">
+      <h1 data-translate="hero_title">Eleva la teva festa al següent nivell</h1>
+      <p data-translate="hero_subtitle">Experiències musicals inoblidables per a qualsevol esdeveniment.</p>
+      <a href="preus.html" class="btn-premium" data-translate="hero_cta">
         <i class="bi bi-calendar-check me-2"></i>Reserva Ara
       </a>
-      <div class="scroll-indicator">
-        <i class="bi bi-chevron-down"></i>
-      </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="bi bi-chevron-down"></i>
     </div>
   </header>
 
-  
-  <section class="container">
-    <div class="event-banner-box text-center fade-in-up">
-      <h2 class="h2 mb-3" style="color: white !important;">🔥 Nou esdeveniment de DJ Posaxa!</h2>
-      <p class="lead mb-4" style="color: white !important;">Carnaval a Granollers – 13 de febrer de 2026. No t'ho perdis!</p>
-      <a href="esdeveniments.html" class="btn btn-light btn-lg px-5 shadow-sm" style="font-weight: 700; color: #0d6efd;">
+  <!-- Event Banner -->
+  <section class="container my-5">
+    <div class="event-banner text-center">
+      <h2>🔥 Nou esdeveniment de DJ Posaxa!</h2>
+      <p class="lead mb-4">Carnaval a Granollers – 13 de febrer de 2026. No t'ho perdis!</p>
+      <button class="btn btn-light btn-lg px-5" onclick="window.location.href='esdeveniments.html'">
         <i class="bi bi-info-circle-fill me-2"></i>Més informació
-      </a>
+      </button>
     </div>
   </section>
-
 
   <!-- Stats Section -->
   <section class="container">
     <div class="stats-section">
       <div class="row">
         <div class="col-md-4">
-          <div class="stat-card fade-in-up delay-1">
+          <div class="stat-card">
             <div class="stat-number">10+</div>
             <div class="stat-label">Events Completats</div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="stat-card fade-in-up delay-2">
+          <div class="stat-card">
             <div class="stat-number">2K+</div>
             <div class="stat-label">Seguidors</div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="stat-card fade-in-up delay-3">
+          <div class="stat-card">
             <div class="stat-number">100%</div>
             <div class="stat-label">Satisfacció</div>
           </div>
@@ -341,27 +743,13 @@
     </div>
   </section>
 
-  <!-- Ad Section -->
-  <div class="container my-5 text-center">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'e6c768a7464416b9ac30d731f11beeb9',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="https://www.highperformanceformat.com/e6c768a7464416b9ac30d731f11beeb9/invoke.js"></script>
-  </div>
-
-  <!-- Qui soc Section -->
-  <section class="section">
+  <!-- Bio Section -->
+  <section class="bio-section">
     <div class="container">
       <h2 class="section-title" data-translate="about_title">Qui soc?</h2>
       <div class="row align-items-center g-5">
         <div class="col-lg-6">
-          <div class="feature-card p-4">
+          <div class="feature-card">
             <p data-translate="about_text1">DJ Posaxa és el nom artístic de Pol Solanas Ramos, nascut el 16 de juny de 2010 a Granollers (Barcelona). Apassionat per la música des de ben petit, ha convertit la seva curiositat pels ritmes i les mescles en una proposta fresca i enèrgica que connecta amb el públic més jove.</p>
             <p data-translate="about_text2">Amb un estil que combina reggaeton, dembow, techno i música festiva catalana, DJ Posaxa s'ha fet un nom a les festes locals i esdeveniments juvenils del Vallès. Les seves sessions destaquen per l'energia, la varietat i la connexió amb el públic, creant un ambient únic a cada actuació.</p>
             <p class="mb-0" data-translate="about_text3">Tot i la seva joventut, DJ Posaxa ja ha actuat en esdeveniments com la Disco Inferno XS de la Festa Major de Granollers, demostrant una maduresa artística i una passió que apunten a un futur prometedor dins l'escena musical.</p>
@@ -376,77 +764,47 @@
     </div>
   </section>
 
-  <!-- Ad Section -->
-  <div class="container my-5 text-center">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'e6c768a7464416b9ac30d731f11beeb9',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="https://www.highperformanceformat.com/e6c768a7464416b9ac30d731f11beeb9/invoke.js"></script>
-  </div>
-
   <!-- Features Section -->
-  <section class="section bg-dark bg-opacity-25">
-    <div class="container">
-      <h2 class="section-title" data-translate="features_title">Per què DJ Posaxa?</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="feature-card fade-in-up delay-1">
-            <div class="feature-icon">
-              <i class="bi bi-disc"></i>
-            </div>
-            <h3 data-translate="feature1_title">Expert en Mashups</h3>
-            <p data-translate="feature1_text">Creacions úniques i mescles en directe que sorprenen i mantenen l'energia de la pista de ball.</p>
+  <section class="container my-5">
+    <h2 class="section-title" data-translate="features_title">Per què DJ Posaxa?</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="bi bi-disc"></i>
           </div>
+          <h3 data-translate="feature1_title">Expert en Mashups</h3>
+          <p data-translate="feature1_text">Creacions úniques i mescles en directe que sorprenen i mantenen l'energia de la pista de ball.</p>
         </div>
-        <div class="col-md-4">
-          <div class="feature-card fade-in-up delay-2">
-            <div class="feature-icon">
-              <i class="bi bi-music-note-list"></i>
-            </div>
-            <h3 data-translate="feature2_title">Música per a Tots</h3>
-            <p data-translate="feature2_text">Un repertori versàtil que s'adapta a qualsevol gust i edat, des dels últims èxits fins als clàssics atemporals.</p>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="bi bi-music-note-list"></i>
           </div>
+          <h3 data-translate="feature2_title">Música per a Tots</h3>
+          <p data-translate="feature2_text">Un repertori versàtil que s'adapta a qualsevol gust i edat, des dels últims èxits fins als clàssics atemporals.</p>
         </div>
-        <div class="col-md-4">
-          <div class="feature-card fade-in-up delay-3">
-            <div class="feature-icon">
-              <i class="bi bi-stars"></i>
-            </div>
-            <h3 data-translate="feature3_title">Animació Professional</h3>
-            <p data-translate="feature3_text">No només poso música, creo una atmosfera vibrant i m'asseguro que tothom gaudeixi de la festa.</p>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="bi bi-stars"></i>
           </div>
+          <h3 data-translate="feature3_title">Animació Professional</h3>
+          <p data-translate="feature3_text">No només poso música, creo una atmosfera vibrant i m'asseguro que tothom gaudeixi de la festa.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Ad Section -->
-  <div class="container my-5 text-center">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'e6c768a7464416b9ac30d731f11beeb9',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="https://www.highperformanceformat.com/e6c768a7464416b9ac30d731f11beeb9/invoke.js"></script>
-  </div>
-
   <!-- CTA Section -->
-  <section class="section">
-    <div class="container text-center">
-      <div class="feature-card p-5">
-        <h2 class="mb-4">Preparat per a la teva festa?</h2>
+  <section class="container">
+    <div class="cta-section">
+      <div class="cta-content">
+        <h2>Preparat per a la teva festa?</h2>
         <p class="lead mb-4">Contacta'ns avui mateix i descobreix com podem fer que el teu esdeveniment sigui inoblidable.</p>
-        <a href="preus.html" class="btn btn-primary btn-lg">
+        <a href="preus.html" class="btn btn-light btn-lg px-5">
           <i class="bi bi-envelope-fill me-2"></i>Contacta Ara
         </a>
       </div>
@@ -454,12 +812,12 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer mt-auto">
+  <footer class="footer">
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
           <h5 class="mb-3">DJ Posaxa</h5>
-          <p class="mb-3 opacity-75">Música professional per a festes i esdeveniments a Granollers i Barcelona.</p>
+          <p class="mb-3" style="color: var(--text-secondary);">Música professional per a festes i esdeveniments a Granollers i Barcelona.</p>
           <div class="social-icons">
             <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok">
               <i class="bi bi-tiktok"></i>
@@ -472,87 +830,65 @@
         <div class="col-md-4">
           <h5 class="mb-3">Enllaços Ràpids</h5>
           <ul class="list-unstyled">
-            <li class="mb-2"><a href="en-què-em-centro.html" class="text-decoration-none">En què em centro</a></li>
-            <li class="mb-2"><a href="esdeveniments.html" class="text-decoration-none">Esdeveniments</a></li>
-            <li class="mb-2"><a href="opinionse486.html" class="text-decoration-none">Opinions</a></li>
-            <li class="mb-2"><a href="preus.html" class="text-decoration-none">Preus</a></li>
+            <li class="mb-2"><a href="en-què-em-centro.html" style="color: var(--text-secondary); text-decoration: none;">En què em centro</a></li>
+            <li class="mb-2"><a href="esdeveniments.html" style="color: var(--text-secondary); text-decoration: none;">Esdeveniments</a></li>
+            <li class="mb-2"><a href="opinionse486.html" style="color: var(--text-secondary); text-decoration: none;">Opinions</a></li>
+            <li class="mb-2"><a href="preus.html" style="color: var(--text-secondary); text-decoration: none;">Preus</a></li>
           </ul>
         </div>
         <div class="col-md-4">
           <h5 class="mb-3">Sigma Company</h5>
-          <p class="mb-3 opacity-75" data-translate="footer_dev">Desenvolupat per Sigma Company</p>
-          <p class="mb-2 opacity-75" data-translate="footer_more_projects">Més projectes:</p>
-          <a href="http://www.sigmagames.ct.ws" class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">
+          <p class="mb-3" style="color: var(--text-secondary);" data-translate="footer_dev">Desenvolupat per Sigma Company</p>
+          <p class="mb-2" style="color: var(--text-secondary);" data-translate="footer_more_projects">Més projectes:</p>
+          <a href="http://www.sigmagames.ct.ws" class="btn btn-sm" style="background: var(--primary-gradient); color: white; border: none; padding: 0.5rem 1.5rem; border-radius: 20px;" target="_blank" rel="noopener">
             <i class="bi bi-box-arrow-up-right me-1"></i>SigmaGames
           </a>
         </div>
       </div>
-      <hr class="my-4 opacity-25">
+      <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 3rem 0 2rem;">
       <div class="row">
         <div class="col-md-6 text-center text-md-start">
-          <p class="mb-0">&copy; <span id="year"></span> DJ Posaxa. <span data-translate="footer_rights">Tots els drets reservats.</span></p>
+          <p style="color: var(--text-secondary); margin: 0;">&copy; <span id="year"></span> DJ Posaxa. <span data-translate="footer_rights">Tots els drets reservats.</span></p>
         </div>
         <div class="col-md-6 text-center text-md-end">
-          <p class="mb-0"><span data-translate="footer_location">Granollers · Barcelona</span></p>
+          <p style="color: var(--text-secondary); margin: 0;"><span data-translate="footer_location">Granollers · Barcelona</span></p>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-    import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
-    import { getDatabase, ref, get, update } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
+  <!-- Main JS -->
+  <script src="assets/js/main.js"></script>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
-      authDomain: "dj-posaxa-web.firebaseapp.com",
-      databaseURL: "https://dj-posaxa-web-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "dj-posaxa-web",
-      storageBucket: "dj-posaxa-web.appspot.com",
-      messagingSenderId: "647042791526",
-      appId: "1:647042791526:web:3b870e05ab0ed34cbd95a7",
-      measurementId: "G-C8R4Z4TLE1"
-    };
+  <script>
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const database = getDatabase(app);
-
-    window.exposeFirebase(auth, database, ref, update, get, { GoogleAuthProvider, signInWithPopup });
-    window.initAuth();
-
-    const authContainer = document.getElementById('auth-container');
-
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        window.syncPreferencesWithFirebase(auth, database, get, ref, update);
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
       } else {
-        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#authModal" data-translate="login_button">Inicia Sessió</button>`;
-        if (window.pageTranslations) setLanguage(getLanguage());
+        navbar.classList.remove('scrolled');
       }
     });
-  </script>
-
-  <!-- i18n & Theme Script -->
-  <script src="assets/js/main.js"></script>
-  <script>
-    // Auto-update year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
 
     // Smooth scroll for scroll indicator
     document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
-      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      window.scrollTo({ 
+        top: window.innerHeight, 
+        behavior: 'smooth' 
+      });
     });
 
-    // Intersection Observer for fade-in animations
+    // Intersection Observer for animations
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -564,34 +900,39 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-
-    // Navbar scroll effect
-    let lastScroll = 0;
-    const navbar = document.querySelector('.navbar');
-
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      
-      if (currentScroll > 100) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-      
-      lastScroll = currentScroll;
+    // Observe elements
+    document.querySelectorAll('.feature-card, .stat-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s ease';
+      observer.observe(el);
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-      window.pageTranslations = {
+    // Parallax effect for hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+
+    // Dynamic particle generation
+    const particlesContainer = document.querySelector('.particles');
+    if (particlesContainer) {
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Translations
+    window.pageTranslations = {
       ca: {
-        page_title: "DJ Posaxa — Inici",
-        meta_description: "DJ Posaxa — Música para fiestas y eventos en Granollers y Barcelona. Especialista en mashups, reggaeton, dembow y música catalana.",
-        meta_keywords: "DJ, música, festa, esdeveniments, Granollers, BCN, mashup, reggaeton, dembow",
-        og_title: "DJ Posaxa — DJ per festes i esdeveniments",
-        og_description: "Música per a festes i esdeveniments a Granollers i BCN.",
-        twitter_title: "DJ Posaxa — DJ per festes i esdeveniments",
-        twitter_description: "Música per a festes i esdeveniments a Granollers i BCN.",
         nav_home: "Inici",
         nav_focus: "En què em centro",
         nav_why: "Per què escollir-me",
@@ -599,12 +940,11 @@
         nav_reviews: "Opinions",
         nav_pricing: "Preus",
         nav_mashups: "Mashups",
-        nav_language: "Idioma",
         hero_title: "Eleva la teva festa al següent nivell",
         hero_subtitle: "Experiències musicals inoblidables per a qualsevol esdeveniment.",
         hero_cta: "Reserva Ara",
         features_title: "Per què DJ Posaxa?",
-        about_title: "Qui soc",
+        about_title: "Qui soc?",
         about_text1: "DJ Posaxa és el nom artístic de Pol Solanas Ramos, nascut el 16 de juny de 2010 a Granollers (Barcelona). Apassionat per la música des de ben petit, ha convertit la seva curiositat pels ritmes i les mescles en una proposta fresca i enèrgica que connecta amb el públic més jove.",
         about_text2: "Amb un estil que combina reggaeton, dembow, techno i música festiva catalana, DJ Posaxa s'ha fet un nom a les festes locals i esdeveniments juvenils del Vallès. Les seves sessions destaquen per l'energia, la varietat i la connexió amb el públic, creant un ambient únic a cada actuació.",
         about_text3: "Tot i la seva joventut, DJ Posaxa ja ha actuat en esdeveniments com la Disco Inferno XS de la Festa Major de Granollers, demostrant una maduresa artística i una passió que apunten a un futur prometedor dins l'escena musical.",
@@ -615,14 +955,11 @@
         feature3_title: "Animació Professional",
         feature3_text: "No només poso música, creo una atmosfera vibrant i m'asseguro que tothom gaudeixi de la festa.",
         footer_rights: "Tots els drets reservats.",
-        footer_location: "Granollers · BCN",
+        footer_location: "Granollers · Barcelona",
         footer_dev: "Desenvolupat per Sigma Company",
-        language_modal_title: "Selecciona el teu idioma",
-        footer_more_projects: "Més projectes de Sigma Company",
-        language_modal_text: "Si us plau, tria el teu idioma de preferència."
+        footer_more_projects: "Més projectes:"
       },
       es: {
-        page_title: "DJ Posaxa — Inicio",
         nav_home: "Inicio",
         nav_focus: "En qué me centro",
         nav_why: "Por qué elegirme",
@@ -647,10 +984,9 @@
         footer_rights: "Todos los derechos reservados.",
         footer_location: "Granollers · Barcelona",
         footer_dev: "Desarrollado por Sigma Company",
-        footer_more_projects: "Más proyectos de Sigma Company"
+        footer_more_projects: "Más proyectos:"
       },
       en: {
-        page_title: "DJ Posaxa — Home",
         nav_home: "Home",
         nav_focus: "What I Focus On",
         nav_why: "Why Choose Me",
@@ -675,62 +1011,14 @@
         footer_rights: "All rights reserved.",
         footer_location: "Granollers · Barcelona",
         footer_dev: "Developed by Sigma Company",
-        footer_more_projects: "More projects from Sigma Company"
-      },
-      fr: {
-        page_title: "DJ Posaxa — Accueil",
-        nav_home: "Accueil",
-        nav_focus: "Sur quoi je me concentre",
-        nav_why: "Pourquoi me choisir",
-        nav_events: "Événements",
-        nav_reviews: "Avis",
-        nav_pricing: "Tarifs",
-        nav_mashups: "Mashups",
-        hero_title: "Élevez votre fête au niveau supérieur",
-        hero_subtitle: "Expériences musicales inoubliables pour tout événement.",
-        hero_cta: "Réservez maintenant",
-        features_title: "Pourquoi DJ Posaxa?",
-        about_title: "Qui je suis",
-        feature1_title: "Expert en Mashups",
-        feature2_title: "Musique pour tous",
-        feature3_title: "Animation professionnelle",
-        footer_rights: "Tous droits réservés.",
-        footer_location: "Granollers · Barcelona",
-        footer_dev: "Développé par Sigma Company",
-        footer_more_projects: "Plus de projets de Sigma Company"
-      },
-      de: {
-        page_title: "DJ Posaxa — Startseite",
-        nav_home: "Startseite",
-        nav_focus: "Worauf ich mich konzentriere",
-        nav_why: "Warum Sie mich wählen sollten",
-        nav_events: "Veranstaltungen",
-        nav_reviews: "Bewertungen",
-        nav_pricing: "Preise",
-        nav_mashups: "Mashups",
-        hero_title: "Heben Sie Ihre Party auf die nächste Stufe",
-        hero_subtitle: "Unvergessliche Musikerlebnisse für jede Veranstaltung.",
-        hero_cta: "Jetzt buchen",
-        features_title: "Warum DJ Posaxa?",
-        about_title: "Wer ich bin",
-        feature1_title: "Mashup-Experte",
-        feature2_title: "Musik für alle",
-        feature3_title: "Professionelle Animation",
-        footer_rights: "Alle Rechte vorbehalten.",
-        footer_location: "Granollers · Barcelona",
-        footer_dev: "Entwickelt von Sigma Company",
-        footer_more_projects: "Weitere Projekte von Sigma Company"
+        footer_more_projects: "More projects:"
       }
     };
 
-      initializePage(window.pageTranslations, () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('follow_gate')) {
-            alert('Per accedir als mashups, primer has de seguir a DJ Posaxa a les xarxes socials i verificar-ho.');
-        }
-      });
-    });
+    // Initialize page
+    if (typeof initializePage === 'function') {
+      initializePage(window.pageTranslations);
+    }
   </script>
-
 </body>
 </html>

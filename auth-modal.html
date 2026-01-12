@@ -2,19 +2,61 @@
 <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-dark text-white">
-      <div class="modal-header">
-        <h5 class="modal-title" id="authModalLabel" data-translate="auth_modal_title">Inicia Sessió</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      
+      <!-- Login Section -->
+      <div id="auth-login-section">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" id="authModalLabel" data-translate="auth_modal_title">Inicia Sessió</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="auth-feedback" class="alert" style="display:none;"></div>
+          <p class="text-center" data-translate="auth_google_prompt">Fes servir el teu compte de Google per accedir de forma ràpida i segura.</p>
+          <!-- Google Sign-In -->
+          <div class="d-grid mt-4">
+            <button id="google-signin-btn" class="btn btn-light d-flex align-items-center justify-content-center py-2">
+              <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" width="20" height="20" class="me-2">
+              <span data-translate="auth_google_btn">Continua amb Google</span>
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <div id="auth-feedback" class="alert" style="display:none;"></div>
-        <p class="text-center" data-translate="auth_google_prompt">Fes servir el teu compte de Google per accedir de forma ràpida i segura.</p>
-        <!-- Google Sign-In -->
-        <div class="d-grid mt-4">
-          <button id="google-signin-btn" class="btn btn-light d-flex align-items-center justify-content-center">
-            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" width="20" height="20" class="me-2">
-            <span data-translate="auth_google_btn">Continua amb Google</span>
-          </button>
+
+      <!-- Onboarding Section (Hidden by default) -->
+      <div id="auth-onboarding-section" style="display:none;">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" data-translate="onboarding_title">Benvingut a la família!</h5>
+        </div>
+        <div class="modal-body">
+          <p class="text-white-50 mb-4" data-translate="onboarding_subtitle">Abans de començar, ens agradaria conèixer-te una mica millor.</p>
+          <form id="onboarding-form">
+            <div class="mb-3">
+              <label for="ob-genre" class="form-label" data-translate="onboarding_genre">Quin és el teu estil musical preferit?</label>
+              <select class="form-select bg-dark text-white border-secondary" id="ob-genre" required>
+                <option value="" selected disabled>Selecciona...</option>
+                <option value="reggaeton">Reggaeton</option>
+                <option value="dembow">Dembow</option>
+                <option value="techno">Techno</option>
+                <option value="catalana">Música Catalana</option>
+                <option value="pachangueo">Pachangueo</option>
+                <option value="altres">Altres</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="ob-discovery" class="form-label" data-translate="onboarding_discovery">Com has conegut a DJ Posaxa?</label>
+              <select class="form-select bg-dark text-white border-secondary" id="ob-discovery" required>
+                <option value="" selected disabled>Selecciona...</option>
+                <option value="instagram">Instagram</option>
+                <option value="tiktok">TikTok</option>
+                <option value="amics">Amics / Coneguts</option>
+                <option value="esdeveniment">En un esdeveniment</option>
+                <option value="altres">Altres</option>
+              </select>
+            </div>
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-primary" data-translate="onboarding_submit">Completar Registre</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

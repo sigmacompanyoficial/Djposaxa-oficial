@@ -24,7 +24,7 @@ messaging.onBackgroundMessage((payload) => {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: '/Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png'
+    icon: '/Fotos/logo.png'
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);

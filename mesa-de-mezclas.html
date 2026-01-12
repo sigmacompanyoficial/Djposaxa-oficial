@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="assets/css/modern-style.css" />
   <link rel="stylesheet" href="assets/css/mixer-style.css" />
   <link rel="stylesheet" href="assets/css/animations.css" />
-  <link rel="icon" type="image/png" href="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png">
+  <link rel="icon" type="image/png" href="Fotos/logo.png">
 </head>
 <body onload="applyTheme()">
 
@@ -34,7 +34,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png" alt="DJ Posaxa Logo">
+        <img src="Fotos/logo.png" alt="DJ Posaxa Logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -223,7 +223,7 @@
   <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
     import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
     const firebaseConfig = {
@@ -241,6 +241,16 @@
     const auth = getAuth(app);
     const database = getDatabase(app);
     const authContainer = document.getElementById('auth-container');
+
+    // Exposa les funcions de Firebase per a main.js
+    if (window.exposeFirebase) {
+      window.exposeFirebase(auth, database, ref, update, get, { GoogleAuthProvider, signInWithPopup });
+    }
+
+    // Inicialitza la lògica d'autenticació
+    if (window.initAuth) {
+      window.initAuth();
+    }
 
     onAuthStateChanged(auth, user => {
       if (user) {

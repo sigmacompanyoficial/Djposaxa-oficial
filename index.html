@@ -295,6 +295,11 @@
       margin-bottom: 1rem;
     }
 
+    .event-banner > * {
+      position: relative;
+      z-index: 2;
+    }
+
     /* Stats Section - Premium */
     .stats-section {
       position: relative;
@@ -711,9 +716,15 @@
     <div class="event-banner text-center">
       <h2>🔥 Nou esdeveniment de DJ Posaxa!</h2>
       <p class="lead mb-4">Carnaval a Granollers – 13 de febrer de 2026. No t'ho perdis!</p>
-      <button class="btn btn-light btn-lg px-5" onclick="window.location.href='esdeveniments.html'">
-        <i class="bi bi-info-circle-fill me-2"></i>Més informació
-      </button>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <button class="btn btn-light btn-lg px-4" onclick="window.location.href='esdeveniments.html'">
+          <i class="bi bi-info-circle-fill me-2"></i>Més informació
+        </button>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <button class="btn btn-light btn-lg px-4" onclick="window.location.href='esdeveniments.html'">
+          <i class="bi bi-ticket-perforated-fill me-2"></i>Reserva Ara!!
+        </button>
+      </div>
     </div>
   </section>
 
@@ -859,6 +870,50 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getDatabase, ref, get, update, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
+      authDomain: "dj-posaxa-web.firebaseapp.com",
+      databaseURL: "https://dj-posaxa-web-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "dj-posaxa-web",
+      storageBucket: "dj-posaxa-web.appspot.com",
+      messagingSenderId: "647042791526",
+      appId: "1:647042791526:web:3b870e05ab0ed34cbd95a7",
+      measurementId: "G-C8R4Z4TLE1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const database = getDatabase(app);
+    const authContainer = document.getElementById('auth-container');
+
+    if (window.exposeFirebase) window.exposeFirebase(auth, database, ref, update, get, { GoogleAuthProvider, signInWithPopup });
+    if (window.initAuth) window.initAuth();
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        if (window.syncPreferencesWithFirebase) window.syncPreferencesWithFirebase(auth, database, get, ref, update);
+        authContainer.innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
+      } else {
+        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#authModal" data-translate="login_button">Inicia Sessió</button>`;
+        if (window.pageTranslations && typeof setLanguage === 'function') setLanguage(getLanguage());
+      }
+    });
+
+    const ticketBtnHome = document.getElementById('btn-reserva-home');
+    if (ticketBtnHome) {
+      ticketBtnHome.addEventListener('click', () => {
+        const clickRef = ref(database, 'analytics/ticket_clicks');
+        push(clickRef, { event: 'Carnaval 2026 (Home)', timestamp: serverTimestamp(), user: auth.currentUser ? auth.currentUser.uid : 'anonymous' }).catch(console.error);
+      });
+    }
+  </script>
 
   <!-- Main JS -->
   <script src="assets/js/main.js"></script>

@@ -245,7 +245,7 @@
               let verifiedFollowers = 0;
               let newBookings = 0;
               const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
-              const rolesCount = { administrador: 0, cliente: 0 };
+              const rolesCount = { administrador: 0, cliente: 0, altres: 0 };
               const mashupDownloadsCount = {};
               const genresCount = {};
 
@@ -268,7 +268,12 @@
                 }
 
                 // KPI: Rols
-                rolesCount[userData.role || 'cliente']++;
+                const role = userData.role || 'cliente';
+                if (rolesCount[role] !== undefined) {
+                    rolesCount[role]++;
+                } else {
+                    rolesCount.altres++;
+                }
 
                 // KPI: Gèneres
                 const genre = userData.favoriteGenre || 'No especificat';
@@ -323,53 +328,57 @@
               document.getElementById('verified-followers-kpi').textContent = verifiedFollowers;
               document.getElementById('admin-roles-kpi').textContent = rolesCount.administrador || 0;
               
-
               // Inicialitzar gràfics
-              new Chart(document.getElementById('rolesChart'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['Administradors', 'Clients'],
-                    datasets: [{
-                        data: [rolesCount.administrador, rolesCount.cliente],
-                        backgroundColor: ['#0d6efd', '#6c757d'],
-                    }]
-                },
-                options: { responsive: true, plugins: { legend: { labels: { color: '#fff' } } } }
-              });
-
-              const sortedMashups = Object.entries(mashupDownloadsCount).sort(([,a],[,b]) => b-a).slice(0, 10);
-
-              new Chart(document.getElementById('mashupsChart'), {
-                type: 'bar',
-                data: {
-                    labels: sortedMashups.map(item => item[0]),
-                    datasets: [{
-                        label: 'Descàrregues',
-                        data: sortedMashups.map(item => item[1]),
-                        backgroundColor: '#0d6efd',
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: { ticks: { color: '#fff', stepSize: 1 } },
-                        x: { ticks: { color: '#fff' } }
+              if (typeof Chart !== 'undefined') {
+                  new Chart(document.getElementById('rolesChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Administradors', 'Clients', 'Altres'],
+                        datasets: [{
+                            data: [rolesCount.administrador, rolesCount.cliente, rolesCount.altres],
+                            backgroundColor: ['#0d6efd', '#6c757d', '#ffc107'],
+                            borderWidth: 0
+                        }]
                     },
-                    plugins: { legend: { display: false } }
-                }
-              });
+                    options: { responsive: true, plugins: { legend: { labels: { color: '#fff' } } } }
+                  });
 
-              new Chart(document.getElementById('genresChart'), {
-                type: 'pie',
-                data: {
-                    labels: Object.keys(genresCount),
-                    datasets: [{
-                        data: Object.values(genresCount),
-                        backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545', '#0dcaf0', '#6c757d'],
-                    }]
-                },
-                options: { responsive: true, plugins: { legend: { labels: { color: '#fff' } } } }
-              });
+                  const sortedMashups = Object.entries(mashupDownloadsCount).sort(([,a],[,b]) => b-a).slice(0, 10);
+
+                  new Chart(document.getElementById('mashupsChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: sortedMashups.map(item => item[0]),
+                        datasets: [{
+                            label: 'Descàrregues',
+                            data: sortedMashups.map(item => item[1]),
+                            backgroundColor: '#0d6efd',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: { ticks: { color: '#fff', stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.1)' } },
+                            x: { ticks: { color: '#fff' }, grid: { display: false } }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                  });
+
+                  new Chart(document.getElementById('genresChart'), {
+                    type: 'pie',
+                    data: {
+                        labels: Object.keys(genresCount),
+                        datasets: [{
+                            data: Object.values(genresCount),
+                            backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#dc3545', '#0dcaf0', '#6c757d'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: { responsive: true, plugins: { legend: { labels: { color: '#fff' } } } }
+                  });
+              }
+
 
 
               // Afegir listeners per canviar rol

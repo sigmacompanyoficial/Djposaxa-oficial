@@ -290,6 +290,7 @@ let authListenersSetup = false;
 function setupAuthModalListeners(auth, database, ref, get, update, firebaseAuth) {
     if (authListenersSetup) return; // Evitar duplicar listeners
 
+    if (!firebaseAuth || !firebaseAuth.GoogleAuthProvider) return;
     const { GoogleAuthProvider, signInWithPopup } = firebaseAuth;
 
     const authModal = new bootstrap.Modal(document.getElementById('authModal'));

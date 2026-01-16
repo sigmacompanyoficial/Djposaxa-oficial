@@ -992,7 +992,7 @@
             ];
 
             try {
-              const { data: { text } } = await Tesseract.recognize(file, 'eng+spa+fra+deu+por+ita+tur+rus+ara+jpn+kor+chi_sim+hin+ind', {
+              const { data: { text } } = await Tesseract.recognize(file, 'eng+spa+cat', {
                 logger: m => {
                   if (m.status === 'recognizing text') {
                     const progress = m.progress * 100;

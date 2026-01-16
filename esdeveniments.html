@@ -676,19 +676,16 @@
               <strong>IMPORTANT PER A MENORS:</strong> Els <strong>menors de 16 anys</strong> han de presentar obligatòriament l'<strong>autorització de menors</strong> signada. La podràs descarregar durant el procés de reserva.
             </div>
 
-            <!-- Countdown for Tickets -->
-            <div id="carnaval-countdown" class="text-center mt-4 p-3" style="background: rgba(102, 126, 234, 0.1); border-radius: 15px; border: 1px solid rgba(102, 126, 234, 0.3);">
-              <h5 class="mb-3" style="color: #667eea;">⏳ Temps per a la reserva d'entrades:</h5>
-              <div class="d-flex justify-content-center gap-3" style="font-family: monospace; font-weight: bold; font-size: 1.5rem; color: var(--text-primary);">
-                <div><span id="ticket-days">00</span>d</div> : <div><span id="ticket-hours">00</span>h</div> : <div><span id="ticket-minutes">00</span>m</div> : <div><span id="ticket-seconds">00</span>s</div>
-              </div>
-            </div>
-
-            <div id="carnaval-tickets" class="text-center mt-4" style="display: none;">
+            <div id="carnaval-tickets" class="text-center mt-4">
               <p class="small text-success mb-2"><i class="bi bi-check-circle-fill me-1"></i>Ja pots reservar la teva entrada!</p>
-              <a href="https://grajove.playoffinformatica.com/activitat/143/FESTA-de-CARNAVAL-amb-DJ-POSAXA-2026/" target="_blank" id="btn-reserva-carnaval" class="btn btn-primary btn-lg px-5" style="border-radius: 50px;">
-                RESERVAR ENTRADA GRATUÏTA
-              </a>
+              <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+                <a href="https://grajove.playoffinformatica.com/activitat/143/FESTA-de-CARNAVAL-amb-DJ-POSAXA-2026/" target="_blank" id="btn-reserva-carnaval" class="btn btn-primary btn-lg px-5" style="border-radius: 50px;">
+                  RESERVAR ENTRADA GRATUÏTA
+                </a>
+                <div class="text-white-50 bg-dark bg-opacity-50 px-3 py-2 rounded-pill border border-secondary d-flex align-items-center">
+                  <i class="bi bi-eye-fill me-2"></i><span id="ticket-click-count">0</span>&nbsp;interessats
+                </div>
+              </div>
             </div>
             <div class="text-center mt-4 pt-3" style="border-top: 1px solid rgba(255,255,255,0.1);">
               <p class="mb-2" style="color: var(--text-secondary);">Per més informació:</p>
@@ -905,7 +902,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import { getDatabase, ref, get, update, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+    import { getDatabase, ref, get, update, push, serverTimestamp, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAfNLKv-jNyyAaVrYSbwPnJKyNClDiF94Y",
@@ -959,14 +956,29 @@
     const ticketBtn = document.getElementById('btn-reserva-carnaval');
     if (ticketBtn) {
       ticketBtn.addEventListener('click', () => {
+        // Log click
         const clickRef = ref(database, 'analytics/ticket_clicks');
         push(clickRef, {
           event: 'Carnaval 2026',
           timestamp: serverTimestamp(),
           user: auth.currentUser ? auth.currentUser.uid : 'anonymous'
         }).catch(err => console.error("Error logging ticket click:", err));
+
+        // Increment counter
+        const counterRef = ref(database, 'analytics/ticket_click_count');
+        runTransaction(counterRef, (currentCount) => {
+          return (currentCount || 0) + 1;
+        }).catch(err => console.error("Error incrementing counter:", err));
       });
     }
+
+    // Display counter
+    const counterDisplayRef = ref(database, 'analytics/ticket_click_count');
+    onValue(counterDisplayRef, (snapshot) => {
+        const count = snapshot.val() || 0;
+        const el = document.getElementById('ticket-click-count');
+        if(el) el.innerText = count;
+    });
   </script>
 
   <!-- Main JS -->
@@ -1218,32 +1230,6 @@
     // Actualizar cada segundo
     setInterval(updateCountdown, 1000);
     updateCountdown(); // Ejecutar inmediatamente
-
-    // Carnaval Ticket Countdown Logic
-    function updateTicketCountdown() {
-      // Data de reserva: 17 de gener de 2026 a les 18:00h
-      const ticketDate = new Date("2026-01-17T18:00:00").getTime(); 
-      const now = new Date().getTime();
-      const distance = ticketDate - now;
-
-      if (distance < 0) {
-        document.getElementById("carnaval-countdown").style.display = "none";
-        document.getElementById("carnaval-tickets").style.display = "block";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("ticket-days").innerText = days.toString().padStart(2, '0');
-      document.getElementById("ticket-hours").innerText = hours.toString().padStart(2, '0');
-      document.getElementById("ticket-minutes").innerText = minutes.toString().padStart(2, '0');
-      document.getElementById("ticket-seconds").innerText = seconds.toString().padStart(2, '0');
-    }
-    setInterval(updateTicketCountdown, 1000);
-    updateTicketCountdown();
 
     // Carnaval Event Date Countdown Logic (13 Feb 2026 18:00)
     function updateCarnavalEventCountdown() {

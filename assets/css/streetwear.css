@@ -1,0 +1,453 @@
+/* RESET & CORE */
+:root {
+    --bg-color: #050505;
+    --text-color: #ffffff;
+    --accent-color: #333333;
+    --font-main: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+    /* Fallback or if Space Grotesk is unavailable */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+    /* Hide default cursor */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: none;
+    /* Hide default cursor */
+}
+
+/* --- CUSTOM CURSOR --- */
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+}
+
+.cursor.hovered {
+    width: 50px;
+    height: 50px;
+    background: white;
+    mix-blend-mode: difference;
+}
+
+/* --- PRELOADER --- */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.counter {
+    font-size: 10vw;
+    font-weight: 800;
+    color: white;
+    font-family: var(--font-main);
+}
+
+.loader-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    background: white;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* HERO SECTION */
+.hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    /* For parallax */
+    z-index: 0;
+    opacity: 0.6;
+}
+
+.hero-bg img {
+    filter: grayscale(100%) contrast(1.2);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 12vw, 10rem);
+    font-weight: 800;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.hero-title .line {
+    display: block;
+    /* Transformation handled by GSAP */
+}
+
+.text-outline {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+    color: transparent;
+}
+
+.hero-footer {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    opacity: 0;
+    /* Animated in */
+}
+
+/* NARRATIVE SECTION */
+.narrative {
+    padding: 10rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.narrative-text {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 1200px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* EVENT SHOWCASE */
+.event-showcase {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+.event-showcase.inverted {
+    flex-direction: row-reverse;
+}
+
+.event-info {
+    flex: 1;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-label {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    margin-bottom: 2rem;
+    display: block;
+    color: #888;
+}
+
+.event-name {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+}
+
+.event-details {
+    list-style: none;
+    margin-bottom: 3rem;
+    border-left: 2px solid white;
+    padding-left: 2rem;
+}
+
+.event-details li {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.btn-ticket {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 1.5rem 3rem;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.btn-ticket:hover {
+    background: white;
+    color: black;
+}
+
+.event-visual {
+    flex: 1;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 50%;
+}
+
+.img-wrapper {
+    width: 80%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.img-wrapper img {
+    height: 120%;
+    /* Parallax */
+    transform-origin: center;
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ARCHIVE */
+.archive {
+    padding: 6rem 2rem;
+}
+
+.section-header {
+    font-size: 1rem;
+    margin-bottom: 4rem;
+    letter-spacing: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    height: 60vh;
+}
+
+.archive-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.archive-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.archive-overlay span {
+    border: 1px solid white;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.archive-item:hover .archive-overlay {
+    opacity: 1;
+}
+
+.archive-item:hover .archive-overlay span {
+    transform: translateY(0);
+}
+
+/* FOOTER REVEAL */
+.minimal-footer {
+    padding: 4rem 2rem;
+    border-top: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: sticky;
+    /* Or sticky? No, parallax reveal usually needs fixed/sticky bottom mechanism */
+    /* Let's keep it simple: relative for now to avoid breaking smooth scroll wrapper context. 
+       If using Smooth Scroll, the footer is INSIDE #smooth-content. 
+       To do reveal, we need the previous section to have margin-bottom matching footer height.
+       OR just stick to the requested "Reveal" which typically means z-index -1. 
+       But with GSAP ScrollSmoother, fixed elements are tricky. 
+       Let's stick to a high-end static look for safety, or a simple sticky.
+       User asked for "Footer Reveal". The best way in standard CSS is sticky bottom -1 z-index.
+    */
+    background: #000;
+    position: sticky;
+    bottom: 0;
+    z-index: 0;
+}
+
+/* Ensure content above footer covers it */
+.archive,
+.event-showcase {
+    position: relative;
+    z-index: 1;
+    background: var(--bg-color);
+    /* Ensure opacity */
+}
+
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.brand h4 {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.brand span {
+    color: #666;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+.links {
+    display: flex;
+    gap: 2rem;
+}
+
+.links a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.links a:hover::after {
+    width: 100%;
+}
+
+.copyright {
+    font-size: 0.7rem;
+    color: #444;
+    text-align: center;
+    padding-top: 2rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .event-showcase {
+        flex-direction: column;
+    }
+
+    .event-showcase.inverted {
+        flex-direction: column;
+    }
+
+    .event-visual {
+        width: 100%;
+        height: 50vh;
+        margin-bottom: 2rem;
+    }
+
+    .img-wrapper {
+        width: 100%;
+    }
+
+    .event-info {
+        padding: 0;
+        width: 100%;
+    }
+
+    .archive-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .archive-item {
+        height: 400px;
+    }
+
+    .cursor {
+        display: none !important;
+        /* Hide custom cursor on mobile */
+    }
+}

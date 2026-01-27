@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-translate="page_title">El Meu Perfil — DJ Posaxa</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM90QK9QJX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PM90QK9QJX');
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Premium Styles -->
+  <link rel="stylesheet" href="assets/css/premium-index.css">
+  <link rel="icon" type="image/png" href="Fotos/logo.png">
+</head>
+
+<body class="is-loading">
+
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="Fotos/logo.png" alt="DJ Posaxa" style="height: 50px;">
+      </a>
+    </div>
+    <div class="nav-links d-none d-lg-flex">
+      <a href="index.html" data-translate="nav_home">Inici</a>
+      <a href="en-què-em-centro.html" data-translate="nav_focus">En què em centro</a>
+      <a href="esdeveniments.html" data-translate="nav_events">Esdeveniments</a>
+      <a href="opinionse486.html" data-translate="nav_reviews">Opinions</a>
+      <a href="preus.html" data-translate="nav_pricing">Preus</a>
+      <a href="mashups.html" data-translate="nav_mashups">Mashups</a>
+      <a href="configuracio.html"><i class="bi bi-gear-fill"></i></a>
+      <div id="auth-container"></div>
+    </div>
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler d-lg-none text-white border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="bi bi-list fs-1"></i>
+    </button>
+
+    <!-- Mobile Menu Content -->
+    <div class="collapse navbar-collapse w-100 d-lg-none mt-3" id="mobileNav"
+      style="background: rgba(10,10,10,0.95); border-radius: 15px; padding: 1rem;">
+      <ul class="navbar-nav text-center">
+        <li class="nav-item"><a class="nav-link text-white py-2" href="index.html" data-translate="nav_home">Inici</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="en-què-em-centro.html"
+            data-translate="nav_focus">En què em centro</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="esdeveniments.html"
+            data-translate="nav_events">Esdeveniments</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="opinionse486.html"
+            data-translate="nav_reviews">Opinions</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="preus.html"
+            data-translate="nav_pricing">Preus</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="mashups.html"
+            data-translate="nav_mashups">Mashups</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="configuracio.html">Configuració ⚙️</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- Hero Section -->
+      <section class="hero" data-color="dark">
+        <div class="hero-bg" style="background-image: url('Fotos/inici 1.jpg'); opacity: 0.3;"></div>
+        <div class="hero-content">
+          <h1 class="hero-title" data-translate="profile_title">El Meu Perfil</h1>
+          <div class="hero-subtitle">
+            <p data-translate="profile_subtitle">Personalitza les teves preferències per a una millor experiència.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content -->
+      <section class="content-block" data-color="dark" style="padding: 5rem 0;">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="p-5 scroll-reveal"
+                style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(10px);">
+                <div class="text-center mb-5 position-relative" id="photo-container"
+                  style="cursor: pointer; display: inline-block;">
+                  <div class="position-relative">
+                    <img id="user-photo" src="Fotos/default-profile.png" alt="Foto de perfil" class="rounded-circle"
+                      style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #667eea; padding: 3px;">
+                    <div class="position-absolute bottom-0 end-0 bg-primary rounded-circle p-2 text-white shadow">
+                      <i class="bi bi-pencil-fill small"></i>
+                    </div>
+                  </div>
+                  <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                  <div id="upload-feedback" class="form-text text-white-50 mt-2"></div>
+                  <h3 id="user-name" class="mt-3 text-white">Carregant...</h3>
+                  <p id="user-email" class="text-white-50 mb-0"></p>
+                </div>
+
+                <form id="profile-form">
+                  <div class="mb-4">
+                    <label for="displayName" class="form-label text-white-50 small text-uppercase ls-1"
+                      data-translate="form_display_name">Nom a mostrar</label>
+                    <input type="text" class="form-control" id="displayName"
+                      style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff;"
+                      required>
+                  </div>
+                  <div class="mb-4">
+                    <label for="favoriteGenre" class="form-label text-white-50 small text-uppercase ls-1"
+                      data-translate="form_favorite_genre">Gènere Musical Preferit</label>
+                    <select class="form-select" id="favoriteGenre"
+                      style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff;">
+                      <option value="reggaeton">Reggaeton</option>
+                      <option value="dembow">Dembow</option>
+                      <option value="techno">Techno</option>
+                      <option value="catalana">Música Catalana</option>
+                      <option value="pachangueo">Pachangueo</option>
+                      <option value="altres">Altres</option>
+                    </select>
+                  </div>
+                  <div class="mb-4">
+                    <label for="userBio" class="form-label text-white-50 small text-uppercase ls-1"
+                      data-translate="form_bio">Biografia Breu</label>
+                    <textarea class="form-control" id="userBio" rows="3" placeholder="Explica'ns una mica sobre tu..."
+                      style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff;"></textarea>
+                  </div>
+                  <div class="mb-4">
+                    <label for="userInstagram" class="form-label text-white-50 small text-uppercase ls-1"
+                      data-translate="form_instagram">Instagram</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); color: #ccc;">@</span>
+                      <input type="text" class="form-control" id="userInstagram" placeholder="el_teu_usuari"
+                        style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff;">
+                    </div>
+                  </div>
+
+                  <div class="form-check mb-5">
+                    <input class="form-check-input" type="checkbox" value="" id="emailNotifications"
+                      style="background-color: rgba(0,0,0,0.2); border-color: rgba(255,255,255,0.3);">
+                    <label class="form-check-label text-white-50" for="emailNotifications"
+                      data-translate="form_notifications_label">
+                      Vull rebre notificacions per correu.
+                    </label>
+                  </div>
+
+                  <div class="d-grid gap-3">
+                    <button type="submit" class="btn-premium" data-translate="form_save_button">Desar Canvis</button>
+                    <button type="button" id="sign-out-button" class="btn btn-outline-danger"
+                      style="border-radius: 50px; padding: 0.8rem;" data-translate="form_signout_button">Tancar
+                      Sessió</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <h5 class="mb-3">DJ Posaxa</h5>
+              <p class="mb-3" style="color: var(--text-secondary);">Música professional per a festes i esdeveniments a
+                Granollers i Barcelona.</p>
+              <div class="social-icons">
+                <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok">
+                  <i class="bi bi-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener" aria-label="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Enllaços Ràpids</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="index.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Inici</a>
+                </li>
+                <li class="mb-2"><a href="esdeveniments.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Esdeveniments</a></li>
+                <li class="mb-2"><a href="opinionse486.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Opinions</a></li>
+                <li class="mb-2"><a href="preus.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Preus</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Sigma Company</h5>
+              <p class="mb-3" style="color: var(--text-secondary);" data-translate="footer_dev">Desenvolupat per Sigma
+                Company</p>
+              <p class="mb-2" style="color: var(--text-secondary);" data-translate="footer_more_projects">Més projectes:
+              </p>
+              <div class="social-icons">
+                <a href="https://www.tiktok.com/@sigmacompanyoficial" target="_blank" rel="noopener"
+                  aria-label="TikTok">
+                  <i class="bi bi-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/sigmacompanyoficial/" target="_blank" rel="noopener"
+                  aria-label="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@SigmaCompanyOficial" target="_blank" rel="noopener"
+                  aria-label="YouTube">
+                  <i class="bi bi-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 3rem 0 2rem;">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+              <p style="color: var(--text-secondary); margin: 0;">&copy; <span id="year"></span> DJ Posaxa. <span
+                  data-translate="footer_rights">Tots els drets reservats.</span></p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <p style="color: var(--text-secondary); margin: 0;"><span data-translate="footer_location">Granollers ·
+                  Barcelona</span></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- GSAP & Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="assets/js/premium-index.js"></script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { auth, database, storage, ref, get, update, onAuthStateChanged, signOut, updateProfile, ref as storageRef, uploadBytes, getDownloadURL } from "./assets/js/firebase-config.js";
+
+    // Nav Auth Logic
+    const authContainer = document.getElementById('auth-container');
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        document.getElementById('user-photo').src = user.photoURL || 'Fotos/default-profile.png';
+        const nameEl = document.getElementById('user-name');
+        if (nameEl) nameEl.textContent = user.displayName || 'Usuari';
+        const emailEl = document.getElementById('user-email');
+        if (emailEl) emailEl.textContent = user.email;
+
+        if (authContainer) authContainer.innerHTML = `<a href="perfil.html" class="nav-link"><img src="${user.photoURL}" style="width:30px;height:30px;border-radius:50%"></a>`;
+
+        // Load Profile Data
+        const userRef = ref(database, 'users/' + user.uid);
+        get(userRef).then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            document.getElementById('displayName').value = data.displayName || user.displayName;
+            document.getElementById('favoriteGenre').value = data.favoriteGenre || 'reggaeton';
+            document.getElementById('userBio').value = data.bio || '';
+            document.getElementById('userInstagram').value = data.instagram || '';
+            document.getElementById('emailNotifications').checked = data.preferences?.emailNotifications || false;
+          } else {
+            document.getElementById('displayName').value = user.displayName;
+          }
+        });
+
+      } else {
+        window.location.href = 'index.html';
+      }
+    });
+
+    // Profile Photo Logic
+    const photoContainer = document.getElementById('photo-container');
+    if (photoContainer) {
+      photoContainer.addEventListener('click', () => {
+        document.getElementById('photoUpload').click();
+      });
+    }
+
+    const photoUpload = document.getElementById('photoUpload');
+    if (photoUpload) {
+      photoUpload.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        const user = auth.currentUser;
+        const feedbackEl = document.getElementById('upload-feedback');
+
+        if (!file || !user) return;
+
+        if (!file.type.startsWith('image/')) {
+          feedbackEl.textContent = 'Si us plau, selecciona un arxiu d\'imatge.';
+          return;
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          feedbackEl.textContent = 'La imatge és massa gran (màx. 5 MB).';
+          return;
+        }
+
+        feedbackEl.textContent = 'Pujant imatge...';
+
+        try {
+          const filePath = `profile_pictures/${user.uid}/${Date.now()}_${file.name}`;
+          const fileRef = storageRef(storage, filePath);
+          await uploadBytes(fileRef, file);
+          const url = await getDownloadURL(fileRef);
+
+          await updateProfile(user, { photoURL: url });
+          await update(ref(database, 'users/' + user.uid), { photoURL: url });
+
+          document.getElementById('user-photo').src = url;
+          if (authContainer) authContainer.innerHTML = `<a href="perfil.html" class="nav-link"><img src="${url}" style="width:30px;height:30px;border-radius:50%"></a>`;
+
+          feedbackEl.textContent = 'Foto actualitzada!';
+          setTimeout(() => feedbackEl.textContent = '', 3000);
+        } catch (error) {
+          console.error("Error en pujar la imatge: ", error);
+          feedbackEl.textContent = 'Error en pujar la imatge.';
+        }
+      });
+    }
+
+    const profileForm = document.getElementById('profile-form');
+    if (profileForm) {
+      profileForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const user = auth.currentUser;
+        if (user) {
+          const displayName = document.getElementById('displayName').value;
+          const favoriteGenre = document.getElementById('favoriteGenre').value;
+          const bio = document.getElementById('userBio').value;
+          const instagram = document.getElementById('userInstagram').value;
+          const emailNotifications = document.getElementById('emailNotifications').checked;
+
+          const profileData = {
+            displayName: displayName,
+            email: user.email,
+            bio: bio,
+            instagram: instagram,
+            photoURL: user.photoURL,
+            favoriteGenre: favoriteGenre,
+            lastLogin: new Date().toISOString(),
+            role: 'cliente'
+          };
+
+          const preferencesData = {
+            theme: 'dark', // Enforce dark for premium
+            emailNotifications: emailNotifications
+          };
+
+          update(ref(database, 'users/' + user.uid), { ...profileData, preferences: preferencesData }).then(() => {
+            alert('Perfil desat correctament!');
+          }).catch((error) => {
+            console.error("Error al desar les dades: ", error);
+            alert('Hi ha hagut un error en desar el perfil.');
+          });
+        }
+      });
+    }
+
+    const signOutBtn = document.getElementById('sign-out-button');
+    if (signOutBtn) {
+      signOutBtn.addEventListener('click', () => {
+        signOut(auth).then(() => {
+          window.location.href = 'index.html';
+        }).catch(error => {
+          console.error("Error en tancar sessió: ", error);
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>

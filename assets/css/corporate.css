@@ -1,0 +1,348 @@
+:root {
+    --bg-color: #050505;
+    --text-color: #ffffff;
+    --accent-color: #333;
+    --font-main: 'Inter', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --gap: 2rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    display: none;
+    /* Hidden on touch */
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+    mix-blend-mode: difference;
+    display: none;
+}
+
+@media (pointer: fine) {
+
+    .cursor,
+    .cursor-follower {
+        display: block;
+    }
+}
+
+/* Navigation */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    mix-blend-mode: difference;
+    color: #fff;
+}
+
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.05em;
+}
+
+.nav-links a {
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5vw;
+    position: relative;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 10rem);
+    line-height: 0.9;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+.hero-title .line {
+    display: block;
+    overflow: hidden;
+    /* For animation reveal */
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 400px;
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 5vw;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+}
+
+/* Intro */
+.intro {
+    padding: 15vh 5vw;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.reveal-text {
+    font-size: clamp(1.5rem, 4vw, 3.5rem);
+    line-height: 1.2;
+    max-width: 90%;
+    font-weight: 300;
+}
+
+.reveal-text .word {
+    display: inline-block;
+    /* For SplitType */
+}
+
+/* Parallax */
+.parallax-section {
+    height: 100vh;
+    /* Adjust as needed */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    /* Taller for parallax */
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.parallax-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    mix-blend-mode: overlay;
+    /* Blend nicely */
+}
+
+.parallax-content h2 {
+    font-size: 8vw;
+    font-family: var(--font-display);
+    line-height: 1;
+}
+
+.parallax-content p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+/* Horizontal Scroll */
+.horizontal-scroll {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* Crucial for pin */
+    background: #fff;
+    color: #000;
+    display: flex;
+    align-items: center;
+}
+
+.horizontal-wrap {
+    display: flex;
+    padding-left: 5vw;
+    width: 400%;
+    /* Make sure it's wide enough */
+}
+
+.horizontal-item {
+    width: 80vw;
+    /* Take up most of viewport */
+    height: 60vh;
+    flex-shrink: 0;
+    /* Don't shrink */
+    margin-right: 5vw;
+    padding: 2rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.item-number {
+    font-size: 6rem;
+    font-weight: 700;
+    color: #eee;
+    margin-bottom: 2rem;
+}
+
+.horizontal-item h3 {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.horizontal-item p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* Grid Section */
+.grid-section {
+    padding: 10vh 5vw;
+}
+
+.grid-header {
+    margin-bottom: 5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 2rem;
+}
+
+.grid-header h2 {
+    font-size: 3rem;
+    font-weight: 300;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 4rem;
+}
+
+.project-card {
+    cursor: pointer;
+}
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background-color: #222;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 1rem;
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.project-card:hover .card-image {
+    transform: scale(0.98);
+}
+
+.card-info h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.card-info span {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Footer */
+.footer {
+    min-height: 80vh;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5vw;
+    border-top: 1px solid #222;
+}
+
+.footer-top h2 {
+    font-size: clamp(3rem, 15vw, 15rem);
+    font-family: var(--font-display);
+    line-height: 0.8;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.email-link {
+    font-size: 1.5rem;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.email-link:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    margin-top: auto;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.socials a {
+    margin-left: 1.5rem;
+}

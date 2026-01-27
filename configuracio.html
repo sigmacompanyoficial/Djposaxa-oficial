@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-translate="page_title">Configuració — DJ Posaxa</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM90QK9QJX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-PM90QK9QJX');
+  </script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/modern-style.css" />
+
+  <!-- Custom CSS for DJ Posaxa Settings -->
+  <style>
+    :root {
+      --dj-bg-color: #0a0a0a;
+      --dj-card-bg: #161616;
+      --dj-text-primary: #ffffff;
+      --dj-text-secondary: #888888;
+      --dj-accent-color: #d000ff;
+      /* Neon Purple */
+      --dj-danger-color: #ff3333;
+      --dj-border-color: #333333;
+    }
+
+    /* Apply dark theme styles if not in light-mode */
+    body:not(.light-mode) {
+      background-color: var(--dj-bg-color);
+      color: var(--dj-text-primary);
+    }
+
+    body:not(.light-mode) .hero {
+      background-color: #111;
+      border-bottom: 1px solid var(--dj-border-color);
+    }
+
+    body:not(.light-mode) .navbar {
+      background-color: rgba(10, 10, 10, 0.8) !important;
+      backdrop-filter: blur(10px);
+    }
+
+    body:not(.light-mode) .footer {
+      background-color: var(--dj-card-bg);
+      border-top: 1px solid var(--dj-border-color);
+    }
+
+    .dj-settings-container {
+      max-width: 800px;
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      color: var(--dj-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      padding-left: 10px;
+    }
+
+    .settings-card {
+      background-color: var(--dj-card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--dj-border-color);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--dj-border-color);
+      transition: background 0.2s;
+      cursor: pointer;
+      color: var(--dj-text-primary);
+      text-decoration: none;
+    }
+
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+
+    .setting-item:hover {
+      background-color: #1f1f1f;
+    }
+
+    .item-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+    }
+
+    .label {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .chevron {
+      color: var(--dj-text-secondary);
+      font-weight: bold;
+    }
+
+    .danger-title {
+      color: var(--dj-danger-color);
+    }
+
+    .danger-card {
+      border-color: var(--dj-danger-color);
+    }
+
+    .danger-text {
+      color: var(--dj-danger-color) !important;
+    }
+
+    .form-select {
+      background-color: #000;
+      color: #fff;
+      border-color: #444;
+    }
+  </style>
+
+  <link rel="icon" type="image/png" href="Fotos/logo.png">
+
+  <!-- Theme Styles -->
+  <!-- Theme styles are now in modern-style.css -->
+</head>
+
+<body onload="applyTheme()">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="Fotos/logo.png" alt="DJ Posaxa Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-translate="nav_home">Inici</a></li>
+          <li class="nav-item"><a class="nav-link" href="en-què-em-centro.html" data-translate="nav_focus">En què em
+              centro</a></li>
+          <li class="nav-item"><a class="nav-link" href="per-què-escollir-me.html" data-translate="nav_why">Per què
+              escollir-me</a></li>
+          <li class="nav-item"><a class="nav-link" href="esdeveniments.html"
+              data-translate="nav_events">Esdeveniments</a></li>
+          <li class="nav-item"><a class="nav-link" href="opinionse486.html" data-translate="nav_reviews">Opinions</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="preus.html" data-translate="nav_pricing">Preus</a></li>
+          <li class="nav-item"><a class="nav-link" href="mashups.html" data-translate="nav_mashups">Mashups</a></li>
+          <li class="nav-item"><a class="nav-link active" href="configuracio.html" aria-label="Configuració">⚙️</a></li>
+          <li class="nav-item" id="auth-container"><!-- El botó d'inici de sessió o perfil es carregarà aquí --></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero" style="padding: 8rem 0;">
+    <div class="container">
+      <h1 class="display-4 responsive-h1" data-translate="settings_title">Configuració</h1>
+      <p class="lead" data-translate="settings_subtitle">Personalitza la teva experiència al lloc web.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container my-5 dj-settings-container">
+    <!-- SECCIÓN 1: CUENTA -->
+    <h3 class="section-title" data-translate="section_account">Mi Perfil & Booking</h3>
+    <div class="settings-card">
+      <a href="perfil.html" class="setting-item">
+        <div class="item-left">
+          <span class="icon">🎧</span>
+          <span class="label" data-translate="account_edit_profile">Editar Datos de DJ/Usuario</span>
+        </div>
+        <span class="chevron">›</span>
+      </a>
+      <a href="#" class="setting-item" onclick="alert('Navegando a: Panel de Reservas')">
+        <div class="item-left">
+          <span class="icon">📅</span>
+          <span class="label" data-translate="account_edit_booking">Gestionar Reservas Activas</span>
+        </div>
+        <span class="chevron">›</span>
+      </a>
+    </div>
+
+    <!-- SECCIÓN 1.5: PERSONALITZACIÓ -->
+    <h3 class="section-title" data-translate="section_customization">Personalització</h3>
+    <div class="settings-card">
+      <div class="setting-item">
+        <div class="item-left">
+          <span class="icon">🌍</span>
+          <span class="label" data-translate="customization_language">Idioma</span>
+        </div>
+        <select class="form-select form-select-sm" id="languageSelect" style="max-width: 150px;">
+          <option value="ca">Català</option>
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <div class="item-left">
+          <span class="icon">🎨</span>
+          <span class="label" data-translate="customization_theme">Tema</span>
+        </div>
+        <select class="form-select form-select-sm" id="themeSelect" style="max-width: 150px;">
+          <option value="dark" data-translate="customization_theme_dark">Fosc</option>
+          <option value="light" data-translate="customization_theme_light">Clar</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <div class="item-left">
+          <span class="icon">Aa</span>
+          <span class="label" data-translate="customization_fontsize">Mida de la lletra</span>
+        </div>
+        <select class="form-select form-select-sm" id="fontSizeSelect" style="max-width: 150px;">
+          <option value="small" data-translate="customization_fontsize_small">Petita</option>
+          <option value="normal" data-translate="customization_fontsize_normal">Normal</option>
+          <option value="large" data-translate="customization_fontsize_large">Gran</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: PUBLICIDAD -->
+    <h3 class="section-title" data-translate="section_ads">Publicidad & Monetización</h3>
+    <div class="settings-card">
+      <div class="setting-item">
+        <div class="item-left">
+          <span class="icon">🎯</span>
+          <span class="label" data-translate="ads_personalized">Anuncios Personalizados</span>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="adPersonalizationSwitch">
+        </div>
+      </div>
+      <div class="setting-item">
+        <div class="item-left">
+          <span class="icon">🤝</span>
+          <span class="label" data-translate="ads_share_data">Compartir data con Promotores</span>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="shareDataSwitch">
+        </div>
+      </div>
+      <div class="setting-item">
+        <div class="item-left">
+          <span class="icon">📊</span>
+          <span class="label" data-translate="ads_frequency">Intensidad de Anuncios</span>
+        </div>
+        <select class="form-select form-select-sm" id="adFrequencySelect" style="max-width: 150px;">
+          <option value="low" data-translate="ads_freq_low">Baja (VIP)</option>
+          <option value="normal" data-translate="ads_freq_normal">Estándar</option>
+          <option value="high" data-translate="ads_freq_high">Alta (Gratis)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 3: LOCALIZACIÓN -->
+    <h3 class="section-title" data-translate="section_location">Localización & Vibe</h3>
+    <div class="settings-card">
+      <div class="setting-item">
+        <div class="item-left">
+          <span class="icon">📍</span>
+          <span class="label" data-translate="location_tracking">Rastrear Ubicación (Eventos cerca)</span>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="locationTrackingSwitch">
+        </div>
+      </div>
+      <div class="setting-item" id="autoLanguageItem" style="display: none;">
+        <div class="item-left">
+          <span class="icon">🌐</span>
+          <span class="label" data-translate="location_auto_lang">Idioma automático por GPS</span>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="autoDetectLanguageSwitch">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 4: SISTEMA -->
+    <h3 class="section-title" data-translate="section_system">Sistema</h3>
+    <div class="settings-card">
+      <div class="setting-item">
+        <div class="item-left">
+          <span class="icon">⚡️</span>
+          <span class="label" data-translate="system_reduce_animations">Reducir Animaciones (Low Latency)</span>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="animationsSwitch">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 5: PELIGRO -->
+    <h3 class="section-title danger-title" data-translate="section_danger">Zona de Peligro</h3>
+    <div class="settings-card danger-card">
+      <div class="setting-item" id="deleteAccountBtn">
+        <div class="item-left">
+          <span class="icon">🗑️</span>
+          <span class="label danger-text" data-translate="danger_delete_account">Borrar Cuenta Permanentemente</span>
+        </div>
+        <span class="chevron danger-text">›</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5 class="mb-3">DJ Posaxa</h5>
+          <p class="mb-3" style="color: var(--text-secondary);">Música professional per a festes i esdeveniments a
+            Granollers i Barcelona.</p>
+          <div class="social-icons">
+            <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok">
+              <i class="bi bi-tiktok"></i>
+            </a>
+            <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5 class="mb-3">Enllaços Ràpids</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="index.html" style="color: var(--text-secondary); text-decoration: none;">Inici</a>
+            </li>
+            <li class="mb-2"><a href="esdeveniments.html"
+                style="color: var(--text-secondary); text-decoration: none;">Esdeveniments</a></li>
+            <li class="mb-2"><a href="opinionse486.html"
+                style="color: var(--text-secondary); text-decoration: none;">Opinions</a></li>
+            <li class="mb-2"><a href="preus.html" style="color: var(--text-secondary); text-decoration: none;">Preus</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="mb-3">Sigma Company</h5>
+          <p class="mb-3" style="color: var(--text-secondary);" data-translate="footer_dev">Desenvolupat per Sigma
+            Company</p>
+          <p class="mb-2" style="color: var(--text-secondary);" data-translate="footer_more_projects">Més projectes:</p>
+          <div class="social-icons">
+            <a href="https://www.tiktok.com/@sigmacompanyoficial" target="_blank" rel="noopener" aria-label="TikTok">
+              <i class="bi bi-tiktok"></i>
+            </a>
+            <a href="https://www.instagram.com/sigmacompanyoficial/" target="_blank" rel="noopener"
+              aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@SigmaCompanyOficial" target="_blank" rel="noopener" aria-label="YouTube">
+              <i class="bi bi-youtube"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 3rem 0 2rem;">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p style="color: var(--text-secondary); margin: 0;">&copy; <span id="year"></span> DJ Posaxa. <span
+              data-translate="footer_rights">Tots els drets reservats.</span></p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <p style="color: var(--text-secondary); margin: 0;"><span data-translate="footer_location">Granollers ·
+              Barcelona</span></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { auth, database, ref, get, update, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "./assets/js/firebase-config.js";
+
+    // Exposa les funcions de Firebase per a main.js
+    if (window.exposeFirebase) {
+      window.exposeFirebase(auth, database, ref, update, get, { GoogleAuthProvider, signInWithPopup });
+    }
+
+    // Inicialitza la lògica d'autenticació
+    if (window.initAuth) {
+      window.initAuth();
+    }
+
+    const settingsContainer = document.querySelector('.dj-settings-container');
+    if (settingsContainer) {
+      settingsContainer.addEventListener('click', (e) => {
+        if (!auth.currentUser) {
+          const item = e.target.closest('.setting-item');
+          if (item) {
+            e.preventDefault();
+            e.stopPropagation();
+            const authModalEl = document.getElementById('authModal');
+            if (authModalEl && window.bootstrap) {
+              const modal = window.bootstrap.Modal.getOrCreateInstance(authModalEl);
+              modal.show();
+            }
+          }
+        }
+      }, true);
+    }
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        window.syncPreferencesWithFirebase(auth, database, get, ref, update);
+        authContainer.innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
+        if (settingsContainer) {
+          settingsContainer.querySelectorAll('input, select').forEach(el => el.disabled = false);
+          settingsContainer.querySelectorAll('.setting-item').forEach(el => el.style.opacity = '1');
+        }
+      } else {
+        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#authModal" data-translate="login_button">Inicia Sessió</button>`;
+        if (window.pageTranslations) window.translateAll();
+        if (settingsContainer) {
+          settingsContainer.querySelectorAll('input, select').forEach(el => el.disabled = true);
+          settingsContainer.querySelectorAll('.setting-item').forEach(el => el.style.opacity = '0.5');
+        }
+      }
+    });
+  </script>
+
+  <!-- i18n & Theme Script -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      window.pageTranslations = {
+        ca: {
+          page_title: "Configuració — DJ Posaxa",
+          nav_home: "Inici", nav_focus: "En què em centro", nav_why: "Per què escollir-me", nav_events: "Esdeveniments", nav_reviews: "Opinions", nav_pricing: "Preus", nav_mashups: "Mashups", nav_language: "Idioma",
+          settings_title: "Configuració",
+          settings_subtitle: "Personalitza la teva experiència.",
+          section_account: "El Meu Perfil & Booking",
+          account_edit_profile: "Editar Dades de DJ/Usuari",
+          account_edit_booking: "Gestionar Reserves Actives",
+          section_customization: "Personalització",
+          customization_language: "Idioma",
+          customization_theme: "Tema",
+          customization_theme_dark: "Fosc", customization_theme_light: "Clar",
+          customization_fontsize: "Mida de la lletra",
+          customization_fontsize_small: "Petita", customization_fontsize_normal: "Normal", customization_fontsize_large: "Gran",
+          section_ads: "Publicitat & Monetització",
+          ads_personalized: "Anuncis Personalitzats",
+          ads_share_data: "Compartir dades amb Promotors",
+          ads_frequency: "Intensitat d'Anuncis",
+          ads_freq_low: "Baixa (VIP)",
+          ads_freq_normal: "Estàndard",
+          ads_freq_high: "Alta (Gratis)",
+          section_location: "Localització & Vibe",
+          location_tracking: "Rastrejar Ubicació (Esdeveniments a prop)",
+          location_auto_lang: "Idioma automàtic per GPS",
+          section_system: "Sistema",
+          system_reduce_animations: "Reduir Animacions (Low Latency)",
+          section_danger: "Zona de Perill",
+          danger_delete_account: "Esborrar Compte Permanentment",
+          danger_delete_confirm: "⚠️ ESTÀS SEGUR?\n\nAquesta acció esborrarà el teu compte permanentment. Perdràs les teves mescles i reserves.",
+          danger_delete_success: "El teu compte ha estat programat per a l'eliminació.",
+          footer_rights: "Tots els drets reservats.", footer_location: "Granollers · BCN", footer_dev: "Desenvolupat per Sigma Company", footer_more_projects: "Més projectes de Sigma Company",
+        },
+        es: {
+          page_title: "Configuración — DJ Posaxa",
+          nav_home: "Inicio", nav_focus: "En qué me centro", nav_why: "Por qué elegirme", nav_events: "Eventos", nav_reviews: "Opiniones", nav_pricing: "Precios", nav_mashups: "Mashups", nav_language: "Idioma",
+          settings_title: "Configuración",
+          settings_subtitle: "Personaliza tu experiencia.",
+          section_account: "Mi Perfil & Booking",
+          account_edit_profile: "Editar Datos de DJ/Usuario",
+          account_edit_booking: "Gestionar Reservas Activas",
+          section_customization: "Personalización",
+          customization_language: "Idioma",
+          customization_theme: "Tema",
+          customization_theme_dark: "Oscuro", customization_theme_light: "Claro",
+          customization_fontsize: "Tamaño de letra",
+          customization_fontsize_small: "Pequeña", customization_fontsize_normal: "Normal", customization_fontsize_large: "Grande",
+          section_ads: "Publicidad & Monetización",
+          ads_personalized: "Anuncios Personalizados",
+          ads_share_data: "Compartir datos con Promotores",
+          ads_frequency: "Intensidad de Anuncios",
+          ads_freq_low: "Baja (VIP)",
+          ads_freq_normal: "Estándar",
+          ads_freq_high: "Alta (Gratis)",
+          section_location: "Localización & Vibe",
+          location_tracking: "Rastrear Ubicación (Eventos cerca)",
+          location_auto_lang: "Idioma automático por GPS",
+          section_system: "Sistema",
+          system_reduce_animations: "Reducir Animaciones (Low Latency)",
+          section_danger: "Zona de Peligro",
+          danger_delete_account: "Borrar Cuenta Permanentemente",
+          danger_delete_confirm: "⚠️ ¿ESTÁS SEGURO?\n\nEsta acción borrará tu cuenta permanentemente. Perderás tus mezclas y reservas.",
+          danger_delete_success: "Tu cuenta ha sido programada para eliminación.",
+          footer_rights: "Todos los derechos reservados.", footer_location: "Granollers · BCN", footer_dev: "Desarrollado por Sigma Company", footer_more_projects: "Más proyectos de Sigma Company",
+        },
+        en: {
+          page_title: "Settings — DJ Posaxa",
+          nav_home: "Home", nav_focus: "What I Focus On", nav_why: "Why Choose Me", nav_events: "Events", nav_reviews: "Reviews", nav_pricing: "Pricing", nav_mashups: "Mashups", nav_language: "Language",
+          settings_title: "Settings",
+          settings_subtitle: "Customize your experience.",
+          section_account: "My Profile & Bookings",
+          account_edit_profile: "Edit DJ/User Data",
+          account_edit_booking: "Manage Active Bookings",
+          section_customization: "Customization",
+          customization_language: "Language",
+          customization_theme: "Theme",
+          customization_theme_dark: "Dark", customization_theme_light: "Light",
+          customization_fontsize: "Font Size",
+          customization_fontsize_small: "Small", customization_fontsize_normal: "Normal", customization_fontsize_large: "Large",
+          section_ads: "Advertising & Monetization",
+          ads_personalized: "Personalized Ads",
+          ads_share_data: "Share data with Promoters",
+          ads_frequency: "Ad Intensity",
+          ads_freq_low: "Low (VIP)",
+          ads_freq_normal: "Standard",
+          ads_freq_high: "High (Free)",
+          section_location: "Location & Vibe",
+          location_tracking: "Track Location (Nearby Events)",
+          location_auto_lang: "Auto-detect language by GPS",
+          section_system: "System",
+          system_reduce_animations: "Reduce Animations (Low Latency)",
+          section_danger: "Danger Zone",
+          danger_delete_account: "Delete Account Permanently",
+          danger_delete_confirm: "⚠️ ARE YOU SURE?\n\nThis action will permanently delete your account. You will lose your mixes and bookings.",
+          danger_delete_success: "Your account has been scheduled for deletion.",
+          footer_rights: "All rights reserved.", footer_location: "Granollers · BCN", footer_dev: "Developed by Sigma Company", footer_more_projects: "More projects from Sigma Company",
+        },
+        fr: {
+          page_title: "Paramètres — DJ Posaxa",
+          nav_home: "Accueil", nav_focus: "Sur quoi je me concentre", nav_why: "Pourquoi me choisir", nav_events: "Événements", nav_reviews: "Avis", nav_pricing: "Tarifs", nav_mashups: "Mashups", nav_language: "Langue",
+          settings_title: "Paramètres",
+          settings_subtitle: "Personnalisez votre expérience.",
+          section_account: "Mon Profil & Réservations",
+          account_edit_profile: "Modifier les Données DJ/Utilisateur",
+          account_edit_booking: "Gérer les Réservations Actives",
+          section_customization: "Personnalisation",
+          customization_language: "Langue",
+          customization_theme: "Thème",
+          customization_theme_dark: "Sombre", customization_theme_light: "Clair",
+          customization_fontsize: "Taille de la police",
+          customization_fontsize_small: "Petite", customization_fontsize_normal: "Normale", customization_fontsize_large: "Grande",
+          section_ads: "Publicité & Monétisation",
+          ads_personalized: "Annonces Personnalisées",
+          ads_share_data: "Partager les données avec les Promoteurs",
+          ads_frequency: "Intensité des Annonces",
+          ads_freq_low: "Faible (VIP)",
+          ads_freq_normal: "Standard",
+          ads_freq_high: "Élevée (Gratuit)",
+          section_location: "Localisation & Ambiance",
+          location_tracking: "Suivre la Localisation (Événements à proximité)",
+          location_auto_lang: "Langue automatique par GPS",
+          section_system: "Système",
+          system_reduce_animations: "Réduire les Animations (Faible Latence)",
+          section_danger: "Zone de Danger",
+          danger_delete_account: "Supprimer le Compte Définitivement",
+          danger_delete_confirm: "⚠️ ÊTES-VOUS SÛR ?\n\nCette action supprimera définitivement votre compte. Vous perdrez vos mix et réservations.",
+          danger_delete_success: "Votre compte a été programmé pour suppression.",
+          footer_rights: "Tous droits réservés.", footer_location: "Granollers · BCN", footer_dev: "Développé par Sigma Company", footer_more_projects: "Plus de projets de Sigma Company",
+        },
+        de: {
+          page_title: "Einstellungen — DJ Posaxa",
+          nav_home: "Startseite", nav_focus: "Worauf ich mich konzentriere", nav_why: "Warum Sie mich wählen sollten", nav_events: "Veranstaltungen", nav_reviews: "Bewertungen", nav_pricing: "Preise", nav_mashups: "Mashups", nav_language: "Sprache",
+          settings_title: "Einstellungen",
+          settings_subtitle: "Passen Sie Ihre Erfahrung an.",
+          section_account: "Mein Profil & Buchungen",
+          account_edit_profile: "DJ/Benutzerdaten bearbeiten",
+          account_edit_booking: "Aktive Buchungen verwalten",
+          section_customization: "Anpassung",
+          customization_language: "Sprache",
+          customization_theme: "Thema",
+          customization_theme_dark: "Dunkel", customization_theme_light: "Hell",
+          customization_fontsize: "Schriftgröße",
+          customization_fontsize_small: "Klein", customization_fontsize_normal: "Normal", customization_fontsize_large: "Groß",
+          section_ads: "Werbung & Monetarisierung",
+          ads_personalized: "Personalisierte Anzeigen",
+          ads_share_data: "Daten mit Veranstaltern teilen",
+          ads_frequency: "Anzeigenintensität",
+          ads_freq_low: "Niedrig (VIP)",
+          ads_freq_normal: "Standard",
+          ads_freq_high: "Hoch (Kostenlos)",
+          section_location: "Standort & Atmosphäre",
+          location_tracking: "Standort verfolgen (Veranstaltungen in der Nähe)",
+          location_auto_lang: "Sprache per GPS automatisch erkennen",
+          section_system: "System",
+          system_reduce_animations: "Animationen reduzieren (Niedrige Latenz)",
+          section_danger: "Gefahrenzone",
+          danger_delete_account: "Konto dauerhaft löschen",
+          danger_delete_confirm: "⚠️ SIND SIE SICHER?\n\nDiese Aktion löscht Ihr Konto dauerhaft. Sie verlieren Ihre Mixe und Buchungen.",
+          danger_delete_success: "Ihr Konto wurde zur Löschung vorgemerkt.",
+          footer_rights: "Alle Rechte vorbehalten.", footer_location: "Granollers · BCN", footer_dev: "Entwickelt von Sigma Company", footer_more_projects: "Weitere Projekte von Sigma Company",
+        }
+      };
+      initializePage(window.pageTranslations, () => {
+        // --- New Settings Logic ---
+        const adPersonalizationSwitch = document.getElementById('adPersonalizationSwitch');
+        const shareDataSwitch = document.getElementById('shareDataSwitch');
+        const adFrequencySelect = document.getElementById('adFrequencySelect');
+        const locationTrackingSwitch = document.getElementById('locationTrackingSwitch');
+        const autoLanguageItem = document.getElementById('autoLanguageItem');
+        const autoDetectLanguageSwitch = document.getElementById('autoDetectLanguageSwitch');
+        const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+        const animationsSwitch = document.getElementById('animationsSwitch');
+        const languageSelect = document.getElementById('languageSelect');
+        const themeSelect = document.getElementById('themeSelect');
+        const fontSizeSelect = document.getElementById('fontSizeSelect');
+
+        function saveNewSettings() {
+          localStorage.setItem('adPersonalization', adPersonalizationSwitch.checked);
+          localStorage.setItem('shareDataPartners', shareDataSwitch.checked);
+          localStorage.setItem('adFrequency', adFrequencySelect.value);
+          localStorage.setItem('locationTracking', locationTrackingSwitch.checked);
+          localStorage.setItem('autoDetectLanguage', autoDetectLanguageSwitch.checked);
+          localStorage.setItem('animations', animationsSwitch.checked);
+          if (window.applyAnimations) {
+            window.applyAnimations();
+          }
+        }
+
+        function toggleAutoLanguageOption() {
+          autoLanguageItem.style.display = locationTrackingSwitch.checked ? 'flex' : 'none';
+        }
+
+        function loadNewSettings() {
+          adPersonalizationSwitch.checked = localStorage.getItem('adPersonalization') === 'true';
+          shareDataSwitch.checked = localStorage.getItem('shareDataPartners') === 'true';
+          adFrequencySelect.value = localStorage.getItem('adFrequency') || 'normal';
+          locationTrackingSwitch.checked = localStorage.getItem('locationTracking') === 'true';
+          autoDetectLanguageSwitch.checked = localStorage.getItem('autoDetectLanguage') === 'true';
+          animationsSwitch.checked = localStorage.getItem('animations') !== 'false';
+          toggleAutoLanguageOption();
+
+          if (languageSelect) languageSelect.value = getLanguage();
+          if (themeSelect) themeSelect.value = getTheme();
+          if (fontSizeSelect) fontSizeSelect.value = getFontSize();
+
+          if (window.applyAnimations) {
+            window.applyAnimations();
+          }
+        }
+
+        // Event Listeners
+        [adPersonalizationSwitch, shareDataSwitch, adFrequencySelect, autoDetectLanguageSwitch, animationsSwitch].forEach(el => {
+          el.addEventListener('change', saveNewSettings);
+        });
+
+        locationTrackingSwitch.addEventListener('change', () => {
+          toggleAutoLanguageOption();
+          saveNewSettings();
+        });
+
+        if (languageSelect) {
+          languageSelect.addEventListener('change', (e) => {
+            window.changeLanguage(e.target.value);
+          });
+        }
+        if (themeSelect) {
+          themeSelect.addEventListener('change', (e) => window.toggleTheme(e.target.value));
+        }
+        if (fontSizeSelect) {
+          fontSizeSelect.addEventListener('change', (e) => window.changeFontSize(e.target.value));
+        }
+
+        deleteAccountBtn.addEventListener('click', () => {
+          const lang = getLanguage();
+          const confirmText = (window.pageTranslations[lang] && window.pageTranslations[lang].danger_delete_confirm) || 'Are you sure? This is permanent.';
+          const successText = (window.pageTranslations[lang] && window.pageTranslations[lang].danger_delete_success) || 'Account scheduled for deletion.';
+          if (window.confirm(confirmText)) {
+            console.log("Lógica de borrado de cuenta iniciada...");
+            alert(successText);
+          }
+        });
+
+        loadNewSettings();
+      });
+    });
+  </script>
+
+</body>
+
+</html>

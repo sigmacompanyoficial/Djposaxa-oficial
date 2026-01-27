@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ Posaxa - Official Website</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Eleva la teva festa al següent nivell amb DJ Posaxa. Experiències musicals inoblidables, mashups exclusius i animació professional per a qualsevol esdeveniment a Granollers i Barcelona.">
+  <meta name="keywords"
+    content="DJ Posaxa, DJ Granollers, DJ Barcelona, festa, esdeveniments, música, mashups, reggaeton, techno, boda, aniversari, lloguer DJ">
+  <meta name="author" content="Sigma Company">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://djposaxa.com/index.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://djposaxa.com/">
+  <meta property="og:title" content="DJ Posaxa - Official Website">
+  <meta property="og:description"
+    content="Eleva la teva festa al següent nivell amb DJ Posaxa. Experiències musicals inoblidables i animació professional.">
+  <meta property="og:image" content="https://djposaxa.com/Fotos/logo.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://djposaxa.com/">
+  <meta property="twitter:title" content="DJ Posaxa - Official Website">
+  <meta property="twitter:description"
+    content="Eleva la teva festa al següent nivell amb DJ Posaxa. Experiències musicals inoblidables i animació professional.">
+  <meta property="twitter:image" content="https://djposaxa.com/Fotos/logo.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS (needed for Auth Modal mostly) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Premium Styles -->
+  <link rel="stylesheet" href="assets/css/premium-index.css">
+  <link rel="icon" type="image/png" href="Fotos/logo.png">
+</head>
+
+<body class="is-loading">
+
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" style="flex-wrap: wrap;">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="Fotos/logo.png" alt="DJ Posaxa" style="height: 50px;">
+      </a>
+    </div>
+    <div class="nav-links d-none d-lg-flex">
+      <a href="index.html" class="active" data-translate="nav_home">Inici</a>
+      <a href="en-què-em-centro.html" data-translate="nav_focus">En què em centro</a>
+      <a href="esdeveniments.html" data-translate="nav_events">Esdeveniments</a>
+      <a href="opinionse486.html" data-translate="nav_reviews">Opinions</a>
+      <a href="preus.html" data-translate="nav_pricing">Preus</a>
+      <a href="mashups.html" data-translate="nav_mashups">Mashups</a>
+      <a href="configuracio.html"><i class="bi bi-gear-fill"></i></a>
+
+      <!-- Auth Containers -->
+      <div id="auth-container"></div>
+      <div id="admin-link-container"></div>
+    </div>
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler d-lg-none text-white border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="bi bi-list fs-1"></i>
+    </button>
+
+    <!-- Mobile Menu Content -->
+    <div class="collapse navbar-collapse w-100 d-lg-none mt-3" id="mobileNav"
+      style="background: rgba(10,10,10,0.95); border-radius: 15px; padding: 1rem;">
+      <ul class="navbar-nav text-center">
+        <li class="nav-item"><a class="nav-link text-white py-2" href="index.html" data-translate="nav_home">Inici</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="en-què-em-centro.html"
+            data-translate="nav_focus">En què em centro</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="esdeveniments.html"
+            data-translate="nav_events">Esdeveniments</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="opinionse486.html"
+            data-translate="nav_reviews">Opinions</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="preus.html"
+            data-translate="nav_pricing">Preus</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="mashups.html"
+            data-translate="nav_mashups">Mashups</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="configuracio.html">Configuració ⚙️</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Smooth Wrapper -->
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- Hero Section -->
+      <section class="hero" data-color="dark">
+        <div class="hero-bg" style="background-image: url('Fotos/inici 1.jpg');"></div>
+        <div class="hero-content">
+          <h1 class="hero-title" data-translate="hero_title">
+            Eleva la teva festa al següent nivell
+          </h1>
+          <div class="hero-subtitle">
+            <p data-translate="hero_subtitle">Experiències musicals inoblidables per a qualsevol esdeveniment.</p>
+          </div>
+          <a href="preus.html" class="btn-premium" data-translate="hero_cta">Reserva Ara</a>
+        </div>
+      </section>
+
+      <!-- Event Banner (Intro) -->
+      <section class="intro" data-color="dark">
+        <h2>🔥 Nou esdeveniment!</h2>
+        <p>Carnaval a Granollers – 13 de febrer de 2026</p>
+        <div style="margin-top: 2rem;">
+          <a href="esdeveniments.html" class="btn-premium" style="border-color: #333; color: #fff;">Més informació</a>
+        </div>
+      </section>
+
+      <!-- Bio Section (Text Reveal) -->
+      <section class="bio-section" data-color="light">
+        <div class="bio-content">
+          <p class="bio-text" data-translate="about_text1">
+            DJ Posaxa és el nom artístic de Pol Solanas Ramos, nascut el 16 de juny de 2010 a Granollers.
+            Apassionat per la música des de ben petit.
+          </p>
+          <p class="bio-text" style="margin-top: 2rem; font-size: 1.5rem;" data-translate="about_text2">
+            Estil que combina reggaeton, dembow, techno i música festiva. Energia i connexió amb el públic.
+          </p>
+        </div>
+        <div class="bio-image" style="background-image: url('Fotos/Foto Bio.jpeg');"></div>
+      </section>
+
+      <!-- Horizontal Scroll (Features) -->
+      <section class="horizontal-scroll" data-color="light">
+        <div class="horizontal-wrap">
+          <div class="horizontal-item">
+            <i class="bi bi-disc"></i>
+            <h3 data-translate="feature1_title">Expert en Mashups</h3>
+            <p data-translate="feature1_text">Creacions úniques i mescles en directe que sorprenen.</p>
+          </div>
+          <div class="horizontal-item">
+            <i class="bi bi-music-note-list"></i>
+            <h3 data-translate="feature2_title">Música per a Tots</h3>
+            <p data-translate="feature2_text">Un repertori versàtil que s'adapta a qualsevol gust.</p>
+          </div>
+          <div class="horizontal-item">
+            <i class="bi bi-stars"></i>
+            <h3 data-translate="feature3_title">Animació Pro</h3>
+            <p data-translate="feature3_text">Atmosfera vibrant i energia assegurada.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Grid -->
+      <section class="stats-section" data-color="dark">
+        <div class="stat-item">
+          <h2 class="stat-number">10+</h2>
+          <p>EVENTS COMPLETATS</p>
+        </div>
+        <div class="stat-item">
+          <h2 class="stat-number">3.4K</h2>
+          <p>SEGUIDORS</p>
+        </div>
+        <div class="stat-item">
+          <h2 class="stat-number">100%</h2>
+          <p>SATISFACCIÓ</p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="intro" data-color="dark" style="min-height: 50vh;">
+        <h2>Preparat?</h2>
+        <p>Contacta'ns avui mateix i descobreix com podem fer que el teu esdeveniment sigui inoblidable.</p>
+        <br>
+        <a href="preus.html" class="btn-premium">Contacta Ara</a>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <h5 class="mb-3">DJ Posaxa</h5>
+              <p class="mb-3" style="color: var(--text-secondary);">Música professional per a festes i esdeveniments a
+                Granollers i Barcelona.</p>
+              <div class="social-icons">
+                <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok">
+                  <i class="bi bi-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener" aria-label="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Enllaços Ràpids</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="index.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Inici</a>
+                </li>
+                <li class="mb-2"><a href="esdeveniments.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Esdeveniments</a></li>
+                <li class="mb-2"><a href="opinionse486.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Opinions</a></li>
+                <li class="mb-2"><a href="preus.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Preus</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Sigma Company</h5>
+              <p class="mb-3" style="color: var(--text-secondary);" data-translate="footer_dev">Desenvolupat per Sigma
+                Company</p>
+              <p class="mb-2" style="color: var(--text-secondary);" data-translate="footer_more_projects">Més projectes:
+              </p>
+              <div class="social-icons">
+                <a href="https://www.tiktok.com/@sigmacompanyoficial" target="_blank" rel="noopener"
+                  aria-label="TikTok">
+                  <i class="bi bi-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/sigmacompanyoficial/" target="_blank" rel="noopener"
+                  aria-label="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@SigmaCompanyOficial" target="_blank" rel="noopener"
+                  aria-label="YouTube">
+                  <i class="bi bi-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 3rem 0 2rem;">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+              <p style="color: var(--text-secondary); margin: 0;">&copy; <span id="year"></span> DJ Posaxa. <span
+                  data-translate="footer_rights">Tots els drets reservats.</span></p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <p style="color: var(--text-secondary); margin: 0;"><span data-translate="footer_location">Granollers ·
+                  Barcelona</span></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Auth Modal (Kept from original) -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true"
+    style="z-index: 10000;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-black">
+        <div class="modal-header">
+          <h5 class="modal-title" id="authModalLabel">Inicia Sessió</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <button id="google-login-btn" class="btn btn-danger w-100">
+            <i class="bi bi-google me-2"></i> Continuar amb Google
+          </button>
+          <div class="mt-3">
+            <button id="logout-button" class="btn btn-secondary w-100 d-none">Tancar Sessió</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP & Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom Logic -->
+  <script src="assets/js/premium-index.js"></script>
+
+  <!-- Firebase Logic (Inlined/Module) -->
+  <script type="module">
+    import { auth, database, ref, get, update, push, serverTimestamp, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "./assets/js/firebase-config.js";
+
+    // Logic functionality (simplified for brevity, ensuring it works)
+    const authContainer = document.getElementById('auth-container');
+    const adminLinkContainer = document.getElementById('admin-link-container');
+    const logoutBtn = document.getElementById('logout-button');
+    const googleLoginBtn = document.getElementById('google-login-btn');
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User logged in:", user.email);
+        // Check admin
+        const adminRef = ref(database, 'admins/' + user.uid);
+        get(adminRef).then((snapshot) => {
+          if (snapshot.exists() && snapshot.val() === true) {
+            adminLinkContainer.innerHTML = '<a class="nav-link text-warning" href="admin.html"><i class="bi bi-shield-lock-fill"></i> Admin</a>';
+          }
+        });
+        authContainer.innerHTML = `<a href="perfil.html"><img src="${user.photoURL}" style="width: 30px; height: 30px; border-radius: 50%;"></a>`;
+
+        // Modal specific
+        googleLoginBtn.classList.add('d-none');
+        logoutBtn.classList.remove('d-none');
+      } else {
+        authContainer.innerHTML = `<button class="btn btn-sm btn-outline-light" data-bs-toggle="modal" data-bs-target="#authModal">Login</button>`;
+        googleLoginBtn.classList.remove('d-none');
+        logoutBtn.classList.add('d-none');
+      }
+    });
+
+    googleLoginBtn.addEventListener('click', () => {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider).then(() => {
+        // Close modal properly
+        const modalEl = document.getElementById('authModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+      }).catch((error) => console.error(error));
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      auth.signOut();
+    });
+
+    // Translation Object (Preserved)
+    window.pageTranslations = {
+      ca: { nav_home: "Inici", hero_title: "Eleva la teva festa al següent nivell", hero_cta: "Reserva Ara" },
+      es: { nav_home: "Inicio", hero_title: "Eleva tu fiesta al siguiente nivel", hero_cta: "Reserva Ahora" },
+      en: { nav_home: "Home", hero_title: "Elevate Your Party to the Next Level", hero_cta: "Book Now" }
+    };
+    // Simple translation logic could go here if needed, but for now we assume default CA
+  </script>
+
+</body>
+
+</html>

@@ -27,9 +27,7 @@ La web actua com a punt central per a:
 Aquest projecte ha estat dissenyat i desenvolupat íntegrament per **Sigma Company**.
 
 <div align="center">
-  <a href="https://github.com/sigmacompanyoficial">
-    <img src="https://avatars.githubusercontent.com/u/100000000?s=200&v=4" alt="Sigma Company" width="80" style="border-radius: 50%;" />
-  </a>
+
   <p><strong>Sigma Company</strong></p>
   <p>Solucions digitals i desenvolupament web a mida.</p>
 </div>

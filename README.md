@@ -1,16 +1,53 @@
-# DJ Posaxa
+<div align="center">
+  <img src="Fotos/logo.png" alt="DJ Posaxa Logo" width="120" />
+  <h1>DJ Posaxa - Official Website</h1>
+  <p>
+    <strong>Website oficial per a contractació i gestió d'esdeveniments de DJ Posaxa.</strong>
+  </p>
+  <p>
+    <a href="https://sigmacompanyoficial.github.io/Djposaxa-oficial/"><strong>🌐 Veure Web en Viu</strong></a>
+  </p>
+</div>
 
-Sitio estático listo para GitHub Pages.
+---
 
-- Página de inicio: `inici.html` (redirige desde `index.html`).
-- Assets: `assets/` (CSS, JS, icons, imágenes locales en `Fotos/`).
-- Sin dependencias externas (Sigma AI eliminado).
+## 📖 El Projecte
 
-## Publicar en GitHub Pages
-1. Sube todo el contenido del directorio a un repositorio.
-2. En Settings → Pages, Source: `Deploy from a branch` → Branch: `main` (o `master`) → `/ (root)`.
-3. La URL quedará como `https://<tu-usuario>.github.io/<repo>/`.
+Aquesta és la plataforma digital oficial de **DJ Posaxa**, creada per professionalitzar la seva presència online i facilitar la gestió d'esdeveniments. 
 
-## Notas
-- Los iconos de redes están en `assets/icons`.
-- Si alguna imagen no carga en producción, verifica mayúsculas/minúsculas del nombre y la ruta relativa (`Fotos/...`).
+La web actua com a punt central per a:
+- Mostrar el portfoli i l'estil únic del DJ.
+- Facilitar la contractació per a festes i esdeveniments a Granollers i Barcelona.
+- Gestionar peticions de cançons en temps real durant els esdeveniments mitjançant un sistema interactiu.
+
+És una carta de presentació digital que reflecteix l'energia i la professionalitat de DJ Posaxa.
+
+## �‍💻 El Desenvolupador
+
+Aquest projecte ha estat dissenyat i desenvolupat íntegrament per **Sigma Company**.
+
+<div align="center">
+  <a href="https://github.com/sigmacompanyoficial">
+    <img src="https://avatars.githubusercontent.com/u/100000000?s=200&v=4" alt="Sigma Company" width="80" style="border-radius: 50%;" />
+  </a>
+  <p><strong>Sigma Company</strong></p>
+  <p>Solucions digitals i desenvolupament web a mida.</p>
+</div>
+
+## � Xarxes Socials
+
+Segueix a **DJ Posaxa** per estar al dia de tots els esdeveniments:
+
+- [TikTok (@djposaxa)](https://www.tiktok.com/@djposaxa)
+- [Instagram (@dj.posaxa)](https://www.instagram.com/dj.posaxa/)
+
+Contacta amb **Sigma Company**:
+
+- [TikTok (@sigmacompanyoficial)](https://www.tiktok.com/@sigmacompanyoficial)
+- [Instagram (@sigmacompanyoficial)](https://www.instagram.com/sigmacompanyoficial/)
+- [YouTube (@SigmaCompanyOficial)](https://www.youtube.com/@SigmaCompanyOficial)
+
+---
+<div align="center">
+  <p>&copy; 2026 DJ Posaxa. Tots els drets reservats.</p>
+</div>

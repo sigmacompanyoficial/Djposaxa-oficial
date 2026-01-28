@@ -1,26 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // 1. Initialize Lenis for smooth scrolling
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-    });
+    // 1. Initialize Lenis for smooth scrolling - REMOVED for native scroll
+    // const lenis = new Lenis({...}); 
+    // function raf(time) {...}
+    // requestAnimationFrame(raf);
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    requestAnimationFrame(raf);
 
     // Sync GSAP
     gsap.registerPlugin(ScrollTrigger);

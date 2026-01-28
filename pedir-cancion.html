@@ -280,7 +280,6 @@
         import { auth, database, ref, push, serverTimestamp, onAuthStateChanged } from "./assets/js/firebase-config.js";
 
         let currentUser = null;
-        const RATE_LIMIT_MINUTES = 15;
         const STORAGE_KEY = 'lastSongRequestTime';
 
         onAuthStateChanged(auth, user => {
@@ -294,36 +293,6 @@
         const rateLimitMsg = document.getElementById('rate-limit-msg');
         const timeRemainingSpan = document.getElementById('time-remaining');
         const vinylAnim = document.getElementById('vinyl-anim');
-
-        // Check Rate Limit on Load
-        function checkRateLimit() {
-            const lastRequest = localStorage.getItem(STORAGE_KEY);
-            if (lastRequest) {
-                const elapsedMs = Date.now() - parseInt(lastRequest, 10);
-                const elapsedMinutes = elapsedMs / (1000 * 60);
-
-                if (elapsedMinutes < RATE_LIMIT_MINUTES) {
-                    const remaining = Math.ceil(RATE_LIMIT_MINUTES - elapsedMinutes);
-                    showRateLimit(remaining);
-                    return false;
-                }
-            }
-            clearRateLimit();
-            return true;
-        }
-
-        function showRateLimit(minutes) {
-            submitBtn.disabled = true;
-            timeRemainingSpan.textContent = minutes;
-            rateLimitMsg.style.display = 'block';
-            if (vinylAnim) vinylAnim.classList.add('paused');
-        }
-
-        function clearRateLimit() {
-            submitBtn.disabled = false;
-            rateLimitMsg.style.display = 'none';
-            if (vinylAnim) vinylAnim.classList.remove('paused');
-        }
 
         // Initialize check
         checkRateLimit();

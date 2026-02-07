@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sessió – DJ Posaxa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/premium-index.css">
+    <link rel="icon" href="Fotos/logo.png" type="image/png">
+    <style>
+        body {
+            background-color: #050505;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer {
+            padding: 2rem 0;
+            background: #000;
+            border-top: 1px solid #222;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav" style="position: absolute; top: 0; width: 100%;">
+        <div class="nav-logo">
+            <a href="index.html"><img src="Fotos/logo.png" alt="DJ Posaxa" style="height: 50px;"></a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Tornar a l'Inici</a>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <div class="login-card">
+            <h1 style="font-family: 'Playfair Display', serif; margin-bottom: 2rem;">Benvingut</h1>
+            <p class="text-white-50 mb-4">Inicia sessió o registra't per accedir a funcions exclusives.</p>
+
+            <button id="google-login-btn" class="btn btn-light w-100 py-3 rounded-pill fw-bold mb-3">
+                <i class="bi bi-google me-2"></i> Continuar amb Google
+            </button>
+
+            <p class="small text-white-50 mt-3">
+                En continuar, acceptes els nostres <a href="legal.html#terms" class="text-white">Termes</a> i <a
+                    href="legal.html#privacy" class="text-white">Política de Privacitat</a>.
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="mb-2">&copy; <span id="year"></span> DJ Posaxa</p>
+            <div class="small">
+                <a href="legal.html" class="text-secondary text-decoration-none mx-2">Avís Legal</a>
+                <a href="legal.html#privacy" class="text-secondary text-decoration-none mx-2">Privacitat</a>
+                <a href="legal.html#cookies" class="text-secondary text-decoration-none mx-2">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { auth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "./assets/js/firebase-config.js";
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const loginBtn = document.getElementById('google-login-btn');
+
+        // Redirect if already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = 'configuracio/';
+            }
+        });
+
+        loginBtn.addEventListener('click', () => {
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider)
+                .then(() => {
+                    window.location.href = 'configuracio/';
+                })
+                .catch((error) => {
+                    console.error(error);
+                    alert("Error en iniciar sessió: " + error.message);
+                });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+
+</html>

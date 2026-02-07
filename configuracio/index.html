@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuració – DJ Posaxa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/premium-index.css">
+  <link rel="icon" href="../Fotos/logo.png" type="image/png">
+  <style>
+    body {
+      background-color: #050505;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .config-container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #667eea;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .user-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .user-email {
+      color: #a0aec0;
+      margin-bottom: 2rem;
+    }
+
+    .btn-logout {
+      background: linear-gradient(45deg, #ff357a, #fff172);
+      border: none;
+      color: #000;
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 50px;
+      transition: transform 0.3s;
+    }
+
+    .btn-logout:hover {
+      transform: scale(1.05);
+      color: #000;
+    }
+
+    .legal-links {
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.5rem;
+    }
+
+    .legal-links a {
+      color: #a0aec0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .legal-links a:hover {
+      color: #fff;
+    }
+
+    .nav-back {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #fff;
+      font-size: 1.5rem;
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .nav-back:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="../index.html" class="nav-back"><i class="bi bi-arrow-left"></i> Tornar</a>
+
+  <div class="config-container">
+    <div id="loading-spinner" class="spinner-border text-light" role="status">
+      <span class="visually-hidden">Carregant...</span>
+    </div>
+
+    <div id="profile-content" style="display: none;">
+      <img id="user-photo" src="../Fotos/images.png" alt="Perfil" class="profile-img">
+      <h1 id="user-name" class="user-name">Usuari</h1>
+      <p id="user-email" class="user-email">correu@exemple.com</p>
+
+      <div class="d-grid gap-3 col-8 mx-auto">
+        <button id="logout-btn" class="btn btn-logout">
+          <i class="bi bi-box-arrow-right me-2"></i> Tancar Sessió
+        </button>
+        <a href="../legal.html" class="btn btn-outline-light rounded-pill">
+          <i class="bi bi-shield-check me-2"></i> Termes i Condicions
+        </a>
+      </div>
+
+      <div class="legal-links">
+        <a href="../legal.html#privacy">Privacitat</a>
+        <a href="../legal.html#cookies">Cookies</a>
+        <a href="../legal.html#terms">Avís Legal</a>
+      </div>
+    </div>
+
+    <div id="login-prompt" style="display: none;">
+      <i class="bi bi-person-circle" style="font-size: 4rem; color: #667eea;"></i>
+      <h2 class="mt-3 mb-4">No has iniciat sessió</h2>
+      <p class="text-white-50 mb-4">Inicia sessió per gestionar el teu perfil i veure les teves preferències.</p>
+      <button id="login-btn" class="btn btn-light rounded-pill px-4">
+        <i class="bi bi-google me-2"></i> Iniciar Sessió
+      </button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { auth, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "../assets/js/firebase-config.js";
+
+    const loadingSpinner = document.getElementById('loading-spinner');
+    const profileContent = document.getElementById('profile-content');
+    const loginPrompt = document.getElementById('login-prompt');
+
+    const userPhoto = document.getElementById('user-photo');
+    const userName = document.getElementById('user-name');
+    const userEmail = document.getElementById('user-email');
+    const logoutBtn = document.getElementById('logout-btn');
+    const loginBtn = document.getElementById('login-btn');
+
+    onAuthStateChanged(auth, (user) => {
+      loadingSpinner.style.display = 'none';
+      if (user) {
+        profileContent.style.display = 'block';
+        loginPrompt.style.display = 'none';
+
+        userName.textContent = user.displayName || 'Usuari sense nom';
+        userEmail.textContent = user.email;
+        if (user.photoURL) {
+          userPhoto.src = user.photoURL;
+        }
+      } else {
+        profileContent.style.display = 'none';
+        loginPrompt.style.display = 'block';
+      }
+    });
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        signOut(auth).then(() => {
+          window.location.href = '../index.html';
+        });
+      });
+    }
+
+    if (loginBtn) {
+      loginBtn.addEventListener('click', () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider).catch(console.error);
+      });
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+
+</html>

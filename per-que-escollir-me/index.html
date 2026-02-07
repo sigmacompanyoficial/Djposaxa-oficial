@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="page_title">Per què escollir-me – DJ Posaxa</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Premium Styles -->
+  <link rel="stylesheet" href="../assets/css/premium-index.css">
+  <style>
+    .feature-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .feature-card h2 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .feature-card p {
+      color: #ccc;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .image-wrapper {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      height: 400px;
+    }
+
+    .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .image-wrapper:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+  <link rel="icon" type="image/png" href="../Fotos/logo.png">
+</head>
+
+<body class="is-loading">
+
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <nav class="nav">
+    <div class="nav-logo">
+      <a href="../"><img src="../Fotos/logo.png" alt="DJ Posaxa" style="height: 50px;"></a>
+    </div>
+    <div class="nav-links d-none d-lg-flex">
+      <a href="../" data-translate="nav_home">Inici</a>
+      <a href="../en-que-em-centro/" data-translate="nav_focus">En què em centro</a>
+      <a href="./" class="active" data-translate="nav_why">Per què escollir-me</a>
+      <a href="../esdeveniments/" data-translate="nav_events">Esdeveniments</a>
+      <a href="../opinions/" data-translate="nav_reviews">Opinions</a>
+      <a href="../preus/" data-translate="nav_pricing">Preus</a>
+      <a href="../mashups/" data-translate="nav_mashups">Mashups</a>
+      <a href="../configuracio/"><i class="bi bi-gear-fill"></i></a>
+      <div id="auth-container"></div>
+    </div>
+    <button class="navbar-toggler d-lg-none text-white border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="bi bi-list fs-1"></i>
+    </button>
+
+    <!-- Mobile Menu Content -->
+    <div class="collapse navbar-collapse w-100 d-lg-none mt-3" id="mobileNav"
+      style="background: rgba(10,10,10,0.95); border-radius: 15px; padding: 1rem;">
+      <ul class="navbar-nav text-center">
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../" data-translate="nav_home">Inici</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../en-que-em-centro/"
+            data-translate="nav_focus">En què em centro</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../esdeveniments/"
+            data-translate="nav_events">Esdeveniments</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../opinions/"
+            data-translate="nav_reviews">Opinions</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../preus/"
+            data-translate="nav_pricing">Preus</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../mashups/"
+            data-translate="nav_mashups">Mashups</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../configuracio/">Configuració ⚙️</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <section class="hero" data-color="dark">
+        <div class="hero-content">
+          <h1 class="hero-title" data-translate="why_title">Per què escollir-me</h1>
+          <div class="hero-subtitle">
+            <p data-translate="why_subtitle">Compromís, professionalitat i atenció al detall perquè tot surti perfecte.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro" data-color="dark" style="padding-top: 5rem; text-align: left; align-items: flex-start;">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+
+              <div class="feature-card fade-in-up">
+                <h2 data-translate="why_journey_title">El meu viatge per trobar l'harmonia perfecta en cada mashup</h2>
+                <p data-translate="why_journey_text1">
+                  Soc un expert en la música i porto més de 5 anys agafant experiència per a poder donar el màxim de mi
+                  en tot el que faci.
+                  Sempre he estat una persona molt responsable i amb moltes ganes de aprendre i millorar, per això he
+                  investigat com puc
+                  punxar per a que la gent sempre reaccioni de manera activa.
+                </p>
+                <p data-translate="why_journey_text2">
+                  Crear un mashup no és només barrejar cançons; és trobar la connexió perfecta entre ritmes, melodies i
+                  emocions.
+                  Després de moltes hores d'experimentació, he treballat per perfeccionar aquest art. Cada combinació
+                  que escoltaràs
+                  ha estat el resultat de proves, ajustos i un compromís constant amb la qualitat.
+                </p>
+                <p data-translate="why_journey_text3">
+                  Faig mashups de tots els gèneres: des del Reggaeton i el Dembow fins a la música catalana i el
+                  pachangueo.
+                  He estudiat quins són els moments exactes en què cada estil musical brilla amb més força, i he après
+                  com guiar-te
+                  a través d'una experiència única. És una fusió de creativitat, coneixement musical i una mica de
+                  màgia.
+                </p>
+                <p data-translate="why_journey_text4">
+                  Si escoltes els meus mashups, escoltaràs més que música: escoltaràs una història, un moment pensat per
+                  sorprendre i emocionar.
+                </p>
+              </div>
+
+              <div class="image-grid fade-in-up">
+                <div class="image-wrapper">
+                  <img src="../Fotos/pq 1.jpg" alt="DJ Posaxa en acción 1" loading="lazy">
+                </div>
+                <div class="image-wrapper">
+                  <img src="../Fotos/pq 2.jpg" alt="DJ Posaxa en acción 2" loading="lazy">
+                </div>
+              </div>
+
+              <!-- Ad Section -->
+              <div class="text-center my-5">
+                <script type="text/javascript">
+                  atOptions = {
+                    'key': 'e6c768a7464416b9ac30d731f11beeb9',
+                    'format': 'iframe',
+                    'height': 90,
+                    'width': 728,
+                    'params': {}
+                  };
+                </script>
+                <script type="text/javascript"
+                  src="https://www.highperformanceformat.com/e6c768a7464416b9ac30d731f11beeb9/invoke.js"></script>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <h5 class="mb-3">DJ Posaxa</h5>
+              <p class="mb-3" style="color: var(--text-secondary);">Música professional per a festes i esdeveniments a
+                Granollers i Barcelona.</p>
+              <div class="social-icons">
+                <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok">
+                  <i class="bi bi-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener" aria-label="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Enllaços Ràpids</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="../"
+                    style="color: var(--text-secondary); text-decoration: none;">Inici</a>
+                </li>
+                <li class="mb-2"><a href="../esdeveniments/"
+                    style="color: var(--text-secondary); text-decoration: none;">Esdeveniments</a></li>
+                <li class="mb-2"><a href="../opinions/"
+                    style="color: var(--text-secondary); text-decoration: none;">Opinions</a></li>
+                <li class="mb-2"><a href="../preus/"
+                    style="color: var(--text-secondary); text-decoration: none;">Preus</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Sigma Company</h5>
+              <p class="mb-3" style="color: var(--text-secondary);" data-translate="footer_dev">Desenvolupat per Sigma
+                Company</p>
+              <p class="mb-2" style="color: var(--text-secondary);" data-translate="footer_more_projects">Més projectes:
+              </p>
+              <div class="social-icons">
+                <a href="https://www.tiktok.com/@sigmacompanyoficial" target="_blank" rel="noopener"
+                  aria-label="TikTok">
+                  <i class="bi bi-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/sigmacompanyoficial/" target="_blank" rel="noopener"
+                  aria-label="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@SigmaCompanyOficial" target="_blank" rel="noopener"
+                  aria-label="YouTube">
+                  <i class="bi bi-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 3rem 0 2rem;">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+              <p style="color: var(--text-secondary); margin: 0;">&copy; <span id="year"></span> DJ Posaxa. <span
+                  data-translate="footer_rights">Tots els drets reservats.</span></p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <p style="color: var(--text-secondary); margin: 0;"><span data-translate="footer_location">Granollers ·
+                  Barcelona</span></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="modal fade" id="authModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-secondary">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title">Inicia Sessió</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <button id="google-login-btn" class="btn btn-danger w-100"><i class="bi bi-google me-2"></i> Google</button>
+          <button id="logout-button" class="btn btn-secondary w-100 d-none mt-2">Tancar Sessió</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../assets/js/premium-index.js"></script>
+
+  <!-- Page Specific Translations & Auth -->
+  <script type="module">
+    import { auth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "../assets/js/firebase-config.js";
+
+    const authContainer = document.getElementById('auth-container');
+    const googleLoginBtn = document.getElementById('google-login-btn');
+    const logoutBtn = document.getElementById('logout-button');
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        authContainer.innerHTML = `<a href="../perfil/"><img src="${user.photoURL}" style="width: 30px; height: 30px; border-radius: 50%;"></a>`;
+        googleLoginBtn.classList.add('d-none');
+        logoutBtn.classList.remove('d-none');
+      } else {
+        authContainer.innerHTML = `<button class="btn btn-sm btn-outline-light" data-bs-toggle="modal" data-bs-target="#authModal">Login</button>`;
+        googleLoginBtn.classList.remove('d-none');
+        logoutBtn.classList.add('d-none');
+      }
+    });
+
+    googleLoginBtn.addEventListener('click', () => {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider).then(() => {
+        bootstrap.Modal.getInstance(document.getElementById('authModal')).hide();
+      });
+    });
+
+    logoutBtn.addEventListener('click', () => auth.signOut());
+  </script>
+
+  <script>
+    // Translations
+    window.pageTranslations = {
+      ca: {
+        page_title: "Per què escollir-me – DJ Posaxa",
+        nav_home: "Inici", nav_focus: "En què em centro", nav_why: "Per què escollir-me", nav_events: "Esdeveniments", nav_reviews: "Opinions", nav_pricing: "Preus", nav_mashups: "Mashups",
+        why_title: "Per què escollir-me",
+        why_subtitle: "Compromís, professionalitat i atenció al detall perquè tot surti perfecte.",
+        why_journey_title: "El meu viatge per trobar l'harmonia perfecta en cada mashup",
+        why_journey_text1: "Soc un expert en la música i porto més de 5 anys agafant experiència per a poder donar el màxim de mi en tot el que faci. Sempre he estat una persona molt responsable i amb moltes ganes de aprendre i millorar, per això he investigat com puc punxar per a que la gent sempre reaccioni de manera activa.",
+        why_journey_text2: "Crear un mashup no és només barrejar cançons; és trobar la connexió perfecta entre ritmes, melodies i emocions. Després de moltes hores d'experimentació, he treballat per perfeccionar aquest art. Cada combinació que escoltaràs ha estat el resultat de proves, ajustos i un compromís constant amb la qualitat.",
+        why_journey_text3: "Faig mashups de tots els gèneres: des del Reggaeton i el Dembow fins a la música catalana i el pachangueo. He estudiat quins són els moments exactes en què cada estil musical brilla amb més força, i he après com guiar-te a través d'una experiència única. És una fusió de creativitat, coneixement musical i una mica de màgia.",
+        why_journey_text4: "Si escoltes els meus mashups, escoltaràs més que música: escoltaràs una història, un moment pensat per sorprendre i emocionar.",
+        footer_rights: "Tots els drets reservats.",
+        footer_location: "Granollers · Barcelona",
+        footer_dev: "Desenvolupat per Sigma Company",
+        footer_more_projects: "Més projectes:",
+        login_button: "Inicia Sessió"
+      },
+      es: {
+        page_title: "Por qué elegirme – DJ Posaxa",
+        nav_home: "Inicio", nav_focus: "En qué me centro", nav_why: "Por qué elegirme", nav_events: "Eventos", nav_reviews: "Opiniones", nav_pricing: "Precios", nav_mashups: "Mashups",
+        why_title: "Por qué elegirme",
+        why_subtitle: "Compromiso, profesionalidad y atención al detalle para que todo salga perfecto.",
+        why_journey_title: "Mi viaje para encontrar la armonía perfecta en cada mashup",
+        why_journey_text1: "Soy un experto en la música y llevo más de 5 años cogiendo experiencia para poder dar lo máximo de mí en todo lo que haga. Siempre he sido una persona muy responsable y con muchas ganas de aprender y mejorar, por eso he investigado cómo puedo pinchar para que la gente siempre reaccione de manera activa.",
+        why_journey_text2: "Crear un mashup no es solo mezclar canciones; es encontrar la conexión perfecta entre ritmos, melodías y emociones. Después de muchas horas de experimentación, he trabajado para perfeccionar este arte. Cada combinación que escucharás ha sido el resultado de pruebas, ajustes y un compromiso constante con la calidad.",
+        why_journey_text3: "Hago mashups de todos los géneros: desde el Reggaeton y el Dembow hasta la música catalana y el pachangueo. He estudiado cuáles son los momentos exactos en los que cada estilo musical brilla con más fuerza, y he aprendido cómo guiarte a través de una experiencia única. Es una fusión de creatividad, conocimiento musical y un poco de magia.",
+        why_journey_text4: "Si escuchas mis mashups, escucharás más que música: escucharás una historia, un momento pensado para sorprender y emocionar.",
+        footer_rights: "Todos los derechos reservados.",
+        footer_location: "Granollers · Barcelona",
+        footer_dev: "Desarrollado por Sigma Company",
+        footer_more_projects: "Más proyectos:",
+        login_button: "Iniciar Sesión"
+      },
+      en: {
+        page_title: "Why Choose Me – DJ Posaxa",
+        nav_home: "Home", nav_focus: "What I Focus On", nav_why: "Why Choose Me", nav_events: "Events", nav_reviews: "Reviews", nav_pricing: "Pricing", nav_mashups: "Mashups",
+        why_title: "Why Choose Me",
+        why_subtitle: "Commitment, professionalism and attention to detail for everything to go perfectly.",
+        why_journey_title: "My journey to find the perfect harmony in every mashup",
+        why_journey_text1: "I am an expert in music and have been gaining experience for more than 5 years to be able to give my best in everything I do. I have always been a very responsible person and eager to learn and improve, that's why I've investigated how I can DJ so that people always react actively.",
+        why_journey_text2: "Creating a mashup is not just mixing songs; it's finding the perfect connection between rhythms, melodies and emotions. After many hours of experimentation, I have worked to perfect this art. Every combination you will hear has been the result of tests, adjustments and a constant commitment to quality.",
+        why_journey_text3: "I make mashups of all genres: from Reggaeton and Dembow to Catalan music and pachangueo. I have studied exactly when each musical style shines the brightest, and I have learned how to guide you through a unique experience. It is a fusion of creativity, musical knowledge and a bit of magic.",
+        why_journey_text4: "If you listen to my mashups, you will hear more than music: you will hear a story, a moment designed to surprise and excite.",
+        footer_rights: "All rights reserved.",
+        footer_location: "Granollers · Barcelona",
+        footer_dev: "Developed by Sigma Company",
+        footer_more_projects: "More projects:",
+        login_button: "Sign In"
+      }
+    };
+
+    if (typeof initializePage === 'function') {
+      initializePage(window.pageTranslations);
+    }
+  </script>
+  <script src="../assets/js/cookies.js"></script>
+  <script src="../assets/js/security.js"></script>
+  <script src="../assets/js/chatbot.js"></script>
+</body>
+
+</html>

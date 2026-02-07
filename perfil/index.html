@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="page_title">El Meu Perfil – DJ Posaxa</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <style>
+    :root {
+      --bg-color: #050505;
+      --text-color: #ffffff;
+      --text-secondary: #a0aec0;
+      --font-main: 'Inter', sans-serif;
+      --font-display: 'Playfair Display', serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-main);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+
+    .cursor-follower {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s;
+      mix-blend-mode: difference;
+      display: none;
+    }
+
+    @media (pointer: fine) {
+
+      .cursor,
+      .cursor-follower {
+        display: block;
+      }
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      mix-blend-mode: difference;
+      color: #fff;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo img {
+      height: 40px;
+      filter: invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      opacity: 1;
+    }
+
+    .hero {
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      width: 100%;
+      height: 120%;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: -10%;
+      left: 0;
+      opacity: 0.4;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: 1;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      max-width: 90%;
+    }
+
+    .footer {
+      padding: 10vh 5vw 5vh;
+      background: #000;
+      border-top: 1px solid #222;
+    }
+
+    /* Profile Specifics */
+    .form-control,
+    .form-select {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #fff;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    .btn-premium {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-premium:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem 1.5rem;
+        background: rgba(5, 5, 5, 0.8);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero {
+        padding: 0 1.5rem;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="is-loading">
+
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <nav class="nav" style="flex-wrap: wrap;">
+    <div class="nav-logo"><a href="../"><img src="../Fotos/logo.png" alt="DJ Posaxa" style="height: 50px;"></a>
+    </div>
+    <div class="nav-links d-none d-lg-flex">
+      <a href="../" data-translate="nav_home">Inici</a>
+      <a href="../en-que-em-centro/" data-translate="nav_focus">En què em centro</a>
+      <a href="../esdeveniments/" data-translate="nav_events">Esdeveniments</a>
+      <a href="../opinions/" data-translate="nav_reviews">Opinions</a>
+      <a href="../preus/" data-translate="nav_pricing">Preus</a>
+      <a href="../mashups/" data-translate="nav_mashups">Mashups</a>
+      <a href="../configuracio/"><i class="bi bi-gear-fill"></i></a>
+      <div id="auth-container"></div>
+      <div id="admin-link-container"></div>
+    </div>
+    <button class="navbar-toggler d-lg-none text-white border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mobileNav"><i class="bi bi-list fs-1"></i></button>
+    <div class="collapse navbar-collapse w-100 d-lg-none mt-3" id="mobileNav"
+      style="background: rgba(10,10,10,0.95); border-radius: 15px; padding: 1rem;">
+      <ul class="navbar-nav text-center">
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../">Inici</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../en-que-em-centro/">En què em centro</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../esdeveniments/">Esdeveniments</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../opinions/">Opinions</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../preus/">Preus</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../mashups/">Mashups</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../configuracio/">Configuració ⚙️</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <section class="hero" data-color="dark">
+        <div class="hero-bg-wrap">
+          <div class="hero-bg" style="background-image: url('../Fotos/inici 1.jpg'); opacity: 0.3;"></div>
+        </div>
+        <div class="hero-content">
+          <h1 class="hero-title" data-translate="profile_title">El Meu Perfil</h1>
+          <div class="hero-subtitle">
+            <p data-translate="profile_subtitle">Gestiona les teves dades i preferències.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-block" data-color="dark" style="padding: 10vh 5vw; min-height: 80vh;">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="p-5"
+                style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(10px);">
+
+                <div class="text-center mb-5" id="photo-container" style="cursor: pointer;">
+                  <img id="user-photo" src="../Fotos/images.png" class="rounded-circle"
+                    style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #667eea;">
+                  <p class="mt-2 text-white-50"><small>Fes clic per canviar la foto</small></p>
+                  <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                  <h3 id="user-name" class="mt-3">Carregant...</h3>
+                </div>
+
+                <form id="profile-form">
+                  <div class="mb-4">
+                    <label class="form-label">Nom a mostrar</label>
+                    <input type="text" class="form-control" id="displayName">
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Gènere Preferit</label>
+                    <select class="form-select" id="favoriteGenre">
+                      <option value="reggaeton">Reggaeton</option>
+                      <option value="techno">Techno</option>
+                      <option value="pachangueo">Pachangueo</option>
+                      <option value="altres">Altres</option>
+                    </select>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Instagram</label>
+                    <input type="text" class="form-control" id="userInstagram" placeholder="@usuari">
+                  </div>
+
+                  <button type="submit" class="btn-premium w-100 mb-3">Desar Canvis</button>
+                  <button type="button" id="sign-out-button" class="btn btn-outline-danger w-100 rounded-pill">Tancar
+                    Sessió</button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <footer class="footer">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <h5 class="mb-3">DJ Posaxa</h5>
+              <p style="color: var(--text-secondary);">Música professional per a festes i esdeveniments.</p>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Enllaços</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="../" style="color: var(--text-secondary);">Inici</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Sigma Company</h5>
+              <p style="color: var(--text-secondary);">Desenvolupat per Sigma Company</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true" style="z-index: 10000;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-black">
+        <div class="modal-header">
+          <h5 class="modal-title">Inicia Sessió</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center"><button id="google-login-btn" class="btn btn-danger w-100"><i
+              class="bi bi-google me-2"></i> Continuar amb Google</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.documentElement.style.scrollBehavior = "smooth";
+      gsap.registerPlugin(ScrollTrigger);
+
+      const cursor = document.querySelector('.cursor');
+      const follower = document.querySelector('.cursor-follower');
+      if (cursor && follower) {
+        document.addEventListener('mousemove', (e) => {
+          gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+          gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.3 });
+        });
+        document.querySelectorAll('a, button').forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            gsap.to(cursor, { scale: 3, opacity: 0 });
+            gsap.to(follower, { scale: 1.5, borderColor: 'transparent', backgroundColor: 'rgba(255,255,255,0.1)' });
+          });
+          el.addEventListener('mouseleave', () => {
+            gsap.to(cursor, { scale: 1, opacity: 1 });
+            gsap.to(follower, { scale: 1, borderColor: 'rgba(255, 255, 255, 1)', backgroundColor: 'transparent' });
+          });
+        });
+      }
+
+      const heroBg = document.querySelector('.hero-bg');
+      if (heroBg) {
+        gsap.set(heroBg, { scale: 1.2 });
+        gsap.to(heroBg, {
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
+          scale: 1, yPercent: 30, ease: "none"
+        });
+      }
+
+      const headings = document.querySelectorAll('h1, h2, h3');
+      headings.forEach(heading => {
+        const typeSplit = new SplitType(heading, { types: 'lines, words, chars' });
+        gsap.from(typeSplit.words, {
+          scrollTrigger: { trigger: heading, start: "top 85%", toggleActions: "play none none reverse" },
+          y: 50, opacity: 0, duration: 1, stagger: 0.05, ease: "power3.out"
+        });
+      });
+    });
+  </script>
+  <script type="module">
+    import { auth, database, storage, ref, get, update, onAuthStateChanged, signOut, updateProfile, ref as storageRef, uploadBytes, getDownloadURL, GoogleAuthProvider, signInWithPopup } from "../assets/js/firebase-config.js";
+
+    // Auth
+    const authContainer = document.getElementById('auth-container');
+    const adminLinkContainer = document.getElementById('admin-link-container');
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const adminRef = ref(database, 'admins/' + user.uid);
+        get(adminRef).then((snapshot) => {
+          if (snapshot.exists() && snapshot.val() === true) adminLinkContainer.innerHTML = '<a class="nav-link text-warning" href="../admin/">Admin</a>';
+        });
+        authContainer.innerHTML = `<a href="../configuracio/"><img src="${user.photoURL}" style="width: 30px; height: 30px; border-radius: 50%;"></a>`;
+
+        // Fill Profile
+        document.getElementById('user-photo').src = user.photoURL || '../Fotos/images.png';
+        document.getElementById('user-name').innerText = user.displayName;
+
+        const userRef = ref(database, 'users/' + user.uid);
+        get(userRef).then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            document.getElementById('displayName').value = data.displayName || user.displayName;
+            document.getElementById('favoriteGenre').value = data.favoriteGenre || 'reggaeton';
+            document.getElementById('userInstagram').value = data.instagram || '';
+          } else {
+            document.getElementById('displayName').value = user.displayName;
+          }
+        });
+
+      } else {
+        // Not logged in, redirect home
+        window.location.href = '../';
+      }
+    });
+    document.getElementById('google-login-btn').addEventListener('click', () => {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider).then(() => { bootstrap.Modal.getInstance(document.getElementById('authModal')).hide(); });
+    });
+
+    // Photo Upload
+    document.getElementById('photo-container').addEventListener('click', () => document.getElementById('photoUpload').click());
+    document.getElementById('photoUpload').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      const user = auth.currentUser;
+      if (!file || !user) return;
+      try {
+        const filePath = `profile_pictures/${user.uid}/${Date.now()}_${file.name}`;
+        const fileRef = storageRef(storage, filePath);
+        await uploadBytes(fileRef, file);
+        const url = await getDownloadURL(fileRef);
+        await updateProfile(user, { photoURL: url });
+        await update(ref(database, 'users/' + user.uid), { photoURL: url });
+        document.getElementById('user-photo').src = url;
+      } catch (error) { console.error(error); alert('Error'); }
+    });
+
+    // Save
+    document.getElementById('profile-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = auth.currentUser;
+      if (user) {
+        const data = {
+          displayName: document.getElementById('displayName').value,
+          favoriteGenre: document.getElementById('favoriteGenre').value,
+          instagram: document.getElementById('userInstagram').value,
+          photoURL: user.photoURL,
+          lastLogin: new Date().toISOString()
+        };
+        update(ref(database, 'users/' + user.uid), data).then(() => alert('Desat!')).catch(e => alert('Error'));
+      }
+    });
+
+    // Logout
+    document.getElementById('sign-out-button').addEventListener('click', () => {
+      signOut(auth).then(() => window.location.href = '../');
+    });
+  </script>
+  <script src="../assets/js/cookies.js"></script>
+  <script src="../assets/js/security.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../assets/js/chatbot.js"></script>
+</body>
+
+</html>

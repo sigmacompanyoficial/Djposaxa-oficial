@@ -1,0 +1,16 @@
+# robots.txt para DJ Posaxa
+# Permite que todos los motores de búsqueda indexen tu web
+User-agent: *
+Allow: /
+
+# Bloquea posibles carpetas privadas o temporales (ajusta si no existen)
+Disallow: /admin/
+Disallow: /backup/
+Disallow: /temp/
+Disallow: /private/
+
+# Evita que se indexen parámetros de búsqueda o páginas duplicadas si las hay
+Disallow: /*?*
+
+# Sitemap para ayudar a Google a indexar más rápido
+Sitemap: http://www.djposaxa.ct.ws/sitemap.xml

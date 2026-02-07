@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-translate="page_title">Diva Virtual Mashup — DJ Posaxa</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM90QK9QJX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PM90QK9QJX');
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Premium Styles -->
+  <link rel="stylesheet" href="assets/css/premium-index.css">
+  <link rel="icon" type="image/png" href="Fotos/logo.png">
+</head>
+
+<body class="is-loading">
+
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="Fotos/logo.png" alt="DJ Posaxa" style="height: 50px;">
+      </a>
+    </div>
+    <div class="nav-links d-none d-lg-flex">
+      <a href="index.html" data-translate="nav_home">Inici</a>
+      <a href="en-què-em-centro.html" data-translate="nav_focus">En què em centro</a>
+      <a href="esdeveniments.html" data-translate="nav_events">Esdeveniments</a>
+      <a href="opinionse486.html" data-translate="nav_reviews">Opinions</a>
+      <a href="preus.html" data-translate="nav_pricing">Preus</a>
+      <a href="mashups.html" class="active" data-translate="nav_mashups">Mashups</a>
+      <a href="configuracio.html"><i class="bi bi-gear-fill"></i></a>
+      <div id="auth-container"></div>
+    </div>
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler d-lg-none text-white border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="bi bi-list fs-1"></i>
+    </button>
+
+    <!-- Mobile Menu Content -->
+    <div class="collapse navbar-collapse w-100 d-lg-none mt-3" id="mobileNav"
+      style="background: rgba(10,10,10,0.95); border-radius: 15px; padding: 1rem;">
+      <ul class="navbar-nav text-center">
+        <li class="nav-item"><a class="nav-link text-white py-2" href="index.html" data-translate="nav_home">Inici</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="en-què-em-centro.html"
+            data-translate="nav_focus">En què em centro</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="esdeveniments.html"
+            data-translate="nav_events">Esdeveniments</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="opinionse486.html"
+            data-translate="nav_reviews">Opinions</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="preus.html"
+            data-translate="nav_pricing">Preus</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="mashups.html"
+            data-translate="nav_mashups">Mashups</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="configuracio.html">Configuració ⚙️</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- Main Content -->
+      <section class="d-flex align-items-center justify-content-center"
+        style="min-height: 100vh; padding: 120px 0 80px;" data-color="dark">
+        <div class="hero-bg" style="background-image: url('Fotos/inici 1.jpg'); opacity: 0.2;"></div>
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-10">
+              <div class="scroll-reveal p-0 overflow-hidden"
+                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; backdrop-filter: blur(20px);">
+                <div class="row g-0">
+                  <!-- Cover Image -->
+                  <div class="col-md-5 position-relative">
+                    <img src="Fotos/VIRTUAL DIVA IMAGE.png" alt="Carátula del Mashup" class="img-fluid w-100 h-100"
+                      style="object-fit: cover; min-height: 400px;" loading="lazy">
+                    <div class="position-absolute top-0 start-0 w-100 h-100"
+                      style="background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%); mix-blend-mode: multiply;">
+                    </div>
+                  </div>
+
+                  <!-- Details -->
+                  <div class="col-md-7 p-5 d-flex flex-column justify-content-center">
+                    <div class="badge bg-primary align-self-start mb-3">EXCLUSIVE MASHUP</div>
+                    <h1 class="display-4 fw-bold mb-3" style="font-family: var(--font-display);">Diva Virtual</h1>
+                    <p class="lead text-white-50 mb-4" data-translate="mashup_description">
+                      Descarga este mashup y optimiza tu próximo set. Transiciones fluidas y calidad profesional
+                      garantizada.
+                    </p>
+
+                    <div class="meta-info mb-4 text-white-50" style="font-size: 0.9rem;">
+                      <div class="row g-3">
+                        <div class="col-6"><i class="bi bi-speedometer2 me-2"></i><strong>BPM:</strong> 119</div>
+                        <div class="col-6"><i class="bi bi-music-note-list me-2"></i><strong>Key:</strong> 1A</div>
+                        <div class="col-12"><i class="bi bi-mic me-2"></i><strong
+                            data-translate="mashup_artists">Artists:</strong> Virtual Diva x Trap Pea</div>
+                      </div>
+                    </div>
+
+                    <div class="d-grid gap-3 d-md-flex mt-auto">
+                      <a href="audio/Diva virtual (DJ Posaxa MASHUP).mp3" id="download-mp3-btn" class="btn-premium px-4"
+                        download data-translate="mashup_download_mp3">
+                        <i class="bi bi-download me-2"></i>Descargar MP3
+                      </a>
+                      <button class="btn btn-outline-light rounded-pill px-4" data-bs-toggle="modal"
+                        data-bs-target="#wavModal" data-translate="mashup_download_wav">
+                        <i class="bi bi-file-earmark-music me-2"></i>WAV
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center mt-5">
+                <a href="mashups.html" class="text-white-50 text-decoration-none hover-text-white"><i
+                    class="bi bi-arrow-left me-2"></i>Tornar a Mashups</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <h5 class="mb-3">DJ Posaxa</h5>
+              <p class="mb-3" style="color: var(--text-secondary);">Música professional per a festes i esdeveniments a
+                Granollers i Barcelona.</p>
+              <div class="social-icons">
+                <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok">
+                  <i class="bi bi-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener" aria-label="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Enllaços Ràpids</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="index.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Inici</a>
+                </li>
+                <li class="mb-2"><a href="esdeveniments.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Esdeveniments</a></li>
+                <li class="mb-2"><a href="opinionse486.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Opinions</a></li>
+                <li class="mb-2"><a href="preus.html"
+                    style="color: var(--text-secondary); text-decoration: none;">Preus</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Sigma Company</h5>
+              <p class="mb-3" style="color: var(--text-secondary);" data-translate="footer_dev">Desenvolupat per Sigma
+                Company</p>
+              <p class="mb-2" style="color: var(--text-secondary);" data-translate="footer_more_projects">Més projectes:
+              </p>
+              <div class="social-icons">
+                <a href="https://www.tiktok.com/@sigmacompanyoficial" target="_blank" rel="noopener"
+                  aria-label="TikTok">
+                  <i class="bi bi-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/sigmacompanyoficial/" target="_blank" rel="noopener"
+                  aria-label="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://www.youtube.com/@SigmaCompanyOficial" target="_blank" rel="noopener"
+                  aria-label="YouTube">
+                  <i class="bi bi-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 3rem 0 2rem;">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+              <p style="color: var(--text-secondary); margin: 0;">&copy; <span id="year"></span> DJ Posaxa. <span
+                  data-translate="footer_rights">Tots els drets reservats.</span></p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <p style="color: var(--text-secondary); margin: 0;"><span data-translate="footer_location">Granollers ·
+                  Barcelona</span></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- WAV Modal -->
+  <div class="modal fade" id="wavModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-secondary">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" data-translate="modal_title">Arxiu WAV Exclusiu</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center p-4">
+          <i class="bi bi-file-earmark-music-fill display-1 text-primary mb-3"></i>
+          <p class="lead" data-translate="modal_text">Per obtenir la versió WAV d'alta qualitat, envia un missatge
+            directe a DJ Posaxa a Instagram.</p>
+          <a href="https://www.instagram.com/dj.posaxa/" target="_blank" class="btn btn-primary mt-3"
+            data-translate="modal_instagram"><i class="bi bi-instagram me-2"></i>Anar a Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="assets/js/premium-index.js"></script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { auth, database, ref, get, update, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "./assets/js/firebase-config.js";
+
+    const authContainer = document.getElementById('auth-container');
+
+    // Auth & Download Tracking Logic
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        authContainer.innerHTML = `<a class="nav-link" href="perfil.html"><img src="${user.photoURL}" style="width: 30px; height: 30px; border-radius: 50%;"></a>`;
+      } else {
+        authContainer.innerHTML = `<button class="btn btn-sm btn-outline-light" data-bs-toggle="modal" data-bs-target="#authModal">Login</button>`;
+      }
+    });
+
+    document.getElementById('download-mp3-btn').addEventListener('click', () => {
+      const user = auth.currentUser;
+      if (user) {
+        const mashupId = 'Diva Virtual Mashup';
+        const downloadData = { timestamp: new Date().toISOString(), format: 'mp3' };
+        const downloadRef = ref(database, `users/${user.uid}/downloads/${mashupId}`);
+        update(downloadRef, downloadData).catch(error => console.error("Error logging download: ", error));
+      }
+    });
+
+    // Translations
+    document.addEventListener('DOMContentLoaded', function () {
+      window.pageTranslations = {
+        // ... Copied translations from original ...
+        ca: { page_title: "Diva Virtual Mashup", nav_home: "Inici", nav_focus: "En què em centro", nav_events: "Esdeveniments", nav_reviews: "Opinions", nav_pricing: "Preus", nav_mashups: "Mashups", mashup_description: "Descarga este mashup...", mashup_artists: "Artistes:", mashup_download_mp3: "Descarregar MP3", mashup_download_wav: "WAV", aspect_ratio: "Ratio", modal_title: "Arxiu WAV", modal_text: "Contacta per Instagram per al WAV.", modal_instagram: "Instagram" }
+      };
+      // initializePage(window.pageTranslations); // Assuming main.js has this
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+
+</html>

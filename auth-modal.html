@@ -1,0 +1,171 @@
+<!-- Auth Modal -->
+<div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content glass-modal text-white">
+
+      <!-- Modal Header -->
+      <div class="modal-header border-0">
+        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body p-4 pt-0">
+
+        <!-- Login/Register Tabs -->
+        <ul class="nav nav-pills nav-fill mb-4" id="authTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active rounded-pill" id="login-tab" data-bs-toggle="pill"
+              data-bs-target="#login-content" type="button" role="tab" aria-selected="true"
+              data-translate="login_button">Inicia Sessió</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-pill" id="register-tab" data-bs-toggle="pill"
+              data-bs-target="#register-content" type="button" role="tab" aria-selected="false">Registra't</button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="authTabContent">
+
+          <!-- Login Tab -->
+          <div class="tab-pane fade show active" id="login-content" role="tabpanel">
+            <div class="text-center mb-4">
+              <h3 class="fw-bold mb-1" data-translate="auth_modal_title">Benvingut de nou!</h3>
+              <p class="text-white-50 small" data-translate="auth_login_subtitle">Accedeix al teu compte per continuar.
+              </p>
+            </div>
+
+            <!-- Feedback Alert -->
+            <div id="auth-feedback-login" class="alert d-none" role="alert"></div>
+
+            <form id="login-form">
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control bg-dark-glass text-white border-secondary" id="loginEmail"
+                  placeholder="name@example.com" required>
+                <label for="loginEmail" class="text-white-50">Correu electrònic</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control bg-dark-glass text-white border-secondary" id="loginPassword"
+                  placeholder="Password" required>
+                <label for="loginPassword" class="text-white-50">Contrasenya</label>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="rememberMe">
+                  <label class="form-check-label text-white-50 small" for="rememberMe">Recorda'm</label>
+                </div>
+                <!-- <a href="#" class="text-primary small text-decoration-none">Has oblidat la contrasenya?</a> -->
+              </div>
+              <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-lg">Entrar</button>
+              </div>
+            </form>
+
+            <div class="d-flex align-items-center mb-3">
+              <hr class="flex-grow-1 border-secondary">
+              <span class="px-3 text-white-50 small">o continua amb</span>
+              <hr class="flex-grow-1 border-secondary">
+            </div>
+
+            <div class="d-grid">
+              <button id="google-signin-btn"
+                class="btn btn-google btn-lg rounded-pill d-flex align-items-center justify-content-center">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" height="20"
+                  class="me-2" alt="Google">
+                <span data-translate="auth_google_btn">Google</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Register Tab -->
+          <div class="tab-pane fade" id="register-content" role="tabpanel">
+            <div class="text-center mb-4">
+              <h3 class="fw-bold mb-1">Crea un compte</h3>
+              <p class="text-white-50 small">Uneix-te a la família DJ Posaxa.</p>
+            </div>
+
+            <!-- Feedback Alert -->
+            <div id="auth-feedback-register" class="alert d-none" role="alert"></div>
+
+            <form id="register-form">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control bg-dark-glass text-white border-secondary" id="registerName"
+                  placeholder="Nom" required>
+                <label for="registerName" class="text-white-50">Nom</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control bg-dark-glass text-white border-secondary" id="registerEmail"
+                  placeholder="name@example.com" required>
+                <label for="registerEmail" class="text-white-50">Correu electrònic</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control bg-dark-glass text-white border-secondary"
+                  id="registerPassword" placeholder="Password" required minlength="6">
+                <label for="registerPassword" class="text-white-50">Contrasenya (min. 6 caràcters)</label>
+              </div>
+              <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-lg">Crear Compte</button>
+              </div>
+            </form>
+
+            <div class="d-flex align-items-center mb-3">
+              <hr class="flex-grow-1 border-secondary">
+              <span class="px-3 text-white-50 small">o registra't amb</span>
+              <hr class="flex-grow-1 border-secondary">
+            </div>
+
+            <div class="d-grid">
+              <button id="google-signup-btn"
+                class="btn btn-google btn-lg rounded-pill d-flex align-items-center justify-content-center">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" height="20"
+                  class="me-2" alt="Google">
+                <span>Google</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Onboarding Section (Hidden initially, shown after auth if needed) -->
+          <div id="auth-onboarding-section" class="d-none">
+            <div class="text-center mb-4">
+              <h3 class="fw-bold mb-1" data-translate="onboarding_title">Ja quasi està!</h3>
+              <p class="text-white-50 small" data-translate="onboarding_subtitle">Completa el teu perfil.</p>
+            </div>
+
+            <form id="onboarding-form">
+              <div class="mb-3">
+                <label for="ob-genre" class="form-label text-white-50 small" data-translate="onboarding_genre">Estil
+                  musical preferit</label>
+                <select class="form-select bg-dark-glass text-white border-secondary" id="ob-genre" required>
+                  <option value="" selected disabled>Selecciona...</option>
+                  <option value="reggaeton">Reggaeton</option>
+                  <option value="dembow">Dembow</option>
+                  <option value="techno">Techno</option>
+                  <option value="catalana">Música Catalana</option>
+                  <option value="pachangueo">Pachangueo</option>
+                  <option value="altres">Altres</option>
+                </select>
+              </div>
+              <div class="mb-4">
+                <label for="ob-discovery" class="form-label text-white-50 small"
+                  data-translate="onboarding_discovery">Com ens has conegut?</label>
+                <select class="form-select bg-dark-glass text-white border-secondary" id="ob-discovery" required>
+                  <option value="" selected disabled>Selecciona...</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="tiktok">TikTok</option>
+                  <option value="amics">Amics / Coneguts</option>
+                  <option value="esdeveniment">En un esdeveniment</option>
+                  <option value="altres">Altres</option>
+                </select>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-lg"
+                  data-translate="onboarding_submit">Finalitzar</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

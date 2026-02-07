@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="page_title">Opinions – DJ Posaxa</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <style>
+    :root {
+      --bg-color: #050505;
+      --text-color: #ffffff;
+      --text-secondary: #a0aec0;
+      --font-main: 'Inter', sans-serif;
+      --font-display: 'Playfair Display', serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-main);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+
+    .cursor-follower {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s;
+      mix-blend-mode: difference;
+      display: none;
+    }
+
+    @media (pointer: fine) {
+
+      .cursor,
+      .cursor-follower {
+        display: block;
+      }
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      mix-blend-mode: difference;
+      color: #fff;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo img {
+      height: 40px;
+      filter: invert(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      opacity: 1;
+    }
+
+    .hero {
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      width: 100%;
+      height: 120%;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: -10%;
+      left: 0;
+      opacity: 0.4;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: 1;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      max-width: 90%;
+    }
+
+    .footer {
+      padding: 10vh 5vw 5vh;
+      background: #000;
+      border-top: 1px solid #222;
+    }
+
+    /* Review Specifics */
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .review-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .review-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      border: 2px solid #667eea;
+    }
+
+    .review-text {
+      color: #ccc;
+      font-style: italic;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .review-author {
+      color: #fff;
+      font-weight: bold;
+      font-family: var(--font-display);
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem 1.5rem;
+        background: rgba(5, 5, 5, 0.8);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero {
+        padding: 0 1.5rem;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+
+    /* Modal Custom Styles */
+    #reviewModal .modal-content {
+      background: rgba(20, 20, 20, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    #reviewModal .modal-header {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    #reviewModal .modal-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+
+    #reviewModal .form-control {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-radius: 15px;
+    }
+
+    #reviewModal .form-control:focus {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #fff;
+      box-shadow: none;
+    }
+
+    #reviewModal .btn-submit {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-weight: 600;
+      transition: transform 0.2s;
+    }
+
+    #reviewModal .btn-submit:hover {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+
+<body class="is-loading">
+
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <nav class="nav" style="flex-wrap: wrap;">
+    <div class="nav-logo"><a href="../"><img src="../Fotos/logo.png" alt="DJ Posaxa" style="height: 50px;"></a>
+    </div>
+    <div class="nav-links d-none d-lg-flex">
+      <a href="../" data-translate="nav_home">Inici</a>
+      <a href="../en-que-em-centro/" data-translate="nav_focus">En què em centro</a>
+      <a href="../esdeveniments/" data-translate="nav_events">Esdeveniments</a>
+      <a href="./" class="active" data-translate="nav_reviews">Opinions</a>
+      <a href="../preus/" data-translate="nav_pricing">Preus</a>
+      <a href="../mashups/" data-translate="nav_mashups">Mashups</a>
+      <a href="../configuracio/"><i class="bi bi-gear-fill"></i></a>
+      <div id="auth-container"></div>
+      <div id="admin-link-container"></div>
+    </div>
+    <button class="navbar-toggler d-lg-none text-white border-0" type="button" data-bs-toggle="collapse"
+      data-bs-target="#mobileNav"><i class="bi bi-list fs-1"></i></button>
+    <div class="collapse navbar-collapse w-100 d-lg-none mt-3" id="mobileNav"
+      style="background: rgba(10,10,10,0.95); border-radius: 15px; padding: 1rem;">
+      <ul class="navbar-nav text-center">
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../">Inici</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../en-que-em-centro/">En què em centro</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../esdeveniments/">Esdeveniments</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="./">Opinions</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../preus/">Preus</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../mashups/">Mashups</a></li>
+        <li class="nav-item"><a class="nav-link text-white py-2" href="../configuracio/">Configuració ⚙️</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <section class="hero" data-color="dark">
+        <div class="hero-bg-wrap">
+          <div class="hero-bg" style="background-image: url('../Fotos/inici 1.jpg'); opacity: 0.3;"></div>
+        </div>
+        <div class="hero-content">
+          <h1 class="hero-title" data-translate="reviews_title">Opinions</h1>
+          <div class="hero-subtitle">
+            <p data-translate="reviews_subtitle">La paraula dels clients: experiències reals en esdeveniments reals.</p>
+          </div>
+          <button class="btn btn-outline-light rounded-pill px-4 mt-4" data-bs-toggle="modal"
+            data-bs-target="#reviewModal">
+            Deixa la teva opinió
+          </button>
+        </div>
+      </section>
+
+      <section class="content-block" style="padding: 10vh 5vw; min-height: 60vh;" data-color="light">
+        <div class="container">
+          <div id="reviews-list" class="review-grid">
+            <!-- Reviews injected here -->
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <h5 class="mb-3">DJ Posaxa</h5>
+              <p style="color: var(--text-secondary);">Música professional per a festes i esdeveniments.</p>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Enllaços</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="../" style="color: var(--text-secondary);">Inici</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Sigma Company</h5>
+              <p style="color: var(--text-secondary);">Desenvolupat per Sigma Company</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Review Modal -->
+  <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-modal="true"
+    role="dialog" style="z-index: 10001;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reviewModalLabel">La teva Opinió</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="review-form">
+            <div class="mb-3">
+              <label class="form-label text-white-50 small">Nom</label>
+              <input type="text" id="review-name" class="form-control" placeholder="El teu nom" required>
+            </div>
+            <div class="mb-4">
+              <label class="form-label text-white-50 small">Missatge</label>
+              <textarea id="review-text" class="form-control" rows="4" placeholder="Escriu la teva opinió..."
+                required></textarea>
+            </div>
+            <button type="submit" class="btn btn-submit w-100 text-white">Enviar Opinió</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true" style="z-index: 10000;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-black">
+        <div class="modal-header">
+          <h5 class="modal-title">Inicia Sessió</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center"><button id="google-login-btn" class="btn btn-danger w-100"><i
+              class="bi bi-google me-2"></i> Continuar amb Google</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.documentElement.style.scrollBehavior = "smooth";
+      gsap.registerPlugin(ScrollTrigger);
+
+      const cursor = document.querySelector('.cursor');
+      const follower = document.querySelector('.cursor-follower');
+      if (cursor && follower) {
+        document.addEventListener('mousemove', (e) => {
+          gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+          gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.3 });
+        });
+        document.querySelectorAll('a, button').forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            gsap.to(cursor, { scale: 3, opacity: 0 });
+            gsap.to(follower, { scale: 1.5, borderColor: 'transparent', backgroundColor: 'rgba(255,255,255,0.1)' });
+          });
+          el.addEventListener('mouseleave', () => {
+            gsap.to(cursor, { scale: 1, opacity: 1 });
+            gsap.to(follower, { scale: 1, borderColor: 'rgba(255, 255, 255, 1)', backgroundColor: 'transparent' });
+          });
+        });
+      }
+
+      const heroBg = document.querySelector('.hero-bg');
+      if (heroBg) {
+        gsap.set(heroBg, { scale: 1.2 });
+        gsap.to(heroBg, {
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
+          scale: 1, yPercent: 30, ease: "none"
+        });
+      }
+
+      const headings = document.querySelectorAll('h1, h2, h3');
+      headings.forEach(heading => {
+        const typeSplit = new SplitType(heading, { types: 'lines, words, chars' });
+        gsap.from(typeSplit.words, {
+          scrollTrigger: { trigger: heading, start: "top 85%", toggleActions: "play none none reverse" },
+          y: 50, opacity: 0, duration: 1, stagger: 0.05, ease: "power3.out"
+        });
+      });
+
+      const sections = document.querySelectorAll('[data-color]');
+      sections.forEach(section => {
+        const theme = section.dataset.color;
+        const colorBg = theme === 'light' ? '#0f0f0f' : '#050505';
+        ScrollTrigger.create({
+          trigger: section, start: "top 50%", end: "bottom 50%",
+          onEnter: () => gsap.to('body', { backgroundColor: colorBg, duration: 0.8 }),
+          onEnterBack: () => gsap.to('body', { backgroundColor: colorBg, duration: 0.8 })
+        });
+      });
+    });
+  </script>
+  <script type="module">
+    import { auth, database, ref, get, update, push, onValue, serverTimestamp, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "../assets/js/firebase-config.js";
+
+    // Auth
+    const authContainer = document.getElementById('auth-container');
+    const adminLinkContainer = document.getElementById('admin-link-container');
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const adminRef = ref(database, 'admins/' + user.uid);
+        get(adminRef).then((snapshot) => {
+          if (snapshot.exists() && snapshot.val() === true) adminLinkContainer.innerHTML = '<a class="nav-link text-warning" href="../admin/">Admin</a>';
+        });
+        authContainer.innerHTML = `<a href="../configuracio/"><img src="${user.photoURL}" style="width: 30px; height: 30px; border-radius: 50%;"></a>`;
+        const nameInput = document.getElementById('review-name');
+        if (nameInput && user.displayName) nameInput.value = user.displayName;
+      } else {
+        authContainer.innerHTML = `<button class="btn btn-sm btn-outline-light" data-bs-toggle="modal" data-bs-target="#authModal">Login</button>`;
+      }
+    });
+    document.getElementById('google-login-btn').addEventListener('click', () => {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider).then(() => { bootstrap.Modal.getInstance(document.getElementById('authModal')).hide(); });
+    });
+
+    // Reviews Logic
+    const reviewForm = document.getElementById('review-form');
+    const reviewsList = document.getElementById('reviews-list');
+
+    console.log("Iniciant sistema d'opinions...");
+
+    onValue(ref(database, 'reviews/published'), (snapshot) => {
+      console.log("Dades rebudes de Firebase:", snapshot.val());
+      reviewsList.innerHTML = '';
+      if (snapshot.exists()) {
+        const reviews = [];
+        snapshot.forEach(c => {
+          const val = c.val();
+          val.id = c.key;
+          reviews.push(val);
+        });
+
+        // Ordenar per data (més recent primer)
+        reviews.sort((a, b) => (Number(b.createdAt) || 0) - (Number(a.createdAt) || 0));
+
+        reviews.forEach((review, index) => {
+          const el = document.createElement('div');
+          el.className = 'review-card';
+          const photo = review.userPhotoURL || '../Fotos/images.png';
+          const author = review.userName || 'Anònim';
+          const content = review.text || '';
+
+          el.innerHTML = `
+                     <img src="${photo}" class="review-img" alt="${author}" onerror="this.src='../Fotos/images.png'">
+                     <p class="review-text">"${content}"</p>
+                     <p class="review-author">- ${author}</p>
+                 `;
+          reviewsList.appendChild(el);
+
+          // Animació simple
+          gsap.fromTo(el,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.6, delay: Math.min(index * 0.1, 1.5), ease: "power2.out" }
+          );
+        });
+      } else {
+        console.log("No hi ha opinions publicades.");
+      }
+    }, (error) => {
+      console.error("Error llegint opinions:", error);
+    });
+
+    if (reviewForm) {
+      reviewForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        console.log("--- DEBUG START ---");
+        console.log("1. Iniciant enviament...");
+        // Check URL
+        console.log("2. Database URL configurada:", database.app.options.databaseURL);
+
+        const text = document.getElementById('review-text').value;
+        const name = document.getElementById('review-name').value;
+        const user = auth.currentUser;
+
+        const reviewData = {
+          text: text,
+          userName: name || (user ? user.displayName : 'Anònim'),
+          userPhotoURL: user ? user.photoURL : null,
+          email: user ? user.email : 'anonymous',
+          uid: user ? user.uid : 'anonymous',
+          createdAt: Date.now(),
+          status: 'published'
+        };
+
+        console.log("3. Dades a enviar:", reviewData);
+        const reviewsRef = ref(database, 'reviews/published');
+        console.log("4. Referència creada:", reviewsRef.toString());
+
+        push(reviewsRef, reviewData).then(() => {
+          console.log("5. ÈXIT: Promesa resolta. Dades enviades al servidor.");
+          alert("Gràcies! La teva opinió s'ha publicat correctament.");
+          reviewForm.reset();
+          bootstrap.Modal.getInstance(document.getElementById('reviewModal')).hide();
+        }).catch((error) => {
+          console.error("5. ERROR: La promesa ha fallat.", error);
+          alert("Error: " + error.message + "\n\nComprova la consola per més detalls.");
+        });
+      });
+    }
+  </script>
+  <script src="../assets/js/cookies.js"></script>
+  <script src="../assets/js/security.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="../assets/js/chatbot.js"></script>
+</body>
+
+</html>

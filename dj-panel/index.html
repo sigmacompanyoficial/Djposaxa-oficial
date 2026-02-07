@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Panel del DJ – Sol·licituds de Cançons</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Premium Styles -->
+    <link rel="stylesheet" href="../assets/css/premium-index.css">
+    <link rel="icon" type="image/png" href="../Fotos/logo.png">
+
+    <style>
+        /* Dashboard Layout */
+        body {
+            background-color: #050505;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            filter: blur(10px);
+        }
+
+        /* Stats Widgets */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-item {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+            background: linear-gradient(to bottom, #fff, #aaa);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Request Cards */
+        .requests-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .request-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .request-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #ff0055;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .request-card.new {
+            animation: slideIn 0.5s ease-out forwards;
+            border-color: rgba(255, 0, 85, 0.3);
+        }
+
+        .request-card.new::before {
+            opacity: 1;
+        }
+
+        .request-card.played {
+            opacity: 0.6;
+            background: rgba(255, 255, 255, 0.01);
+            filter: grayscale(0.8);
+        }
+
+        .request-card.played::before {
+            background: #28a745;
+            opacity: 1;
+        }
+
+        .request-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .song-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.8rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .request-meta {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .request-actions {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 1rem;
+        }
+
+        .btn-action {
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-played {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-played:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.6);
+        }
+        
+        .btn-played:active {
+            transform: translateY(1px);
+        }
+
+        .btn-delete {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 45px;
+            padding: 0; 
+            border-radius: 50%; /* Circle button */
+        }
+
+        .btn-delete:hover {
+            background: #dc3545;
+            color: #fff;
+            border-color: #dc3545;
+            transform: rotate(90deg);
+            box-shadow: 0 0 15px rgba(220, 53, 69, 0.5);
+        }
+        
+        .btn-disabled {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.4);
+            cursor: default;
+            box-shadow: none;
+        }
+        
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Live Indicator */
+        .live-indicator {
+            background: rgba(255, 0, 85, 0.1);
+            color: #ff0055;
+            border: 1px solid rgba(255, 0, 85, 0.3);
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+        }
+
+        .live-dot {
+            background-color: #ff0055;
+            box-shadow: 0 0 10px #ff0055;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: #333;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .empty-state h3 {
+            color: #fff;
+            font-family: var(--font-display);
+        }
+
+        .empty-state p {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body class="is-loading">
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navbar -->
+    <nav class="nav">
+        <div class="nav-logo">
+            <a href="../">
+                <img src="../Fotos/logo.png" alt="DJ Posaxa Logo" style="height: 50px;">
+            </a>
+        </div>
+        <div class="ms-auto">
+            <span class="live-indicator">
+                <span class="live-dot"></span>
+                LIVE DASHBOARD
+            </span>
+        </div>
+    </nav>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- Hero -->
+            <header class="hero" data-color="dark">
+                <div class="hero-bg" style="background-image: url('../Fotos/inici 1.jpg'); opacity: 0.3;"></div>
+                <div class="hero-content">
+                    <h1 class="hero-title">Panel del DJ</h1>
+                    <div class="hero-subtitle">
+                        <p>Sol·licituds de cançons en temps real</p>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="content-block" data-color="dark">
+                <div class="container">
+
+                    <!-- Access Denied -->
+                    <div id="access-denied" class="text-center p-5 scroll-reveal"
+                        style="display: none; background: rgba(220, 53, 69, 0.1); border-radius: 20px; border: 1px solid rgba(220, 53, 69, 0.3);">
+                        <i class="bi bi-shield-lock-fill display-1 text-danger mb-3"></i>
+                        <h2 class="text-white">Accés Restringit</h2>
+                        <p class="text-white-50">Només els administradors poden accedir a aquest panell.</p>
+                        <a href="../" class="btn-premium mt-3">Tornar a l'inici</a>
+                    </div>
+
+                    <!-- Loading -->
+                    <div id="loading" class="text-center p-5">
+                        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                            <span class="visually-hidden">Carregant...</span>
+                        </div>
+                        <p class="mt-3 text-white-50">Carregant sol·licituds...</p>
+                    </div>
+
+                    <!-- Stats -->
+                    <div id="stats-bar" class="stats-bar scroll-reveal" style="display: none;">
+                        <div class="stat-item">
+                            <div class="stat-number" id="pending-count" style="color: #ff0055;">0</div>
+                            <div class="stat-label">Pendents</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="played-count" style="color: #28a745;">0</div>
+                            <div class="stat-label">Reproduïdes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="total-count">0</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                    </div>
+
+                    <!-- Requests List -->
+                    <div id="requests-container" class="requests-container d-grid gap-3 scroll-reveal"
+                        style="display: none;">
+                        <!-- JS will populate this with card styles -->
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <h5 class="mb-3">DJ Posaxa</h5>
+                            <p class="mb-3" style="color: var(--text-secondary);">Música professional per a festes i
+                                esdeveniments a
+                                Granollers i Barcelona.</p>
+                            <div class="social-icons">
+                                <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener"
+                                    aria-label="TikTok">
+                                    <i class="bi bi-tiktok"></i>
+                                </a>
+                                <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener"
+                                    aria-label="Instagram">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h5 class="mb-3">Enllaços Ràpids</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><a href="../"
+                                        style="color: var(--text-secondary); text-decoration: none;">Inici</a>
+                                </li>
+                                <li class="mb-2"><a href="../esdeveniments/"
+                                        style="color: var(--text-secondary); text-decoration: none;">Esdeveniments</a>
+                                </li>
+                                <li class="mb-2"><a href="../opinions/"
+                                        style="color: var(--text-secondary); text-decoration: none;">Opinions</a></li>
+                                <li class="mb-2"><a href="../preus/"
+                                        style="color: var(--text-secondary); text-decoration: none;">Preus</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5 class="mb-3">Sigma Company</h5>
+                            <p class="mb-3" style="color: var(--text-secondary);" data-translate="footer_dev">
+                                Desenvolupat per Sigma
+                                Company</p>
+                            <p class="mb-2" style="color: var(--text-secondary);" data-translate="footer_more_projects">
+                                Més projectes:</p>
+                            <div class="social-icons">
+                                <a href="https://www.tiktok.com/@sigmacompanyoficial" target="_blank" rel="noopener"
+                                    aria-label="TikTok">
+                                    <i class="bi bi-tiktok"></i>
+                                </a>
+                                <a href="https://www.instagram.com/sigmacompanyoficial/" target="_blank" rel="noopener"
+                                    aria-label="Instagram">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="https://www.youtube.com/@SigmaCompanyOficial" target="_blank" rel="noopener"
+                                    aria-label="YouTube">
+                                    <i class="bi bi-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 3rem 0 2rem;">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start">
+                            <p style="color: var(--text-secondary); margin: 0;">&copy; <span id="year"></span> DJ
+                                Posaxa. <span data-translate="footer_rights">Tots els drets reservats.</span></p>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <p style="color: var(--text-secondary); margin: 0;"><span
+                                    data-translate="footer_location">Granollers ·
+                                    Barcelona</span></p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- GSAP & Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+
+    <script src="../assets/js/premium-index.js"></script>
+
+    <!-- Firebase & Logic -->
+    <!-- We inject the config first, then the logic script will use it. 
+         Note: dj-panel.js likely imports from firebase-config.js directly. -->
+    <script type="module" src="../assets/js/firebase-config.js"></script>
+    <script type="module" src="../assets/js/dj-panel.js"></script>
+  <script src="../assets/js/cookies.js"></script>
+  <script src="../assets/js/security.js"></script>
+  <script src="../assets/js/chatbot.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-translate="page_title">Mesa de Mescles — DJ Posaxa</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM90QK9QJX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PM90QK9QJX');
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/modern-style.css" />
+  <link rel="stylesheet" href="assets/css/mixer-style.css" />
+  <link rel="icon" type="image/png" href="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png">
+</head>
+
+<body onload="applyTheme()">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="Fotos/ChatGPT Image 20 d’ag. del 2025, 21_45_57.png" alt="DJ Posaxa Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-translate="nav_home">Inici</a></li>
+          <li class="nav-item"><a class="nav-link" href="en-què-em-centro.html" data-translate="nav_focus">En què em
+              centro</a></li>
+          <li class="nav-item"><a class="nav-link" href="per-què-escollir-me.html" data-translate="nav_why">Per què
+              escollir-me</a></li>
+          <li class="nav-item"><a class="nav-link" href="esdeveniments.html"
+              data-translate="nav_events">Esdeveniments</a></li>
+          <li class="nav-item"><a class="nav-link" href="opinionse486.html" data-translate="nav_reviews">Opinions</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="preus.html" data-translate="nav_pricing">Preus</a></li>
+          <li class="nav-item"><a class="nav-link" href="mashups.html" data-translate="nav_mashups">Mashups</a></li>
+          <li class="nav-item"><a class="nav-link active" href="mesa-de-mezclas.html" data-translate="nav_mixer">Mesa de
+              Mescles</a></li>
+          <li class="nav-item"><a class="nav-link" href="configuracio.html" aria-label="Configuració">⚙️</a></li>
+          <li class="nav-item" id="auth-container"></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mixer Content -->
+  <main class="mixer-container">
+    <div class="dj-mixer">
+      <!-- Deck A -->
+      <div class="deck deck-a">
+        <div class="display-section">
+          <div class="track-info" id="track-info-a">NO TRACK</div>
+          <canvas id="waveform-a" class="waveform"></canvas>
+        </div>
+        <div class="platter-container">
+          <div class="platter" id="platter-a">
+            <div class="platter-ring"></div>
+          </div>
+        </div>
+        <div class="pitch-control">
+          <input type="range" min="-0.1" max="0.1" step="0.001" value="0" class="pitch-fader" id="pitch-a">
+          <label>PITCH</label>
+        </div>
+        <div class="performance-section">
+          <div class="hot-cue-pads" id="hot-cues-a">
+            <!-- 8 pads generados por JS -->
+          </div>
+          <div class="loop-controls">
+            <button class="loop-button" id="loop-in-a">IN</button>
+            <button class="loop-button" id="loop-out-a">OUT</button>
+            <button class="loop-button" id="loop-toggle-a">LOOP</button>
+            <button class="loop-button" id="loop-half-a">1/2x</button>
+            <button class="loop-button" id="loop-double-a">2x</button>
+          </div>
+        </div>
+        <div class="transport">
+          <button id="play-a" class="control-button play">PLAY/PAUSE</button>
+          <button id="cue-a" class="control-button cue">CUE</button>
+          <button id="sync-a" class="control-button sync">SYNC</button>
+        </div>
+      </div>
+
+      <!-- Mixer Section -->
+      <div class="mixer-section">
+        <div class="mixer-header">DJ POSAXA</div>
+        <div class="mixer-channels">
+          <!-- Channel A -->
+          <div class="channel">
+            <div class="vu-meter-container"><canvas id="vu-meter-a" class="vu-meter"></canvas></div>
+            <div class="eq-knobs">
+              <div class="knob-group"><label>HI</label><input type="range" min="-30" max="30" value="0"
+                  class="knob eq-knob" id="hi-a"></div>
+              <div class="knob-group"><label>MID</label><input type="range" min="-30" max="30" value="0"
+                  class="knob eq-knob" id="mid-a"></div>
+              <div class="knob-group"><label>LOW</label><input type="range" min="-30" max="30" value="0"
+                  class="knob eq-knob" id="low-a"></div>
+            </div>
+            <input type="range" min="0" max="1" step="0.01" value="1" class="volume-fader" id="volume-a">
+            <button class="cue-button" id="headphone-cue-a">CUE</button>
+          </div>
+          <!-- Channel B -->
+          <div class="channel">
+            <div class="vu-meter-container"><canvas id="vu-meter-b" class="vu-meter"></canvas></div>
+            <div class="eq-knobs">
+              <div class="knob-group"><label>HI</label><input type="range" min="-30" max="30" value="0"
+                  class="knob eq-knob" id="hi-b"></div>
+              <div class="knob-group"><label>MID</label><input type="range" min="-30" max="30" value="0"
+                  class="knob eq-knob" id="mid-b"></div>
+              <div class="knob-group"><label>LOW</label><input type="range" min="-30" max="30" value="0"
+                  class="knob eq-knob" id="low-b"></div>
+            </div>
+            <input type="range" min="0" max="1" step="0.01" value="1" class="volume-fader" id="volume-b">
+            <button class="cue-button" id="headphone-cue-b">CUE</button>
+          </div>
+        </div>
+        <div class="crossfader-section">
+          <input type="range" min="0" max="1" step="0.01" value="0.5" class="crossfader" id="crossfader">
+        </div>
+        <div class="master-section">
+          <div class="knob-group master-knob-group">
+            <label>MASTER</label>
+            <input type="range" min="0" max="1.5" step="0.01" value="0.8" class="knob master-knob" id="master-volume">
+          </div>
+          <div class="spectrum-analyzer">
+            <canvas id="spectrum-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deck B -->
+      <div class="deck deck-b">
+        <div class="display-section">
+          <div class="track-info" id="track-info-b">NO TRACK</div>
+          <canvas id="waveform-b" class="waveform"></canvas>
+        </div>
+        <div class="platter-container">
+          <div class="platter" id="platter-b">
+            <div class="platter-ring"></div>
+          </div>
+        </div>
+        <div class="pitch-control">
+          <input type="range" min="-0.1" max="0.1" step="0.001" value="0" class="pitch-fader" id="pitch-b">
+          <label>PITCH</label>
+        </div>
+        <div class="performance-section">
+          <div class="hot-cue-pads" id="hot-cues-b">
+            <!-- 8 pads generados por JS -->
+          </div>
+          <div class="loop-controls">
+            <button class="loop-button" id="loop-in-b">IN</button>
+            <button class="loop-button" id="loop-out-b">OUT</button>
+            <button class="loop-button" id="loop-toggle-b">LOOP</button>
+            <button class="loop-button" id="loop-half-b">1/2x</button>
+            <button class="loop-button" id="loop-double-b">2x</button>
+          </div>
+        </div>
+        <div class="transport">
+          <button id="play-b" class="control-button play">PLAY/PAUSE</button>
+          <button id="cue-b" class="control-button cue">CUE</button>
+          <button id="sync-b" class="control-button sync">SYNC</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="library-section">
+      <div class="library-header">
+        <input type="search" id="search-library" placeholder="Buscar a la biblioteca...">
+        <button id="open-library-btn" class="library-button">Obrir Biblioteca</button>
+      </div>
+      <ul id="track-list" class="track-list">
+        <!-- Les pistes de la biblioteca apareixeran aquí -->
+      </ul>
+    </div>
+
+    <!-- Hidden file inputs for single file loading as a fallback -->
+    <input type="file" id="file-a" class="file-input" accept="audio/*">
+    <input type="file" id="file-b" class="file-input" accept="audio/*">
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer mt-auto">
+    <div class="container d-md-flex justify-content-between align-items-center text-center text-md-start">
+      <div class="mb-3 mb-md-0">
+        <p class="mb-1">&copy; <span id="year"></span> DJ Posaxa. <span data-translate="footer_rights">Tots els drets
+            reservats.</span></p>
+        <p class="mb-1"><span data-translate="footer_location">Granollers · BCN</span></p>
+        <div class="social-icons mt-2">
+          <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok"><img
+              src="Fotos/Png tik.png" alt="TikTok" style="width: 24px; height: 24px;"></a>
+          <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener" aria-label="Instagram"><img
+              src="Fotos/pngwing.com.png" alt="Instagram" style="width: 24px; height: 24px;"></a>
+        </div>
+      </div>
+      <div class="sigma-projects">
+        <p class="mb-1"><span data-translate="footer_dev">Desenvolupat per Sigma Company</span></p>
+        <p class="mb-2"><span data-translate="footer_more_projects">Més projectes de Sigma Company</span></p>
+        <a href="http://www.sigmagames.ct.ws" class="btn btn-primary text-white" target="_blank"
+          rel="noopener">SigmaGames</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { auth, database, ref, get, update, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "./firebase-config.js";
+
+    const authContainer = document.getElementById('auth-container');
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        window.syncPreferencesWithFirebase(auth, database, get, ref, update);
+        authContainer.innerHTML = `<a class="nav-link" href="perfil.html" aria-label="Perfil"><img src="${user.photoURL}" alt="Perfil" style="width: 28px; height: 28px; border-radius: 50%;"></a>`;
+      } else {
+        authContainer.innerHTML = `<button id="login-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#authModal" data-translate="login_button">Inicia Sessió</button>`;
+        if (window.pageTranslations) window.translateAll();
+      }
+    });
+  </script>
+
+  <!-- i18n & Theme Script -->
+  <script src="./main.js"></script>
+  <script src="./mixer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      window.pageTranslations = {
+        ca: { page_title: "Mesa de Mescles — DJ Posaxa", nav_home: "Inici", nav_focus: "En què em centro", nav_why: "Per què escollir-me", nav_events: "Esdeveniments", nav_reviews: "Opinions", nav_pricing: "Preus", nav_mashups: "Mashups", nav_mixer: "Mesa de Mescles", footer_rights: "Tots els drets reservats.", footer_location: "Granollers · BCN", footer_dev: "Desenvolupat per Sigma Company", footer_more_projects: "Més projectes de Sigma Company" },
+        es: { page_title: "Mesa de Mezclas — DJ Posaxa", nav_home: "Inicio", nav_focus: "En qué me centro", nav_why: "Por qué elegirme", nav_events: "Eventos", nav_reviews: "Opiniones", nav_pricing: "Precios", nav_mashups: "Mashups", nav_mixer: "Mesa de Mezclas", footer_rights: "Todos los derechos reservados.", footer_location: "Granollers · BCN", footer_dev: "Desarrollado por Sigma Company", footer_more_projects: "Más proyectos de Sigma Company" },
+        en: { page_title: "Mixing Desk — DJ Posaxa", nav_home: "Home", nav_focus: "What I Focus On", nav_why: "Why Choose Me", nav_events: "Events", nav_reviews: "Reviews", nav_pricing: "Pricing", nav_mashups: "Mashups", nav_mixer: "Mixing Desk", footer_rights: "All rights reserved.", footer_location: "Granollers · BCN", footer_dev: "Developed by Sigma Company", footer_more_projects: "More projects from Sigma Company" },
+        fr: { page_title: "Table de Mixage — DJ Posaxa", nav_home: "Accueil", nav_focus: "Sur quoi je me concentre", nav_why: "Pourquoi me choisir", nav_events: "Événements", nav_reviews: "Avis", nav_pricing: "Tarifs", nav_mashups: "Mashups", nav_mixer: "Table de Mixage", footer_rights: "Tous droits réservés.", footer_location: "Granollers · BCN", footer_dev: "Développé par Sigma Company", footer_more_projects: "Plus de projets de Sigma Company" },
+        de: { page_title: "Mischpult — DJ Posaxa", nav_home: "Startseite", nav_focus: "Worauf ich mich konzentriere", nav_why: "Warum Sie mich wählen sollten", nav_events: "Veranstaltungen", nav_reviews: "Bewertungen", nav_pricing: "Preise", nav_mashups: "Mashups", nav_mixer: "Mischpult", footer_rights: "Alle Rechte vorbehalten.", footer_location: "Granollers · BCN", footer_dev: "Entwickelt von Sigma Company", footer_more_projects: "Weitere Projekte von Sigma Company" }
+      };
+      initializePage(window.pageTranslations);
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+
+</html>

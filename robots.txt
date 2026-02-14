@@ -12,5 +12,5 @@ Disallow: /private/
 # Evita que se indexen parámetros de búsqueda o páginas duplicadas si las hay
 Disallow: /*?*
 
-# Sitemap para ayudar a Google a indexar más rápido
-Sitemap: http://www.djposaxa.ct.ws/sitemap.xml
+# Sitemap per ajudar a Google a indexar més ràpid
+Sitemap: https://sigmacompanyoficial.github.io/Djposaxa-oficial/sitemap.xml

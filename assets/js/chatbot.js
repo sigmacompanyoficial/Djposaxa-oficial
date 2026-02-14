@@ -14,6 +14,10 @@
     // Create Styles
     const style = document.createElement('style');
     style.textContent = `
+        #posaxa-chat-widget, #posaxa-chat-widget * {
+            box-sizing: border-box;
+        }
+
         #posaxa-chat-widget {
             position: fixed;
             bottom: 20px;
@@ -51,7 +55,9 @@
             bottom: 80px;
             right: 0;
             width: 350px;
+            max-width: calc(100vw - 40px);
             height: 450px;
+            max-height: calc(100vh - 120px);
             background: #1a1a1a;
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 15px;
@@ -98,17 +104,22 @@
             flex: 1;
             padding: 15px;
             overflow-y: auto;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             gap: 10px;
+            scroll-behavior: smooth;
         }
 
         .message {
-            max-width: 80%;
+            max-width: 85%;
             padding: 10px 15px;
             border-radius: 15px;
             font-size: 0.9rem;
             line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
 
         .message.bot {
@@ -132,15 +143,17 @@
         .message.bot a {
             color: #a3bffa;
             text-decoration: underline;
+            word-break: break-all;
         }
         .message.bot table {
+            display: block;
             width: 100%;
+            overflow-x: auto;
             border-collapse: collapse;
             margin: 10px 0;
             font-size: 0.85rem;
             background: rgba(0,0,0,0.2);
             border-radius: 8px;
-            overflow: hidden;
         }
         .message.bot th, .message.bot td {
             border: 1px solid rgba(255,255,255,0.2);
@@ -176,6 +189,25 @@
         }
         .message.bot li {
             margin-bottom: 4px;
+        }
+        .message.bot pre {
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .message.bot code {
+            font-family: 'Courier New', Courier, monospace;
+            background: rgba(255,255,255,0.1);
+            padding: 2px 4px;
+            border-radius: 4px;
+            word-break: break-all;
+        }
+        .message.bot pre code {
+            background: none;
+            padding: 0;
+            word-break: normal;
         }
 
         .chat-input-area {
@@ -272,7 +304,7 @@ INFORMACIÓ SOBRE EL POL (DJ POSAXA):
 ESDEVENIMENTS DESTACATS I FUTURS:
 - Inici: Va començar a la Festa de Nadal de l'Escola Pia de Granollers (2024).
 - Trajectòria: Ha punxat al Barri Montserrat (La Garriga), Gra Jove (MusiKnviu 2025), Festa Blanca de Granollers, Disco Inferno XS (Festa Major 2025).
-- PROPER ESDEVENIMENT: CARNAVAL 2026 – 13 de Febrer de 2026 a la NAUB1 (Granollers). Organitzat per Libèlia. Entrada gratuïta.
+- ESDEVENIMENT RECENT: CARNAVAL 2026 – Es va celebrar el 13 de Febrer de 2026 a la NAUB1 (Granollers). Va ser un èxit total amb DJ Posaxa i Skalopa.
 
 SERVEIS I CONTRACTACIÓ:
 - Ofereix serveis per a bodes, aniversaris, festes majors i clubs.
@@ -291,7 +323,7 @@ INSTRUCCIONS DE COMPORTAMENT:
 4. IMPORTANT: Si et pregunten sobre un tema que no té res a veure amb el Pol (ex: política, cuina, altres famosos, matemàtiques...), NO diguis "No puc parlar d'això" ni "Estic limitat". Simplement, respon de forma enginyosa relacionant-ho amb la música del Pol o digues que no en tens ni idea però que saps molt sobre el proper bolo del Pol.
    - Exemple incorrecte: "Només puc parlar del Pol."
    - Exemple correcte: "D'això no en sé gaire, però si vols saber com fer vibrar una pista de ball, el Pol és l'expert! 🔥"
-   - Exemple correcte: "La veritat és que el meu processador està ocupat pensant en el Carnaval 2026 a la NAUB1! Hi vindràs? 🎭"
+   - Exemple correcte: "La veritat és que encara estic flipant amb el Carnaval 2026 a la NAUB1! Va ser increïble! 🔥"
 5. Idioma: Respon en l'idioma que et parlin (Català, Castellà, Anglès).
 6. Sigues persuasiu perquè la gent vagi als esdeveniments i contracti al Pol.
 7. FORMAT: Utilitza **Markdown avançat** per estructurar les respostes. Fes servir títols (###), llistes (•), taules (|), i cites (>).

@@ -14,6 +14,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- SEO & Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageGallery",
+      "name": "Galeria DJ Posaxa",
+      "description": "Recull de fotos i vídeos de les millors sessions de DJ Posaxa, incloent Carnaval 2026, Disco Inferno i més.",
+      "contentLocation": "Granollers, Catalunya",
+      "author": {
+        "@type": "Person",
+        "name": "DJ Posaxa"
+      }
+    }
+    </script>
+
     <style>
         :root {
             --bg-color: #000000;
@@ -39,6 +54,7 @@
             background-size: cover;
             background-position: center;
             margin-bottom: 5vh;
+            border-bottom: 2px solid var(--accent-color);
         }
 
         .gallery-hero h1 {
@@ -106,6 +122,102 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 85%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(102, 126, 234, 0.3);
+            object-fit: contain;
+        }
+
+        #lightbox-caption {
+            color: white;
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            text-align: center;
+            font-family: var(--font-display);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s;
+            z-index: 2001;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: var(--accent-color);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
+        @media (max-width: 768px) {
+
+            .lightbox-prev,
+            .lightbox-next {
+                padding: 10px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -134,77 +246,135 @@
         <section id="carnaval" class="gallery-section">
             <h2 class="gallery-title">Carnaval 2026 (NAUB1)</h2>
             <div class="row g-4 mb-5">
-                <!-- Videos first -->
-                <div class="col-md-6">
-                    <video src="Fotos/Carnaval 26/VID-20260214-WA0103.mp4" controls></video>
-                </div>
-                <div class="col-md-6">
-                    <video src="Fotos/Carnaval 26/VID-20260214-WA0102.mp4" controls></video>
-                </div>
-                <div class="col-md-4">
-                    <video src="Fotos/Carnaval 26/VID-20260214-WA0101.mp4" controls></video>
-                </div>
-                <div class="col-md-4">
-                    <video src="Fotos/Carnaval 26/VID-20260214-WA0100.mp4" controls></video>
-                </div>
                 <div class="col-md-4">
                     <video src="Fotos/Carnaval 26/VID-20260214-WA0099.mp4" controls></video>
                 </div>
+                <div class="col-md-4">
+                    <video src="Fotos/Carnaval 26/VID-20260214-WA0098.mp4" controls></video>
+                </div>
+                <div class="col-md-4">
+                    <video src="Fotos/Carnaval 26/VID-20260214-WA0097.mp4" controls></video>
+                </div>
+                <div class="col-md-4">
+                    <video src="Fotos/Carnaval 26/VID-20260214-WA0096.mp4" controls></video>
+                </div>
+                <div class="col-md-4">
+                    <video src="Fotos/Carnaval 26/VID-20260214-WA0095.mp4" controls></video>
+                </div>
+                <div class="col-md-4">
+                    <video src="Fotos/Carnaval 26/VID-20260214-WA0094.mp4" controls></video>
+                </div>
+                <div class="col-md-4">
+                    <video src="Fotos/Carnaval 26/VID-20260214-WA0104.mp4" controls></video>
+                </div>
             </div>
             <div class="photo-grid">
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0058.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0058.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0058.jpg" title="Carnaval 2026 - DJ Posaxa" role="img"
+                    aria-label="Carnaval 2026 - DJ Posaxa">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0001.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0001.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0001.jpg" title="Moment estel·lar Carnaval" role="img"
+                    aria-label="Moment estel·lar Carnaval">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0037.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0037.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0037.jpg" title="Ambient Carnaval" role="img"
+                    aria-label="Ambient Carnaval">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0039.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0039.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0039.jpg" title="Públic vibrant" role="img"
+                    aria-label="Públic vibrant">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0041.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0041.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0041.jpg" title="Energia a la pista" role="img"
+                    aria-label="Energia a la pista">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0043.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0043.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0043.jpg" title="DJ Posaxa en acció" role="img"
+                    aria-label="DJ Posaxa en acció">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0044.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0044.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0044.jpg" title="Detall cabina" role="img"
+                    aria-label="Detall cabina">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0046.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0046.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0046.jpg" title="Llums i so" role="img"
+                    aria-label="Llums i so">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0048.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0048.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0048.jpg" title="Màxima potència" role="img"
+                    aria-label="Màxima potència">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0050.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0050.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0050.jpg" title="Nit màgica" role="img"
+                    aria-label="Nit màgica">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0052.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0052.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0052.jpg" title="Celebració Carnaval" role="img"
+                    aria-label="Celebració Carnaval">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0054.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0054.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0054.jpg" title="Equip DJ Posaxa" role="img"
+                    aria-label="Equip DJ Posaxa">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0056.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0056.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0056.jpg" title="Visió general Carnaval" role="img"
+                    aria-label="Visió general Carnaval">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0060.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0060.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0060.jpg" title="Emoció a flor de pell" role="img"
+                    aria-label="Emoció a flor de pell">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0062.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0062.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0062.jpg" title="Rhythm and light" role="img"
+                    aria-label="Rhythm and light">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0064.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0064.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0064.jpg" title="Ballem!" role="img"
+                    aria-label="Ballem!">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0066.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0066.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0066.jpg" title="Sessió Carnaval" role="img"
+                    aria-label="Sessió Carnaval">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0068.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0068.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0068.jpg" title="Records inolvidables" role="img"
+                    aria-label="Records inolvidables">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0070.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0070.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0070.jpg" title="Mix perfecte" role="img"
+                    aria-label="Mix perfecte">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0072.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0072.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0072.jpg" title="Vibracions positives" role="img"
+                    aria-label="Vibracions positives">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0074.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0074.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0074.jpg" title="Festa sense fi" role="img"
+                    aria-label="Festa sense fi">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0076.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0076.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0076.jpg" title="DJ Set" role="img" aria-label="DJ Set">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0078.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0078.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0078.jpg" title="Gran nit" role="img"
+                    aria-label="Gran nit">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0080.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0080.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0080.jpg" title="Pista plena" role="img"
+                    aria-label="Pista plena">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0082.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0082.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0082.jpg" title="Colors i sons" role="img"
+                    aria-label="Colors i sons">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0084.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0084.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0084.jpg" title="Beat Carnaval" role="img"
+                    aria-label="Beat Carnaval">
                 </div>
-                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0086.jpg')">
+                <div class="photo-item" style="background-image: url('Fotos/Carnaval 26/IMG-20260214-WA0086.jpg')"
+                    data-src="Fotos/Carnaval 26/IMG-20260214-WA0086.jpg" title="Final de festa" role="img"
+                    aria-label="Final de festa">
                 </div>
             </div>
         </section>
@@ -213,21 +383,44 @@
         <section id="disco" class="gallery-section" style="background: var(--bg-secondary)">
             <h2 class="gallery-title">Festa Major: Disco Inferno XS</h2>
             <div class="photo-grid">
-                <div class="photo-item" style="background-image: url('Fotos/PNC.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC1.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC2.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC3.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC4.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC5.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC6.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC7.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC8.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC9.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC10.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC11.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC12.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC13.jpg')"></div>
-                <div class="photo-item" style="background-image: url('Fotos/PNC14.jpg')"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC.jpg')" data-src="Fotos/PNC.jpg"
+                    title="Disco Inferno XS - Festa Major" role="img" aria-label="Disco Inferno XS - Festa Major"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC1.jpg')" data-src="Fotos/PNC1.jpg"
+                    title="Festa vibrant" role="img" aria-label="Festa vibrant"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC2.jpg')" data-src="Fotos/PNC2.jpg"
+                    title="DJ Posaxa Live" role="img" aria-label="DJ Posaxa Live"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC3.jpg')" data-src="Fotos/PNC3.jpg"
+                    title="Ambient Disco Inferno" role="img" aria-label="Ambient Disco Inferno"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC4.jpg')" data-src="Fotos/PNC4.jpg"
+                    title="Records Festa Major" role="img" aria-label="Records Festa Major"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC5.jpg')" data-src="Fotos/PNC5.jpg"
+                    title="Sessió XS" role="img" aria-label="Sessió XS"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC6.jpg')" data-src="Fotos/PNC6.jpg"
+                    title="Màgia a la cabina" role="img" aria-label="Màgia a la cabina"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC7.jpg')" data-src="Fotos/PNC7.jpg"
+                    title="Nit inolvidable" role="img" aria-label="Nit inolvidable"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC8.jpg')" data-src="Fotos/PNC8.jpg"
+                    title="Energia pura" role="img" aria-label="Energia pura"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC9.jpg')" data-src="Fotos/PNC9.jpg"
+                    title="Disco Style" role="img" aria-label="Disco Style"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC10.jpg')" data-src="Fotos/PNC10.jpg"
+                    title="PNC Sessions" role="img" aria-label="PNC Sessions"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC11.jpg')" data-src="Fotos/PNC11.jpg"
+                    title="Llum i color" role="img" aria-label="Llum i color"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC12.jpg')" data-src="Fotos/PNC12.jpg"
+                    title="Beat Festa Major" role="img" aria-label="Beat Festa Major"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC13.jpg')" data-src="Fotos/PNC13.jpg"
+                    title="Disco Inferno XS" role="img" aria-label="Disco Inferno XS"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC14.jpg')" data-src="Fotos/PNC14.jpg"
+                    title="Moments PNC" role="img" aria-label="Moments PNC"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC15.jpg')" data-src="Fotos/PNC15.jpg"
+                    title="Festa XS" role="img" aria-label="Festa XS"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC16.jpg')" data-src="Fotos/PNC16.jpg"
+                    title="Ritme a la nit" role="img" aria-label="Ritme a la nit"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC17.jpg')" data-src="Fotos/PNC17.jpg"
+                    title="DJ Posaxa PNC" role="img" aria-label="DJ Posaxa PNC"></div>
+                <div class="photo-item" style="background-image: url('Fotos/PNC18.jpg')" data-src="Fotos/PNC18.jpg"
+                    title="Final Disco Inferno" role="img" aria-label="Final Disco Inferno"></div>
             </div>
         </section>
 
@@ -241,7 +434,20 @@
                 <div class="col-md-6"><video src="Fotos/GRA EVENT/IMG_2450.mov" controls></video></div>
             </div>
         </section>
+
+
     </main>
+
+    <!-- Custom Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-prev"><i class="bi bi-chevron-left"></i></button>
+        <button class="lightbox-next"><i class="bi bi-chevron-right"></i></button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Lightbox Image">
+            <div id="lightbox-caption"></div>
+        </div>
+    </div>
 
     <footer class="py-5 text-center border-top border-white-10">
         <p>&copy; 2026 DJ Posaxa. Tots els drets reservats.</p>
@@ -264,6 +470,72 @@
                 stagger: 0.1,
                 ease: "power3.out"
             });
+        });
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeBtn = document.querySelector('.lightbox-close');
+        const prevBtn = document.querySelector('.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-next');
+        const galleryItems = document.querySelectorAll('.photo-item');
+
+        let currentIndex = -1;
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                showImage(currentIndex);
+            });
+        });
+
+        function showImage(index) {
+            const item = galleryItems[index];
+            const src = item.getAttribute('data-src');
+            const title = item.getAttribute('title');
+
+            lightboxImg.src = src;
+            lightboxCaption.textContent = title;
+
+            lightbox.style.display = 'flex';
+            gsap.to(lightbox, { opacity: 1, duration: 0.5 });
+            gsap.from(lightboxImg, { scale: 0.8, opacity: 0, duration: 0.5, ease: "back.out(1.7)" });
+        }
+
+        function closeLightbox() {
+            gsap.to(lightbox, {
+                opacity: 0,
+                duration: 0.3,
+                onComplete: () => {
+                    lightbox.style.display = 'none';
+                }
+            });
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            showImage(currentIndex);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            showImage(currentIndex);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevBtn.click();
+                if (e.key === 'ArrowRight') nextBtn.click();
+            }
         });
     </script>
 </body>

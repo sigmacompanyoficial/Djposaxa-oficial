@@ -16,11 +16,11 @@
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
        <image:image>
-         <image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/inici-1.jpg</image:loc>
+         <image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-sessio-inici-1.jpg</image:loc>
          <image:title>DJ Posaxa - Pista Plena</image:title>
        </image:image>
        <image:image>
-         <image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/inici-3.jpg</image:loc>
+         <image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-sessio-inici-3.jpg</image:loc>
          <image:title>DJ Posaxa - Energia</image:title>
        </image:image>
   </url>
@@ -72,22 +72,22 @@
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
        <!-- Carnaval 2026 -->
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/Carnaval%2026/IMG-20260214-WA0058.jpg</image:loc><image:title>Carnaval 2026 DJ Posaxa</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/Carnaval%2026/IMG-20260214-WA0001.jpg</image:loc><image:title>Festa Carnaval</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/Carnaval%2026/IMG-20260214-WA0037.jpg</image:loc><image:title>Ambient Carnaval</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/Carnaval%2026/IMG-20260214-WA0039.jpg</image:loc><image:title>Nit de Carnaval</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/Carnaval%2026/IMG-20260214-WA0041.jpg</image:loc><image:title>Sessió Carnaval</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0058.jpg</image:loc><image:title>Carnaval 2026 DJ Posaxa</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0001.jpg</image:loc><image:title>Festa Carnaval</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0037.jpg</image:loc><image:title>Ambient Carnaval</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0039.jpg</image:loc><image:title>Nit de Carnaval</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0041.jpg</image:loc><image:title>Sessió Carnaval</image:title></image:image>
        <!-- PNC Sessions -->
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/PNC.jpg</image:loc><image:title>Disco Inferno PNC</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/PNC1.jpg</image:loc><image:title>Festa Major PNC</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/PNC2.jpg</image:loc><image:title>PNC Sessions DJ Posaxa</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/PNC4.jpg</image:loc><image:title>Moment PNC</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/PNC8.jpg</image:loc><image:title>Final de Festa PNC</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-disco-inferno-pnc-0.jpg</image:loc><image:title>Disco Inferno PNC</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-disco-inferno-pnc-1.jpg</image:loc><image:title>Festa Major PNC</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-disco-inferno-pnc-2.jpg</image:loc><image:title>PNC Sessions DJ Posaxa</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-disco-inferno-pnc-4.jpg</image:loc><image:title>Moment PNC</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-disco-inferno-pnc-8.jpg</image:loc><image:title>Final de Festa PNC</image:title></image:image>
        <!-- General Gallery -->
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/o1.jpg</image:loc><image:title>DJ Posaxa Live</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/o2.jpg</image:loc><image:title>Sessions DJ Posaxa</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/o3.jpg</image:loc><image:title>Ambient Festa</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/VIRTUAL%20DIVA%20IMAGE.png</image:loc><image:title>Virtual Diva Promo</image:title></image:image>
-       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/inici-1.jpg</image:loc><image:title>Inici Sessió DJ Posaxa</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-ambient-festa-1.jpg</image:loc><image:title>DJ Posaxa Live</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-ambient-festa-2.jpg</image:loc><image:title>Sessions DJ Posaxa</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-ambient-festa-3.jpg</image:loc><image:title>Ambient Festa</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-virtual-diva-mashup.png</image:loc><image:title>Virtual Diva Promo</image:title></image:image>
+       <image:image><image:loc>https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-sessio-inici-1.jpg</image:loc><image:title>Inici Sessió DJ Posaxa</image:title></image:image>
   </url>
 </urlset>

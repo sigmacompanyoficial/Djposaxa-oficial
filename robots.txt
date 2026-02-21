@@ -1,15 +1,22 @@
 # robots.txt para DJ Posaxa
-# Permite que todos los motores de búsqueda indexen tu web
+# Permite que todos los motores de búsqueda indexen tu web y tus imágenes
 User-agent: *
 Allow: /
+Allow: /Fotos/
 
-# Bloquea posibles carpetas privadas o temporales (ajusta si no existen)
+# Opcional, asegurar que Googlebot-Image tenga permiso explícito:
+User-agent: Googlebot-Image
+Allow: /Fotos/
+
+# Bloquea posibles carpetas privadas si las hay
 Disallow: /admin/
-Disallow: /backup/
-Disallow: /temp/
-Disallow: /private/
+Disallow: /admin.html
+Disallow: /dj-panel/
+Disallow: /dj-panel.html
+Disallow: /configuracio/
+Disallow: /configuracio.html
 
-# Evita que se indexen parámetros de búsqueda o páginas duplicadas si las hay
+# Evita duplicados o búsquedas con query param
 Disallow: /*?*
 
 # Sitemap per ajudar a Google a indexar més ràpid

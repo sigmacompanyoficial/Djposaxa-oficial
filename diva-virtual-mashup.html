@@ -26,7 +26,8 @@
 
   <!-- Premium Styles -->
   <link rel="stylesheet" href="assets/css/premium-index.css">
-  <link rel="icon" type="image/png" href="Fotos/logo.png">
+  <link rel="icon" type="image/png" href="Fotos/dj-posaxa-logo.png">
+  <meta property="og:image" content="https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-logo.png">
 </head>
 
 <body class="is-loading">
@@ -38,7 +39,7 @@
   <nav class="nav">
     <div class="nav-logo">
       <a href="index.html">
-        <img src="Fotos/logo.png" alt="DJ Posaxa" style="height: 50px;">
+        <img src="Fotos/dj-posaxa-logo.png" alt="Dj Posaxa Logo" style="height: 50px;">
       </a>
     </div>
     <div class="nav-links d-none d-lg-flex">
@@ -85,7 +86,8 @@
       <!-- Main Content -->
       <section class="d-flex align-items-center justify-content-center"
         style="min-height: 100vh; padding: 120px 0 80px;" data-color="dark">
-        <div class="hero-bg" style="background-image: url('Fotos/inici-1.jpg'); opacity: 0.2;"></div>
+        <div class="hero-bg" style="background-image: url('Fotos/dj-posaxa-sessio-inici-1.jpg'); opacity: 0.2;">
+    <img src="Fotos/dj-posaxa-sessio-inici-1.jpg" alt="Dj Posaxa Sessio Inici 1" class="visually-hidden" loading="lazy"></div>
 
         <div class="container">
           <div class="row justify-content-center">
@@ -95,7 +97,7 @@
                 <div class="row g-0">
                   <!-- Cover Image -->
                   <div class="col-md-5 position-relative">
-                    <img src="Fotos/VIRTUAL DIVA IMAGE.png" alt="Carátula del Mashup" class="img-fluid w-100 h-100"
+                    <img src="Fotos/dj-posaxa-virtual-diva-mashup.png" alt="Dj Posaxa Virtual Diva Mashup" class="img-fluid w-100 h-100"
                       style="object-fit: cover; min-height: 400px;" loading="lazy">
                     <div class="position-absolute top-0 start-0 w-100 h-100"
                       style="background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%); mix-blend-mode: multiply;">
@@ -121,7 +123,7 @@
                     </div>
 
                     <div class="d-grid gap-3 d-md-flex mt-auto">
-                      <a href="audio/Diva virtual (DJ Posaxa MASHUP).mp3" id="download-mp3-btn" class="btn-premium px-4"
+                      <a href="audio/Diva%20virtual%20(DJ%20Posaxa%20MASHUP).mp3" id="download-mp3-btn" class="btn-premium px-4"
                         download data-translate="mashup_download_mp3">
                         <i class="bi bi-download me-2"></i>Descargar MP3
                       </a>
@@ -252,7 +254,7 @@
     // Auth & Download Tracking Logic
     onAuthStateChanged(auth, user => {
       if (user) {
-        authContainer.innerHTML = `<a class="nav-link" href="perfil.html"><img src="${user.photoURL}" style="width: 30px; height: 30px; border-radius: 50%;"></a>`;
+        authContainer.innerHTML = `<a class="nav-link" href="perfil.html"><img src="${user.photoURL}" style="width: 30px; height: 30px; border-radius: 50%;" alt="User Profile"></a>`;
       } else {
         authContainer.innerHTML = `<button class="btn btn-sm btn-outline-light" data-bs-toggle="modal" data-bs-target="#authModal">Login</button>`;
       }

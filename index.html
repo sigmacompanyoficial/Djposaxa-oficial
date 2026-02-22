@@ -4,2025 +4,446 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DJ Posaxa - Official Website</title>
-
-  <!-- SEO Meta Tags -->
-  <meta name="description"
-    content="Eleva la teva festa al següent nivell amb DJ Posaxa. Experiències musicals inoblidables, mashups exclusius i animació professional per a qualsevol esdeveniment a Granollers i Barcelona.">
-  <meta name="keywords"
-    content="DJ Posaxa, DJ Granollers, DJ Barcelona, festa, esdeveniments, música, mashups, reggaeton, techno, boda, aniversari, lloguer DJ">
-  <meta name="author" content="Sigma Company">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://djposaxa.com/index.html">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://djposaxa.com/">
-  <meta property="og:title" content="DJ Posaxa - Official Website">
-  <meta property="og:description"
-    content="Eleva la teva festa al següent nivell amb DJ Posaxa. Experiències musicals inoblidables i animació professional.">
-  <meta property="og:image" content="https://sigmacompanyoficial.github.io/Djposaxa-oficial/Fotos/dj-posaxa-logo.png">
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://djposaxa.com/">
-  <meta property="twitter:title" content="DJ Posaxa - Official Website">
-  <meta property="twitter:description"
-    content="Eleva la teva festa al següent nivell amb DJ Posaxa. Experiències musicals inoblidables i animació professional.">
-  <meta property="twitter:image" content="https://djposaxa.com/Fotos/dj-posaxa-logo.png">
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap"
-    rel="stylesheet">
-
-  <!-- Bootstrap CSS (needed for Auth Modal mostly) -->
+  <title>DJ Posaxa - Promo Animation</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <link rel="icon" type="image/png" href="Fotos/dj-posaxa-logo.png">
-  <link rel="stylesheet" href="assets/css/premium-index.css">
-
   <style>
-    :root {
-      --bg-color: #050505;
-      --bg-secondary: #0f0f0f;
-      /* Darker grey for contrast */
-      --text-color: #ffffff;
-      --text-secondary: #a0aec0;
-      --accent-color: #fff;
-      --font-main: 'Inter', sans-serif;
-      --font-display: 'Playfair Display', serif;
-    }
-
-    * {
+    body,
+    html {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-family: var(--font-main);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* GSAP & Animation Utilities */
-    .char,
-    .word,
-    .line {
-      display: inline-block;
-      overflow: hidden;
-      vertical-align: top;
-    }
-
-    /* Container for dynamic local images with parallax */
-    .img-parallax-container {
-      position: relative;
-      overflow: hidden;
       width: 100%;
       height: 100%;
+      overflow: hidden;
+      font-family: arial, sans-serif;
     }
 
-    .img-parallax-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform-origin: center;
-      /* Will be scaled up by JS */
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: opacity 0.3s;
-    }
-
-    /* Custom Cursor */
-    .cursor {
+    /* --- CURSOR --- */
+    #fake-cursor {
       position: fixed;
-      width: 10px;
-      height: 10px;
-      background: #fff;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: difference;
-      transform: translate(-50%, -50%);
-      display: none;
-    }
-
-    .cursor-follower {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s;
-      mix-blend-mode: difference;
-      display: none;
-    }
-
-    @media (pointer: fine) {
-
-      .cursor,
-      .cursor-follower {
-        display: block;
-      }
-    }
-
-    /* Navigation */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 2rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      mix-blend-mode: difference;
-      color: #fff;
-      flex-wrap: wrap;
-    }
-
-    .nav-logo img {
-      height: 40px;
-      filter: invert(1);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      opacity: 0.7;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      opacity: 1;
-    }
-
-    /* Hero */
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 5vw;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg-wrap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      width: 100%;
-      height: 120%;
-      /* Larger for parallax */
-      background-image: url('Fotos/dj-posaxa-sessio-inici-1.jpg');
-      background-size: cover;
-      background-position: center;
-      position: absolute;
-      top: -10%;
-      /* Center visually initially */
-      left: 0;
-      opacity: 0.4;
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 8rem);
-      line-height: 1;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      max-width: 90%;
-      overflow: hidden;
-      /* For reveal masking */
-    }
-
-    .hero-subtitle {
-
-      font-size: clamp(1rem, 2vw, 1.5rem);
-      max-width: 500px;
-      opacity: 0.9;
-      line-height: 1.5;
-      margin-bottom: 3rem;
-      font-weight: 300;
-    }
-
-    .btn-premium {
-      display: inline-block;
-      padding: 1rem 3rem;
-      border: 1px solid #fff;
-      border-radius: 50px;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-      background: transparent;
-      color: #fff;
-    }
-
-    .btn-premium:hover {
-      background: #fff;
-      color: #000;
-      padding: 1rem 4rem;
-    }
-
-    /* Intro / Event Banner */
-    .intro {
-      padding: 15vh 10vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .intro h2 {
-      font-family: var(--font-display);
-      font-size: 3rem;
-      margin-bottom: 2rem;
-    }
-
-    .intro p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Bio Section (Text Reveal) */
-    .bio-section {
-      padding: 10vh 5vw;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .bio-content {
-      flex: 1 1 500px;
-      padding-right: 5vw;
-    }
-
-    .bio-text {
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      line-height: 1.3;
-      font-weight: 300;
-    }
-
-    .bio-image-wrapper {
-      flex: 1 1 400px;
-      height: 600px;
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .bio-image {
-      width: 100%;
-      height: 120%;
-      /* Extra height for parallax */
-      background-image: url('Fotos/dj-posaxa-biografia.jpeg');
-      background-size: cover;
-      background-position: center;
-    }
-
-
-    /* Horizontal Scroll (Features) */
-    .horizontal-scroll {
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      background: transparent;
-      /* Transparent to inherit body dark change */
-      color: #fff;
-      display: flex;
-      align-items: center;
-      position: relative;
-    }
-
-    .horizontal-wrap {
-      display: flex;
-      padding-left: 5vw;
-      width: 300%;
-      /* Adjust based on number of items */
-    }
-
-    .horizontal-item {
-      width: 60vw;
-      height: 70vh;
-      flex-shrink: 0;
-      margin-right: 5vw;
-      padding: 3rem;
-      border-left: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: rgba(20, 20, 20, 0.5);
-      backdrop-filter: blur(10px);
-    }
-
-    .horizontal-item i {
-      font-size: 4rem;
-      margin-bottom: 2rem;
-      color: #fff;
-    }
-
-    .horizontal-item h3 {
-      font-family: var(--font-display);
-      font-size: 3.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .horizontal-item p {
-      font-size: 1.3rem;
-      color: #ccc;
-      line-height: 1.5;
-    }
-
-    /* Stats Grid */
-    .stats-section {
-      padding: 15vh 5vw;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      text-align: center;
-    }
-
-    .stat-item h2 {
-      font-family: var(--font-display);
-      font-size: 5rem;
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-
-    .stat-item p {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      opacity: 0.6;
-    }
-
-    /* Footer */
-    .footer {
-      padding: 10vh 5vw 5vh;
-      background: #000;
-      border-top: 1px solid #222;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 4rem;
-      margin-bottom: 5rem;
-    }
-
-    .footer-col h5 {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-col p,
-    .footer-col a {
-      color: #888;
-      display: block;
-      margin-bottom: 0.8rem;
-      transition: color 0.3s;
-    }
-
-    .footer-col a:hover {
-      color: #fff;
-    }
-
-    .social-icons a {
-      font-size: 1.5rem;
-      margin-right: 1.5rem;
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 2rem;
-      border-top: 1px solid #111;
-      font-size: 0.9rem;
-      color: #444;
-    }
-
-    /* --- MOBILE OPTIMIZATIONS --- */
-    @media (max-width: 768px) {
-      .nav {
-        padding: 1rem 1.5rem;
-        background: rgba(5, 5, 5, 0.8);
-        backdrop-filter: blur(10px);
-      }
-
-      .nav-logo img {
-        height: 35px;
-      }
-
-      .hero {
-        padding: 0 1.5rem;
-      }
-
-      .hero-title {
-        font-size: 3.5rem;
-      }
-
-      .intro {
-        padding: 10vh 1.5rem;
-      }
-
-      .intro h2 {
-        font-size: 2.2rem;
-      }
-
-      .bio-section {
-        padding: 5vh 1.5rem;
-        flex-direction: column;
-      }
-
-      .bio-content {
-        padding-right: 0;
-        margin-bottom: 2rem;
-      }
-
-      .bio-image-wrapper {
-        width: 100%;
-        height: 400px;
-      }
-
-      /* Horizontal Scroll -> Native on Mobile for FLUIDITY */
-      .horizontal-scroll {
-        height: auto;
-        min-height: 50vh;
-        overflow-x: auto;
-        overflow-y: hidden;
-        display: block;
-        -webkit-overflow-scrolling: touch;
-        padding: 2rem 0;
-        scroll-snap-type: x mandatory;
-        scroll-padding: 0 1.5rem;
-      }
-
-      .horizontal-wrap {
-        width: max-content;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        display: flex;
-        gap: 1.5rem;
-      }
-
-      .horizontal-item {
-        width: 85vw;
-        height: auto;
-        min-height: 400px;
-        margin-right: 0;
-        border-left: 1px solid rgba(255, 255, 255, 0.2);
-        background: rgba(20, 20, 20, 0.5);
-        padding: 2rem;
-        scroll-snap-align: center;
-      }
-
-      .stats-section {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-        padding: 10vh 1.5rem;
-      }
-
-      .stat-item h2 {
-        font-size: 4rem;
-      }
-
-      .footer {
-        padding: 5vh 1.5rem;
-      }
-    }
-
-    /* --- NEW SECTIONS STYLES --- */
-
-    /* Marquee */
-    .marquee-section {
-      position: relative;
-    }
-
-    .marquee-content span {
-      padding: 0 1rem;
-    }
-
-    /* Buttons White Text */
-    .btn-premium,
-    .btn {
-      color: #fff !important;
-    }
-
-    .btn-premium:hover {
-      color: #000 !important;
-      /* Invert on hover if desired, or keep white */
-    }
-
-    /* Gallery Items Base Styles */
-    .gallery-item {
-      background-color: #000;
-      /* Black background for letterboxing */
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="black" stroke="white" stroke-width="1"><path d="M5.5 3.21l10.08 15.66c.36.56-.16 1.27-.78 1.07l-3.66-1.18-3.05 6.63c-.22.48-.8.69-1.28.47l-1.74-.8c-.48-.22-.69-.8-.47-1.28l3.05-6.63-4.14-1.34c-.62-.2-.54-1.11.12-1.2l1.87-11.4z"/></svg>');
       background-size: contain;
-      /* Show full image, no cropping */
       background-repeat: no-repeat;
-      background-position: center;
-      border-radius: 8px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 99999;
+      pointer-events: none;
+      filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3));
     }
 
-    .gallery-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
-      z-index: 2;
-    }
-
-    /* Grid Layouts - Using PNC Photos */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(3, 300px);
-      /* Increased rows */
-      gap: 1.5rem;
-    }
-
-    .item-1 {
-      grid-column: 1 / 3;
-      grid-row: 1 / 2;
-      background-image: url('Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0058.jpg');
-    }
-
-    .item-2 {
-      grid-column: 3 / 5;
-      grid-row: 1 / 2;
-      background-image: url('Fotos/dj-posaxa-disco-inferno-pnc-1.jpg');
-    }
-
-    .item-3 {
-      grid-column: 1 / 2;
-      grid-row: 2 / 3;
-      background-image: url('Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0037.jpg');
-    }
-
-    .item-4 {
-      grid-column: 2 / 4;
-      grid-row: 2 / 3;
-      background-image: url('Fotos/dj-posaxa-disco-inferno-pnc-4.jpg');
-    }
-
-    .item-5 {
-      grid-column: 4 / 5;
-      grid-row: 2 / 3;
-      background-image: url('Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0064.jpg');
-    }
-
-    .item-6 {
-      grid-column: 1 / 3;
-      grid-row: 3 / 4;
-      background-image: url('Fotos/dj-posaxa-disco-inferno-pnc-2.jpg');
-    }
-
-    .item-7 {
-      grid-column: 3 / 4;
-      grid-row: 3 / 4;
-      background-image: url('Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0001.jpg');
-    }
-
-    .item-8 {
-      grid-column: 4 / 5;
-      grid-row: 3 / 4;
-      background-image: url('Fotos/dj-posaxa-disco-inferno-pnc-8.jpg');
-    }
-
-
-    @media (max-width: 768px) {
-      .gallery-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .gallery-item {
-        height: 300px;
-      }
-    }
-
-
-    /* Process Steps */
-    .process-steps {
+    /* --- GOOGLE PHASE --- */
+    #google-phase {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
       display: flex;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1000;
     }
 
-    .process-step {
-      flex: 1 1 300px;
-      padding: 2rem;
+    .google-logo {
+      margin-top: 15vh;
+      font-size: 90px;
+      font-weight: bold;
+      letter-spacing: -2px;
+    }
+
+    .g-blue {
+      color: #4285f4;
+    }
+
+    .g-red {
+      color: #ea4335;
+    }
+
+    .g-yellow {
+      color: #fbbc05;
+    }
+
+    .g-green {
+      color: #34a853;
+    }
+
+    .search-bar {
+      margin-top: 30px;
+      width: 580px;
+      height: 46px;
+      border: 1px solid #dfe1e5;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 1px 6px rgba(32, 33, 36, .28);
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+
+    /* Results Page Mock */
+    #google-results {
+      display: none;
+      width: 100%;
+      height: 100%;
+      padding: 20px 150px;
+      text-align: left;
+    }
+
+    .result-item {
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    .result-url {
+      color: #202124;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .result-title {
+      color: #1a0dab;
+      font-size: 20px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .result-title:hover {
+      text-decoration: underline;
+    }
+
+    .result-desc {
+      color: #4d5156;
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    /* --- WEBSITE PHASE --- */
+    #site-phase {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 500;
+      opacity: 0;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* --- FAKE CHATBOT OVERLAY --- */
+    #fake-chatbot-ui {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 350px;
+      height: 450px;
+      background: #1a1a1a;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 15px;
-      transition: background 0.3s, transform 0.3s;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      display: none;
+      /* Hidden initially */
+      flex-direction: column;
+      z-index: 2000;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
     }
 
-    .process-step:hover {
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateY(-10px);
+    .chat-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 15px;
+      color: white;
     }
 
-    .step-number {
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--text-secondary);
-      opacity: 0.3;
-      margin-bottom: 1rem;
-    }
-
-    .process-step h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      font-family: var(--font-display);
-    }
-
-    /* FAQ Accordion */
-    .faq-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-    }
-
-    .faq-question {
+    .chat-messages {
+      flex: 1;
+      padding: 15px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      padding: 1rem 0;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
     }
 
-    .faq-question h4 {
-      font-size: 1.2rem;
-      font-weight: 300;
-      margin: 0;
+    .message {
+      padding: 10px 15px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      max-width: 85%;
+      color: #fff;
     }
 
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
+    .message.bot {
+      background: rgba(255, 255, 255, 0.1);
+      align-self: flex-start;
     }
 
-    .faq-answer p {
-      padding-top: 1rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin: 0;
+    .message.user {
+      background: #667eea;
+      align-self: flex-end;
     }
 
-    .faq-item.active .faq-answer {
-      max-height: 200px;
+    .chat-input-area {
+      padding: 15px;
+      background: #111;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .faq-item.active .bi-plus-lg {
-      transform: rotate(45deg);
-      transition: transform 0.3s;
-    }
-
-    /* Music Styles */
-    .style-bar span {
-      font-family: var(--font-display);
-      letter-spacing: 0.05em;
-    }
-
-    .style-image-grid img {
-      transition: transform 0.5s ease;
-    }
-
-    .style-image-grid:hover img {
-      transform: translateY(0) !important;
-    }
-
-    /* Behind-the-Scenes Photos */
-    .bts-photo {
+    .fake-input {
       width: 100%;
-      height: 300px;
-      background-size: cover;
-      background-position: center;
-      border-radius: 10px;
-      transition: all 0.4s ease;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .bts-photo::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      transition: opacity 0.3s;
-    }
-
-    .bts-photo:hover::after {
-      opacity: 0;
-    }
-
-    .bts-photo:hover {
-      transform: scale(1.05);
-      box-shadow: 0 15px 50px rgba(255, 255, 255, 0.2);
-    }
-
-    /* Timeline */
-    .timeline-dot {
-      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.1);
-    }
-
-    /* Testimonials Carousel */
-    .testimonials-track {
-      animation: scroll-testimonials 20s linear infinite;
-    }
-
-    @keyframes scroll-testimonials {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(calc(-420px * 3));
-      }
-    }
-
-    .testimonials-track:hover {
-      animation-play-state: paused;
-    }
-
-    .testimonial-card {
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .testimonial-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 60px rgba(255, 255, 255, 0.15);
-    }
-
-    /* Impact Numbers */
-    .impact-number {
-      font-family: var(--font-display);
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      .timeline-line {
-        left: 20px !important;
-      }
-
-      .timeline-item {
-        padding-left: 50px;
-      }
-
-      .timeline-item>div {
-        text-align: left !important;
-        padding: 0 !important;
-      }
-
-      .timeline-dot {
-        left: 20px !important;
-      }
-
-      .testimonial-card {
-        min-width: 300px !important;
-      }
-    }
-
-    /* Party Photos Animations */
-    .party-photo,
-    .party-photo-large {
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      cursor: pointer;
-    }
-
-    .party-photo:hover,
-    .party-photo-large:hover {
-      transform: scale(1.03);
-      box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2);
-      z-index: 10;
-    }
-
-    .photo-overlay {
-      transition: opacity 0.3s;
-    }
-
-    .party-photo-large:hover .photo-overlay {
-      opacity: 0;
-    }
-
-    /* Video Section */
-    .video-container .bi-play-circle-fill:hover {
-      color: rgba(255, 255, 255, 1) !important;
-      transform: scale(1.1);
-    }
-
-    /* Vibe Section */
-    .vibe-image {
-      transition: transform 0.5s ease;
-    }
-
-    .vibe-image:hover {
-      transform: scale(1.02);
-    }
-
-    /* Full-Width Section Parallax */
-    .section-fullwidth {
-      will-change: transform;
-    }
-
-    .carnaval-photo-card {
-      transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-      cursor: pointer;
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .carnaval-photo-card:hover {
-      transform: scale(1.02) translateY(-10px);
-      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-      border-color: rgba(102, 126, 234, 0.5);
+      border-radius: 20px;
+      padding: 8px 15px;
+      color: white;
+      height: 38px;
+      display: flex;
+      align-items: center;
     }
   </style>
 </head>
 
-<body class="is-loading">
+<body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
+  <!-- Fake Cursor -->
+  <div id="fake-cursor"></div>
 
-  <!-- Navigation -->
-  <nav class="nav" style="flex-wrap: wrap;">
-    <div class="nav-logo">
-      <a href="index.html">
-        <img src="Fotos/dj-posaxa-logo.png" alt="Dj Posaxa Logo" style="height: 50px;">
-      </a>
+  <!-- Google Phase -->
+  <div id="google-phase">
+    <div id="google-home" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+      <div class="google-logo">
+        <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span
+          class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+      </div>
+      <div class="search-bar">
+        <i class="bi bi-search" style="color: #9aa0a6;"></i>
+        <input type="text" class="search-input" id="g-input" readonly>
+        <i class="bi bi-mic-fill" style="color: #4285f4; font-size: 20px;"></i>
+      </div>
     </div>
-    <div class="nav-links d-none d-lg-flex">
-      <a href="index.html" class="active" data-translate="nav_home">Inici</a>
-      <a href="en-que-em-centro/" data-translate="nav_focus">En què em centro</a>
-      <a href="esdeveniments/" data-translate="nav_events">Esdeveniments</a>
-      <a href="opinions/" data-translate="nav_reviews">Opinions</a>
-      <a href="preus/" data-translate="nav_pricing">Preus</a>
-      <a href="mashups/" data-translate="nav_mashups">Mashups</a>
-      <a href="configuracio/"><i class="bi bi-gear-fill"></i></a>
 
-      <!-- Auth Containers -->
-      <div id="auth-container"></div>
-      <div id="admin-link-container"></div>
-    </div>
-    <!-- Mobile Toggle -->
-    <button class="navbar-toggler d-lg-none text-white border-0" type="button" data-bs-toggle="collapse"
-      data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="bi bi-list fs-1"></i>
-    </button>
-
-    <!-- Mobile Menu Content -->
-    <div class="collapse navbar-collapse w-100 d-lg-none mt-3" id="mobileNav"
-      style="background: rgba(10,10,10,0.95); border-radius: 15px; padding: 1rem;">
-      <ul class="navbar-nav text-center">
-        <li class="nav-item"><a class="nav-link text-white py-2" href="index.html" data-translate="nav_home">Inici</a>
-        </li>
-        <li class="nav-item"><a class="nav-link text-white py-2" href="en-que-em-centro/" data-translate="nav_focus">En
-            què em centro</a></li>
-        <li class="nav-item"><a class="nav-link text-white py-2" href="esdeveniments/"
-            data-translate="nav_events">Esdeveniments</a></li>
-        <li class="nav-item"><a class="nav-link text-white py-2" href="opinions/"
-            data-translate="nav_reviews">Opinions</a></li>
-        <li class="nav-item"><a class="nav-link text-white py-2" href="preus/" data-translate="nav_pricing">Preus</a>
-        </li>
-        <li class="nav-item"><a class="nav-link text-white py-2" href="mashups/"
-            data-translate="nav_mashups">Mashups</a></li>
-        <li class="nav-item"><a class="nav-link text-white py-2" href="configuracio/">Configuració ⚙️</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Smooth Wrapper (Lenis target) -->
-  <div id="smooth-wrapper">
-    <div id="smooth-content">
-
-      <!-- Hero Section -->
-      <section class="hero" data-color="dark">
-        <div class="hero-bg-wrap">
-          <div class="hero-bg" role="img" aria-label="DJ Posaxa actuant live en un esdeveniment"></div>
+    <div id="google-results">
+      <div
+        style="display: flex; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #ebebeb; padding-bottom: 15px;">
+        <span class="google-logo" style="font-size: 30px; margin-top: 0; margin-right: 30px;">
+          <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span
+            class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+        </span>
+        <div class="search-bar" style="margin-top: 0; width: 400px; height: 40px;">
+          <input type="text" class="search-input" value="dj posaxa" readonly>
         </div>
-        <div class="hero-content">
-          <h1 class="hero-title glitch-text" data-translate="hero_title">
-            Eleva la teva festa al següent nivell
-          </h1>
-          <div class="hero-subtitle">
-            <p data-translate="hero_subtitle">Experiències musicals inoblidables per a qualsevol esdeveniment.</p>
-          </div>
-          <div class="hero-cta-wrap">
-            <a href="preus/" class="btn-premium" data-translate="hero_cta">Reserva Ara</a>
-          </div>
-        </div>
-      </section>
+      </div>
 
-      <!-- Event Banner removed as Carnaval has concluded -->
+      <div class="result-item" id="target-result">
+        <div class="result-url">https://djposaxa.com</div>
+        <a href="#" class="result-title">DJ Posaxa - Official Website</a>
+        <div class="result-desc">Eleva la teva festa al següent nivell amb DJ Posaxa. Experiències musicals
+          inoblidables, mashups exclusius i animació professional.</div>
+      </div>
 
-
-      <!-- Bio Section (Text Reveal) -->
-      <section class="bio-section" data-color="light">
-        <div class="bio-content">
-          <h2 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 2rem;">Sobre mi</h2>
-          <p class="bio-text" data-translate="about_text1">
-            DJ Posaxa és el nom artístic de Pol Solanas Ramos, nascut el 16 de juny de 2010 a Granollers.
-            Apassionat per la música des de ben petit.
-          </p>
-          <p class="bio-text" style="margin-top: 2rem; font-size: 1.5rem;" data-translate="about_text2">
-            Estil que combina reggaeton, dembow, techno i música festiva. Energia i connexió amb el públic.
-          </p>
-        </div>
-        <div class="bio-image-wrapper">
-          <div class="bio-image" style="background-image: url('Fotos/dj-posaxa-biografia.jpeg');">
-    <img src="Fotos/dj-posaxa-biografia.jpeg" alt="Dj Posaxa Biografia" class="visually-hidden" loading="lazy"></div>
-        </div>
-      </section>
-
-      <!-- Horizontal Scroll (Features) -->
-      <section class="horizontal-scroll" data-color="light">
-        <div class="horizontal-wrap">
-          <div class="horizontal-item">
-            <i class="bi bi-disc"></i>
-            <h3 data-translate="feature1_title">Expert en Mashups</h3>
-            <p data-translate="feature1_text">Creacions úniques i mescles en directe que sorprenen.</p>
-          </div>
-          <div class="horizontal-item">
-            <i class="bi bi-music-note-list"></i>
-            <h3 data-translate="feature2_title">Música per a Tots</h3>
-            <p data-translate="feature2_text">Un repertori versàtil que s'adapta a qualsevol gust.</p>
-          </div>
-          <div class="horizontal-item">
-            <i class="bi bi-stars"></i>
-            <h3 data-translate="feature3_title">Animació Pro</h3>
-            <p data-translate="feature3_text">Atmosfera vibrant i energia assegurada.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Stats Grid -->
-      <section class="stats-section" data-color="dark">
-        <div class="stat-item">
-          <h2 class="stat-number">10+</h2>
-          <p>EVENTS COMPLETATS</p>
-        </div>
-        <div class="stat-item">
-          <h2 class="stat-number">3.6K</h2>
-          <p>SEGUIDORS</p>
-        </div>
-        <div class="stat-item">
-          <h2 class="stat-number">100%</h2>
-          <p>SATISFACCIÓ</p>
-        </div>
-      </section>
-
-      <!-- Focus Preview -->
-      <section class="bio-section" data-color="light">
-        <div class="bio-image-wrapper order-lg-2">
-          <div class="bio-image" style="background-image: url('Fotos/dj-posaxa-especialitats.jpg');" role="img"
-            aria-label="Passió i professionalitat de DJ Posaxa">
-    <img src="Fotos/dj-posaxa-especialitats.jpg" alt="Dj Posaxa Especialitats" class="visually-hidden" loading="lazy"></div>
-        </div>
-        <div class="bio-content order-lg-1">
-          <h2 style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 1.5rem;">La meva filosofia</h2>
-          <p class="bio-text" style="font-size: 1.2rem;">
-            La música té un impacte directe en les emocions. Em centro en crear experiències que connectin amb el
-            públic, llegint la pista i adaptant l'energia de la sala a cada moment.
-          </p>
-          <div class="mt-4">
-            <a href="en-que-em-centro/" class="btn-premium" style="color: #000; border-color: #000;">En què em
-              centro</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Events Preview -->
-      <section class="intro" data-color="dark">
-        <h2 class="mb-5">Esdeveniments Recents</h2>
-        <div class="container">
-          <div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-              <div class="event-card p-4"
-                style="border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; height: 100%; text-align: left; background: rgba(102, 126, 234, 0.05);">
-                <span class="badge mb-2" style="background: #667eea;">L'ÚLTIM!</span>
-                <h4 class="mb-3">Carnaval 2026</h4>
-                <p style="color: var(--text-secondary);">Una nit inoblidable a la NAUB1 de Granollers. Èxit total de
-                  públic i energia!</p>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <div class="event-card p-4"
-                style="border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; height: 100%; text-align: left;">
-                <h4 class="mb-3">Festa Major 2025</h4>
-                <p style="color: var(--text-secondary);">Disco Inferno XS: l'espectacle que va marcar l'estiu a
-                  Granollers.</p>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <div class="event-card p-4"
-                style="border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; height: 100%; text-align: left;">
-                <h4 class="mb-3">Gra Jove</h4>
-                <p style="color: var(--text-secondary);">Actuació destacada al MusiKnviu. Energia jove i talent
-                  emergent.</p>
-              </div>
-            </div>
-          </div>
-          <div class="mt-5">
-            <a href="esdeveniments/" class="btn-premium">Veure Historial Complet</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Pricing / Services Preview -->
-      <!--<section class="horizontal-scroll" style="height: auto; min-height: 80vh; padding: 5rem 0;" data-color="light">
-        <div class="container">
-          <h2 class="text-center mb-5" style="color: #000; font-family: var(--font-display); font-size: 3rem;">Serveis i
-            Tarifes</h2>
-          <div class="row g-4">
-            <div class="col-md-4">
-              <div class="p-4" style="background: #f5f5f5; border-radius: 20px; color: #000; height: 100%;">
-                <h3>Essencial</h3>
-                <p>Perfecte per a festes privades petites.</p>
-                <ul class="list-unstyled mt-3">
-                  <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>Altaveus JBL PartyBox</li>
-                  <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>Il·luminació Bàsica</li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="p-4" style="background: #000; border-radius: 20px; color: #fff; height: 100%;">
-                <h3>Premium</h3>
-                <p>L'opció més popular per a esdeveniments mitjans.</p>
-                <ul class="list-unstyled mt-3">
-                  <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>So Professional LD Systems</li>
-                  <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>Show de Llums Complet</li>
-                  <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>Màquina de Fum</li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="p-4" style="background: #f5f5f5; border-radius: 20px; color: #000; height: 100%;">
-                <h3>Festival</h3>
-                <p>Per a grans espais i màxima potència.</p>
-                <ul class="list-unstyled mt-3">
-                  <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>So Gran Format</li>
-                  <li class="mb-2"><i class="bi bi-check-circle-fill me-2"></i>Il·luminació espectacular</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-5">
-            <a href="preus/" class="btn-premium" style="color: #000; border-color: #000;">Veure Tots els Preus</a>
-          </div>
-        </div>
-      </section>-->
-
-      <!-- Mashups Preview -->
-      <section class="intro" data-color="dark"
-        style="background-image: url('Fotos/dj-posaxa-sessio-inici-1.jpg'); background-size: cover; position: relative;">
-        <div
-          style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); z-index: 1;">
-        </div>
-        <div style="position: relative; z-index: 2;">
-          <h2>Mashups Exclusius</h2>
-          <p>Escolta les mescles que fan vibrar la pista. Creacions pròpies i remixos únics.</p>
-          <div class="mt-4">
-            <a href="mashups/" class="btn-premium"><i class="bi bi-play-circle me-2"></i>Escoltar Ara</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Marquee Separator -->
-      <section class="marquee-section"
-        style="background: var(--accent-color); color: #000; padding: 1.5rem 0; overflow: hidden; white-space: nowrap; display: flex;">
-        <div class="marquee-content"
-          style="display: flex; gap: 2rem; font-family: var(--font-display); font-size: 2rem; text-transform: uppercase;">
-          <span>Bodes</span> <span>•</span> <span>Festes Majors</span> <span>•</span> <span>Clubs</span> <span>•</span>
-          <span>Esdeveniments Privats</span> <span>•</span>
-          <span>Bodes</span> <span>•</span> <span>Festes Majors</span> <span>•</span> <span>Clubs</span> <span>•</span>
-          <span>Esdeveniments Privats</span> <span>•</span>
-          <span>Bodes</span> <span>•</span> <span>Festes Majors</span> <span>•</span> <span>Clubs</span> <span>•</span>
-          <span>Esdeveniments Privats</span> <span>•</span>
-        </div>
-      </section>
-
-
-      <section class="section-gallery" style="background: var(--bg-secondary); padding: 10vh 5vw;" data-color="dark">
-        <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 3rem; text-align: center;">Moments
-          Inoblidables</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item item-1" role="img" aria-label="Carnaval 2026 amb DJ Posaxa"></div>
-          <div class="gallery-item item-2" role="img" aria-label="Festa Major: Disco Inferno XS"></div>
-          <div class="gallery-item item-3" role="img" aria-label="Ambient vibrant a la pista"></div>
-          <div class="gallery-item item-4" role="img" aria-label="Records de festes inoblidables"></div>
-          <div class="gallery-item item-5" role="img" aria-label="DJ Posaxa - Control total a la cabina"></div>
-          <div class="gallery-item item-6" role="img" aria-label="Sessions de nit a Granollers"></div>
-          <div class="gallery-item item-7" role="img" aria-label="Equip de so i llums professional"></div>
-          <div class="gallery-item item-8" role="img" aria-label="Tancament de sessió espectacular"></div>
-        </div>
-        <div class="text-center mt-5">
-          <a href="galeria.html" class="btn-premium">Veure més</a>
-        </div>
-      </section>
-
-      <!-- Process Section -->
-      <section class="section-process" style="padding: 10vh 5vw; background: var(--bg-color);" data-color="dark">
-        <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 5rem; text-align: center;">Com
-          Funciona?</h2>
-        <div class="process-steps">
-          <div class="process-step">
-            <div class="step-number">01</div>
-            <h3>Contacta</h3>
-            <p>Explica'm la teva idea. Parlem del tipus d'esdeveniment, data i les teves preferències musicals.</p>
-          </div>
-          <div class="process-step">
-            <div class="step-number">02</div>
-            <h3>Planificació</h3>
-            <p>Dissenyem la playlist i l'estructura de la sessió. Tot personalitzat al 100% per tu.</p>
-          </div>
-          <div class="process-step">
-            <div class="step-number">03</div>
-            <h3>La Festa</h3>
-            <p>Gaudeix sense preocupacions. Jo m'encarrego de la música, l'animació i que tothom balli.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Behind-the-Scenes Photo Grid Section -->
-      <section class="section-bts" style="padding: 10vh 5vw; background: var(--bg-color);" data-color="dark">
-        <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 3rem; text-align: center;">Darrere
-          de l'Espectacle</h2>
-        <div class="row g-3">
-          <div class="col-md-4 col-6">
-            <div class="bts-photo" style="background-image: url('Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0039.jpg');"
-              role="img" aria-label="Preparació pel Carnaval">
-    <img src="Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0039.jpg" alt="Dj Posaxa Carnaval 2026 Festa 0039" class="visually-hidden" loading="lazy"></div>
-          </div>
-          <div class="col-md-4 col-6">
-            <div class="bts-photo" style="background-image: url('Fotos/dj-posaxa-disco-inferno-pnc-9.jpg');" role="img"
-              aria-label="Detall equip de mixatge">
-    <img src="Fotos/dj-posaxa-disco-inferno-pnc-9.jpg" alt="Dj Posaxa Disco Inferno Pnc 9" class="visually-hidden" loading="lazy"></div>
-          </div>
-          <div class="col-md-4 col-6">
-            <div class="bts-photo" style="background-image: url('Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0046.jpg');"
-              role="img" aria-label="Llums darrere l'escenari">
-    <img src="Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0046.jpg" alt="Dj Posaxa Carnaval 2026 Festa 0046" class="visually-hidden" loading="lazy"></div>
-          </div>
-          <div class="col-md-4 col-6">
-            <div class="bts-photo" style="background-image: url('Fotos/dj-posaxa-disco-inferno-pnc-12.jpg');" role="img"
-              aria-label="Configuració de so PNC">
-    <img src="Fotos/dj-posaxa-disco-inferno-pnc-12.jpg" alt="Dj Posaxa Disco Inferno Pnc 12" class="visually-hidden" loading="lazy"></div>
-          </div>
-          <div class="col-md-4 col-6">
-            <div class="bts-photo" style="background-image: url('Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0086.jpg');"
-              role="img" aria-label="Moments abans de sortir">
-    <img src="Fotos/Carnaval%2026/dj-posaxa-carnaval-2026-festa-0086.jpg" alt="Dj Posaxa Carnaval 2026 Festa 0086" class="visually-hidden" loading="lazy"></div>
-          </div>
-          <div class="col-md-4 col-6">
-            <div class="bts-photo" style="background-image: url('Fotos/dj-posaxa-disco-inferno-pnc-14.jpg');" role="img"
-              aria-label="Equip de producció Sigma Company">
-    <img src="Fotos/dj-posaxa-disco-inferno-pnc-14.jpg" alt="Dj Posaxa Disco Inferno Pnc 14" class="visually-hidden" loading="lazy"></div>
-          </div>
-        </div>
-        <div class="text-center mt-5">
-          <a href="galeria.html" class="btn-premium">Veure darrere les càmeres</a>
-        </div>
-      </section>
-
-      <!-- DJ Experience Timeline -->
-      <section class="section-timeline" style="padding: 15vh 5vw; background: var(--bg-secondary);" data-color="dark">
-        <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 5rem; text-align: center;">El Meu
-          Trajecte</h2>
-        <div class="timeline-container" style="max-width: 900px; margin: 0 auto; position: relative;">
-
-          <div class="timeline-line"
-            style="position: absolute; left: 50%; width: 2px; height: 100%; background: rgba(255,255,255,0.1); transform: translateX(-50%);">
-          </div>
-
-          <div class="timeline-item"
-            style="display: flex; align-items: center; margin-bottom: 5rem; position: relative;">
-            <div style="flex: 1; text-align: right; padding-right: 3rem;">
-              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">2023</h3>
-              <p style="color: var(--text-secondary);">Primers esdeveniments privats. Descobriment de la meva passió per
-                connectar amb el públic.</p>
-            </div>
-            <div class="timeline-dot"
-              style="width: 20px; height: 20px; background: #fff; border-radius: 50%; position: absolute; left: 50%; transform: translateX(-50%); z-index: 2;">
-            </div>
-            <div style="flex: 1; padding-left: 3rem;"></div>
-          </div>
-
-          <div class="timeline-item"
-            style="display: flex; align-items: center; margin-bottom: 5rem; position: relative;">
-            <div style="flex: 1; padding-right: 3rem;"></div>
-            <div class="timeline-dot"
-              style="width: 20px; height: 20px; background: #fff; border-radius: 50%; position: absolute; left: 50%; transform: translateX(-50%); z-index: 2;">
-            </div>
-            <div style="flex: 1; text-align: left; padding-left: 3rem;">
-              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">2024</h3>
-              <p style="color: var(--text-secondary);">Festes Majors. Col·laboracions amb Disco Inferno XS. Comença la
-                meva trajectòria professional.</p>
-            </div>
-          </div>
-
-          <div class="timeline-item"
-            style="display: flex; align-items: center; margin-bottom: 5rem; position: relative;">
-            <div style="flex: 1; text-align: right; padding-right: 3rem;">
-              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">2025</h3>
-              <p style="color: var(--text-secondary);">Expansió per Catalunya. Més de 10 esdeveniments completats.
-                Reconeixement en xarxes socials.</p>
-            </div>
-            <div class="timeline-dot"
-              style="width: 20px; height: 20px; background: #fff; border-radius: 50%; position: absolute; left: 50%; transform: translateX(-50%); z-index: 2;">
-            </div>
-            <div style="flex: 1; padding-left: 3rem;"></div>
-          </div>
-
-          <div class="timeline-item" style="display: flex; align-items: center; position: relative;">
-            <div style="flex: 1; padding-right: 3rem;"></div>
-            <div class="timeline-dot"
-              style="width: 20px; height: 20px; background: #fff; border-radius: 50%; position: absolute; left: 50%; transform: translateX(-50%); z-index: 2;">
-            </div>
-            <div style="flex: 1; text-align: left; padding-left: 3rem;">
-              <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">2026</h3>
-              <p style="color: var(--text-secondary);">Objectiu: consolidar-me com a referent jove en la zona de
-                Granollers i Barcelona.</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Testimonials Carousel -->
-      <!-- <section class="section-testimonials" style="padding: 10vh 5vw; background: var(--bg-color);" data-color="dark">
-        <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 4rem; text-align: center;">Els qui
-          ja han confiat</h2>
-        <div class="testimonials-carousel" style="max-width: 1000px; margin: 0 auto; overflow: hidden;">
-          <div class="testimonials-track" style="display: flex; gap: 2rem;">
-
-            <div class="testimonial-card"
-              style="min-width: 400px; background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
-              <div class="stars mb-3">
-                ⭐⭐⭐⭐⭐
-              </div>
-              <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 2rem;">"La millor decisió per la nostra
-                boda. Tothom ballant fins a l'últim moment!"</p>
-              <div class="d-flex align-items-center">
-                <div style="width: 50px; height: 50px; background: #555; border-radius: 50%; margin-right: 1rem;"></div>
-                <div>
-                  <strong>Maria G.</strong><br>
-                  <small style="color: var(--text-secondary);">Boda 2025</small>
-                </div>
-              </div>
-            </div>
-
-            <div class="testimonial-card"
-              style="min-width: 400px; background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
-              <div class="stars mb-3">
-                ⭐⭐⭐⭐⭐
-              </div>
-              <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 2rem;">"Un professional dels peus al cap.
-                Energia, qualitat i sobretot... sap llegir la pista!"</p>
-              <div class="d-flex align-items-center">
-                <div style="width: 50px; height: 50px; background: #555; border-radius: 50%; margin-right: 1rem;"></div>
-                <div>
-                  <strong>Jordi P.</strong><br>
-                  <small style="color: var(--text-secondary);">Festa Major</small>
-                </div>
-              </div>
-            </div>
-
-            <div class="testimonial-card"
-              style="min-width: 400px; background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
-              <div class="stars mb-3">
-                ⭐⭐⭐⭐⭐
-              </div>
-              <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 2rem;">"Els seus mashups són brutals. Una
-                sessió inoblidable!"</p>
-              <div class="d-flex align-items-center">
-                <div style="width: 50px; height: 50px; background: #555; border-radius: 50%; margin-right: 1rem;"></div>
-                <div>
-                  <strong>Laura S.</strong><br>
-                  <small style="color: var(--text-secondary);">Aniversari</small>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>-->
-
-      <!-- Social Proof / Numbers Impact -->
-      <section class="section-impact"
-        style="padding: 10vh 5vw; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); text-align: center;"
-        data-color="dark">
-        <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 5rem;">Impacte en Xarxes</h2>
-        <div class="row g-5">
-          <div class="col-md-3 col-6">
-            <div class="impact-number" data-target="3600" style="font-size: 4rem; font-weight: 700; color: #fff;">4K
-            </div>
-            <p
-              style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 1rem;">
-              Seguidors</p>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="impact-number" data-target="50000" style="font-size: 4rem; font-weight: 700; color: #fff;">+10M
-            </div>
-            <p
-              style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 1rem;">
-              Visualitzacions</p>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="impact-number" data-target="15" style="font-size: 4rem; font-weight: 700; color: #fff;">+10
-            </div>
-            <p
-              style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 1rem;">
-              Events 2025</p>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="impact-number" data-target="100" style="font-size: 4rem; font-weight: 700; color: #fff;">100%
-            </div>
-            <p
-              style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 1rem;">
-              Satisfacció</p>
-          </div>
-        </div>
-      </section>
-
-      </section>
-
-      <!-- Party Atmosphere Gallery (Using o1-o9 photos) -->
-      <!-- <section class="section-party-gallery" style="padding: 10vh 5vw; background: var(--bg-secondary);"
-        data-color="dark">
-        <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 3rem; text-align: center;">
-          L'Ambient de les Festes</h2>
-        <div class="row g-4">
-          <div class="col-md-6">
-            <div class="party-photo-large"
-              style="background-image: url('Fotos/dj-posaxa-ambient-festa-1.jpg'); height: 500px; background-size: cover; background-position: center; border-radius: 15px; position: relative; overflow: hidden;">
-    <img src="Fotos/dj-posaxa-ambient-festa-1.jpg" alt="Dj Posaxa Ambient Festa 1" class="visually-hidden" loading="lazy">
-              <div class="photo-overlay"
-                style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
-                <h4 style="color: #fff; margin: 0;">Energia pura</h4>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="row g-4">
-              <div class="col-6">
-                <div class="party-photo"
-                  style="background-image: url('Fotos/dj-posaxa-ambient-festa-2.jpg'); height: 235px; background-size: cover; background-position: center; border-radius: 15px;">
-    <img src="Fotos/dj-posaxa-ambient-festa-2.jpg" alt="Dj Posaxa Ambient Festa 2" class="visually-hidden" loading="lazy">
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="party-photo"
-                  style="background-image: url('Fotos/dj-posaxa-ambient-festa-3.jpg'); height: 235px; background-size: cover; background-position: center; border-radius: 15px;">
-    <img src="Fotos/dj-posaxa-ambient-festa-3.jpg" alt="Dj Posaxa Ambient Festa 3" class="visually-hidden" loading="lazy">
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="party-photo"
-                  style="background-image: url('Fotos/dj-posaxa-ambient-festa-5.jpg'); height: 235px; background-size: cover; background-position: center; border-radius: 15px;">
-    <img src="Fotos/dj-posaxa-ambient-festa-5.jpg" alt="Dj Posaxa Ambient Festa 5" class="visually-hidden" loading="lazy">
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="party-photo"
-                  style="background-image: url('Fotos/dj-posaxa-ambient-festa-6.jpg'); height: 235px; background-size: cover; background-position: center; border-radius: 15px;">
-    <img src="Fotos/dj-posaxa-ambient-festa-6.jpg" alt="Dj Posaxa Ambient Festa 6" class="visually-hidden" loading="lazy">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row g-4 mt-2">
-          <div class="col-md-3 col-6">
-            <div class="party-photo"
-              style="background-image: url('Fotos/dj-posaxa-ambient-festa-7.jpg'); height: 250px; background-size: cover; background-position: center; border-radius: 15px;">
-    <img src="Fotos/dj-posaxa-ambient-festa-7.jpg" alt="Dj Posaxa Ambient Festa 7" class="visually-hidden" loading="lazy">
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="party-photo"
-              style="background-image: url('Fotos/dj-posaxa-ambient-festa-8.jpg'); height: 250px; background-size: cover; background-position: center; border-radius: 15px;">
-    <img src="Fotos/dj-posaxa-ambient-festa-8.jpg" alt="Dj Posaxa Ambient Festa 8" class="visually-hidden" loading="lazy">
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="party-photo"
-              style="background-image: url('Fotos/dj-posaxa-ambient-festa-9.jpg'); height: 250px; background-size: cover; background-position: center; border-radius: 15px;">
-    <img src="Fotos/dj-posaxa-ambient-festa-9.jpg" alt="Dj Posaxa Ambient Festa 9" class="visually-hidden" loading="lazy">
-            </div>
-          </div>
-          <div class="col-md-3 col-6">
-            <div class="party-photo"
-              style="background-image: url('Fotos/dj-posaxa-sessio-inici-2.jpg'); height: 250px; background-size: cover; background-position: center; border-radius: 15px;">
-    <img src="Fotos/dj-posaxa-sessio-inici-2.jpg" alt="Dj Posaxa Sessio Inici 2" class="visually-hidden" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </section> -->
-
-      <!-- Video Section -->
-      <!--<section class="section-video" style="padding: 10vh 5vw; background: var(--bg-color); text-align: center;"
-        data-color="dark">
-        <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 2rem;">Viu l'Experiència</h2>
-        <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto 3rem;">Descobreix què significa
-          contractar DJ Posaxa. Sessions en directe, energia i connexió amb el públic.</p>
-        <div class="video-container"
-          style="max-width: 900px; margin: 0 auto; position: relative; padding-bottom: 56.25%; background: #000; border-radius: 20px; overflow: hidden;">
-          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-            <i class="bi bi-play-circle-fill"
-              style="font-size: 5rem; color: rgba(255,255,255,0.7); cursor: pointer; transition: all 0.3s;"></i>
-            <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">Vídeo promocional (Proximament)</p>
-          </div>
-        </div>
-      </section> -->
-
-      <!-- Full-Width Feature Showcase -->
-      <section class="section-fullwidth"
-        style="min-height: 60vh; background-image: url('Fotos/dj-posaxa-sessio-inici-3.jpg'); background-size: cover; background-position: center; background-attachment: fixed; position: relative; display: flex; align-items: center; justify-content: center; text-align: center;"
-        data-color="dark" role="img" aria-label="Impacte visual i musical de DJ Posaxa">
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6);"></div>
-        <div style="position: relative; z-index: 2; padding: 0 2rem;">
-          <h2
-            style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 5rem); margin-bottom: 2rem; color: #fff;">
-            La Música és l'Ànima de la Festa</h2>
-          <p style="font-size: 1.5rem; color: rgba(255,255,255,0.9); max-width: 800px; margin: 0 auto 3rem;">I jo
-            m'encarrego de que cada moment sigui memorable.</p>
-          <a href="preus/" class="btn-premium"
-            style="display: inline-block; padding: 1.2rem 4rem; font-size: 1.1rem;">Contracta Ara</a>
-        </div>
-      </section>
-
-      <!-- Crowd Energy / Vibe Section -->
-      <section class="section-vibe" style="padding: 10vh 5vw; background: var(--bg-secondary);" data-color="dark">
-        <div class="container">
-          <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 5rem; text-align: center;">El Que
-            Em Defineix</h2>
-          <div class="row g-5 align-items-center">
-            <div class="col-md-6">
-              <div class="vibe-stats">
-                <div class="vibe-item mb-5">
-                  <h3 style="font-size: 2.5rem; color: #fff; margin-bottom: 1rem;">🎧 Versatilitat</h3>
-                  <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6;">De reggaeton a techno,
-                    de hits comercials a remember. M'adapto al tipus de públic i esdeveniment.</p>
-                </div>
-                <div class="vibe-item mb-5">
-                  <h3 style="font-size: 2.5rem; color: #fff; margin-bottom: 1rem;">⚡ Energia</h3>
-                  <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6;">No només poso música.
-                    Animo, interactuo i faig que la pista estigui plena durant tota la nit.</p>
-                </div>
-                <div class="vibe-item">
-                  <h3 style="font-size: 2.5rem; color: #fff; margin-bottom: 1rem;">🔥 Professionalitat</h3>
-                  <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6;">Equipament de qualitat,
-                    puntualitat i compromís total amb cada esdeveniment.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="vibe-image"
-                style="background-image: url('Fotos/dj-posaxa-sessio-inici-4.jpg'); height: 600px; background-size: cover; background-position: center; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);"
-                role="img" aria-label="Connexió total amb el públic">
-    <img src="Fotos/dj-posaxa-sessio-inici-4.jpg" alt="Dj Posaxa Sessio Inici 4" class="visually-hidden" loading="lazy">
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ Section -->
-      <section class="section-faq" style="padding: 10vh 5vw; background: var(--bg-secondary);" data-color="dark">
-        <h2 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 3rem; text-align: center;">
-          Preguntes Freqüents</h2>
-        <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
-
-          <div class="faq-item">
-            <div class="faq-question">
-              <h4>Quin equipament portes?</h4>
-              <i class="bi bi-plus-lg"></i>
-            </div>
-            <div class="faq-answer">
-              <p>Només porto la mixer amb els canons necessaris; l’equip l’hauràs de contractar a part.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question">
-              <h4>Et desplaces fora de Granollers?</h4>
-              <i class="bi bi-plus-lg"></i>
-            </div>
-            <div class="faq-answer">
-              <p>I tant! Actuo per tota la península.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question">
-              <h4>Acceptes peticions de cançons?</h4>
-              <i class="bi bi-plus-lg"></i>
-            </div>
-            <div class="faq-answer">
-              <p>Sí, és la teva festa! Podem pactar una llista prèvia i també accepto peticions durant la sessió si
-                encaixen amb l'ambient.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question">
-              <h4>Amb quanta antelació he de reservar?</h4>
-              <i class="bi bi-plus-lg"></i>
-            </div>
-            <div class="faq-answer">
-              <p>Recomano fer-ho amb 2-3 mesos d'antelació, especialment per dates assenyalades a l'estiu o Nadal.</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Reviews Preview (Moved down) -->
-      <section class="stats-section" style="grid-template-columns: 1fr; gap: 1rem;" data-color="dark">
-        <h2 style="font-family: var(--font-display);">Opinions</h2>
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-          <i class="bi bi-quote" style="font-size: 3rem; color: #fff; opacity: 0.5;"></i>
-          <p style="font-size: 1.5rem; font-style: italic;">"Va ser una nit increïble. El DJ va saber llegir el públic
-            perfectament i no vam parar de ballar!"</p>
-          <p style="color: var(--text-secondary); margin-top: 1rem;">- Albert P</p>
-          <div class="mt-4">
-            <a href="opinions/" class="btn-premium">Llegir més opinions</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section class="intro" data-color="dark" style="min-height: 50vh;">
-        <h2>Preparat?</h2>
-        <p>Contacta'ns avui mateix i descobreix com podem fer que el teu esdeveniment sigui inoblidable.</p>
-        <br>
-        <a href="preus/" class="btn-premium">Contacta Ara</a>
-      </section>
-
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="container">
-          <div class="row g-4">
-            <div class="col-md-4">
-              <h5 class="mb-3">DJ Posaxa</h5>
-              <p class="mb-3" style="color: var(--text-secondary);">Música professional per a festes i esdeveniments a
-                Granollers i Barcelona.</p>
-              <div class="social-icons">
-                <a href="https://www.tiktok.com/@djposaxa" target="_blank" rel="noopener" aria-label="TikTok">
-                  <i class="bi bi-tiktok"></i>
-                </a>
-                <a href="https://www.instagram.com/dj.posaxa/" target="_blank" rel="noopener" aria-label="Instagram">
-                  <i class="bi bi-instagram"></i>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <h5 class="mb-3">Enllaços Ràpids</h5>
-              <ul class="list-unstyled">
-                <li class="mb-2"><a href="index.html"
-                    style="color: var(--text-secondary); text-decoration: none;">Inici</a>
-                </li>
-                <li class="mb-2"><a href="esdeveniments/"
-                    style="color: var(--text-secondary); text-decoration: none;">Esdeveniments</a></li>
-                <li class="mb-2"><a href="opinions/"
-                    style="color: var(--text-secondary); text-decoration: none;">Opinions</a></li>
-                <li class="mb-2"><a href="preus/" style="color: var(--text-secondary); text-decoration: none;">Preus</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h5 class="mb-3">Sigma Company</h5>
-              <p class="mb-3" style="color: var(--text-secondary);" data-translate="footer_dev">Desenvolupat per Sigma
-                Company</p>
-              <p class="mb-2" style="color: var(--text-secondary);" data-translate="footer_more_projects">Més projectes:
-              </p>
-              <div class="social-icons">
-                <a href="https://www.tiktok.com/@sigmacompanyoficial" target="_blank" rel="noopener"
-                  aria-label="TikTok">
-                  <i class="bi bi-tiktok"></i>
-                </a>
-                <a href="https://www.instagram.com/sigmacompanyoficial/" target="_blank" rel="noopener"
-                  aria-label="Instagram">
-                  <i class="bi bi-instagram"></i>
-                </a>
-                <a href="https://www.youtube.com/@SigmaCompanyOficial" target="_blank" rel="noopener"
-                  aria-label="YouTube">
-                  <i class="bi bi-youtube"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <hr style="border-color: rgba(255, 255, 255, 0.1); margin: 3rem 0 2rem;">
-          <div class="row">
-            <div class="col-md-6 text-center text-md-start">
-              <p style="color: var(--text-secondary); margin: 0;">&copy; <span id="year"></span> DJ Posaxa. <span
-                  data-translate="footer_rights">Tots els drets reservats.</span></p>
-              <div class="mt-2 small">
-                <a href="legal.html" class="text-secondary text-decoration-none me-2">Avís Legal</a>
-                <a href="legal.html#privacy" class="text-secondary text-decoration-none me-2">Privacitat</a>
-                <a href="legal.html#cookies" class="text-secondary text-decoration-none">Cookies</a>
-              </div>
-            </div>
-            <div class="col-md-6 text-center text-md-end">
-              <p style="color: var(--text-secondary); margin: 0;"><span data-translate="footer_location">Granollers ·
-                  Barcelona</span></p>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-    </div>
-  </div>
-
-  <!-- Auth Modal (Kept from original) -->
-  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true"
-    style="z-index: 10000;">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content text-black">
-        <div class="modal-header">
-          <h5 class="modal-title" id="authModalLabel">Inicia Sessió</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body text-center">
-          <button id="google-login-btn" class="btn btn-danger w-100">
-            <i class="bi bi-google me-2"></i> Continuar amb Google
-          </button>
-          <div class="mt-3">
-            <button id="logout-button" class="btn btn-secondary w-100 d-none">Tancar Sessió</button>
-          </div>
-        </div>
+      <div class="result-item">
+        <div class="result-url">https://instagram.com > dj.posaxa</div>
+        <a href="#" class="result-title">DJ Posaxa (@dj.posaxa) • Instagram photos and videos</a>
+        <div class="result-desc">3.6K Followers, 100 Following, 50 Posts - See Instagram photos and videos from DJ
+          Posaxa.</div>
       </div>
     </div>
   </div>
 
-  <!-- GSAP & Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="https://unpkg.com/split-type"></script>
+  <!-- Site Phase -->
+  <div id="site-phase">
+    <iframe id="main-frame" src="../index.html"></iframe>
+  </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Fake Chatbot UI (Overlay) -->
+  <div id="fake-chatbot-ui">
+    <div class="chat-header">
+      <h5 style="margin:0; font-size: 1rem;">🤖 Sigma AI</h5>
+    </div>
+    <div class="chat-messages" id="chat-msgs">
+      <div class="message bot">Hola! Sóc Sigma, la IA de DJ Posaxa. Pregunta'm el que vulguis! 🎵</div>
+    </div>
+    <div class="chat-input-area">
+      <div class="fake-input" id="chat-input-text"></div>
+    </div>
+  </div>
 
-  <!-- ANIMATION LOGIC -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", () => {
+      const tl = gsap.timeline();
+      const cursor = document.getElementById('fake-cursor');
+      const gInput = document.getElementById('g-input');
+      const googleHome = document.getElementById('google-home');
+      const googleResults = document.getElementById('google-results');
+      const sitePhase = document.getElementById('site-phase');
+      const iframe = document.getElementById('main-frame');
 
-      // 1. Initialize Lenis for smooth scrolling
-      const lenis = new Lenis({
-        duration: 0.5,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        wheelMultiplier: 1.2,
-        duration: 0, // Native scroll feel (instant)
-        smoothWheel: false // Disable smooth wheel to fix "va malament" feeling
-      });
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-
-      // Connect GSAP ScrollTrigger to Lenis
-      gsap.registerPlugin(ScrollTrigger);
-      // scrollTrigger synchronization is generally automatic with newer Lenis versions + native GSAP,
-      // but if needed:
-      // lenis.on('scroll', ScrollTrigger.update);
-      // gsap.ticker.add((time)=>{lenis.raf(time * 1000)});
-      // gsap.ticker.lagSmoothing(0);
-
-      // 2. Custom Cursor
-      const cursor = document.querySelector('.cursor');
-      const follower = document.querySelector('.cursor-follower');
-      if (cursor && follower) {
-        document.addEventListener('mousemove', (e) => {
-          gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
-          gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.3 });
-        });
-        document.querySelectorAll('a, button, .horizontal-item').forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            gsap.to(cursor, { scale: 3, opacity: 0 });
-            gsap.to(follower, { scale: 1.5, borderColor: 'transparent', backgroundColor: 'rgba(255,255,255,0.1)' });
-          });
-          el.addEventListener('mouseleave', () => {
-            gsap.to(cursor, { scale: 1, opacity: 1 });
-            gsap.to(follower, { scale: 1, borderColor: 'rgba(255, 255, 255, 1)', backgroundColor: 'transparent' });
-          });
+      // Helper to type text
+      function typeText(element, text, speed = 0.1) {
+        return gsap.to(element, {
+          duration: text.length * speed,
+          text: { value: text, delimiter: "" },
+          ease: "none",
+          onUpdate: function () {
+            if (element.tagName === 'INPUT') element.value = Math.round(this.progress() * text.length) > 0 ? text.substring(0, Math.ceil(this.progress() * text.length)) : "";
+            else element.innerText = text.substring(0, Math.ceil(this.progress() * text.length));
+          }
         });
       }
 
-      // 2.5 MARQUEE ANIMATION (LEFT TO RIGHT)
-      gsap.fromTo('.marquee-content',
-        { xPercent: -50 },
-        { xPercent: 0, ease: 'none', duration: 15, repeat: -1 }
-      );
+      // --- ANIMATION SEQUENCE ---
 
-      // 3. TEXT REVEAL ANIMATIONS (Global)
-      // Headers
-      const headings = document.querySelectorAll('h1, h2, h3');
-      headings.forEach(heading => {
-        // Split text
-        const typeSplit = new SplitType(heading, { types: 'lines, words, chars' });
+      // 1. Start at random position, move to Google Search Bar
+      tl.set(cursor, { x: window.innerWidth * 0.8, y: window.innerHeight * 0.8 })
+        .to(cursor, { x: window.innerWidth / 2, y: window.innerHeight * 0.4, duration: 1.5, ease: "power2.out" })
 
-        gsap.from(typeSplit.words, {
-          scrollTrigger: {
-            trigger: heading,
-            start: "top 85%",
-            toggleActions: "play none none reverse"
-          },
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          stagger: 0.05,
-          ease: "power3.out"
-        });
-      });
+        // 2. Click and Type "dj posaxa"
+        .to(cursor, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 }) // Click effect
+        .to({}, { duration: 0.5 }) // Wait a bit
+        .call(() => {
+          // Manual typing effect for input value
+          let text = "dj posaxa";
+          let i = 0;
+          let interval = setInterval(() => {
+            gInput.value += text.charAt(i);
+            i++;
+            if (i >= text.length) clearInterval(interval);
+          }, 100);
+        })
+        .to({}, { duration: 1.5 }) // Wait for typing
 
-      // Paragraphs
-      const paragraphs = document.querySelectorAll('p');
-      paragraphs.forEach(p => {
-        gsap.from(p, {
-          scrollTrigger: {
-            trigger: p,
-            start: "top 90%",
-            toggleActions: "play none none reverse"
-          },
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out"
-        });
-      });
+        // 3. Simulate Enter / Search
+        .to(googleHome, { opacity: 0, duration: 0.5, display: "none" })
+        .set(googleResults, { display: "block", opacity: 0 })
+        .to(googleResults, { opacity: 1, duration: 0.5 })
 
-      // 4. HERO PARALLAX & ZOOM OUT
-      const heroBg = document.querySelector('.hero-bg');
-      if (heroBg) {
-        // Initial state: Scaled IN (1.2)
-        gsap.set(heroBg, { scale: 1.2 });
+        // 4. Move to First Result
+        .to(cursor, { x: 250, y: 200, duration: 1, ease: "power2.inOut" }) // Approx position of first link
+        .to(cursor, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 }) // Click
 
-        // Animate to Scale 1 (zoom out) and move Y (parallax)
-        gsap.to(heroBg, {
-          scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-          },
-          scale: 1, // Zoom out effect
-          yPercent: 30, // Parallax movement
-          ease: "none"
-        });
-      }
+        // 5. Transition to Real Site
+        .to("#google-phase", { opacity: 0, duration: 0.5, display: "none" })
+        .set(sitePhase, { opacity: 1 })
+        .to({}, { duration: 1 }) // Wait for load
 
-      // 5. BIO IMAGE PARALLAX (Dynamic Image)
-      const bioImg = document.querySelector('.bio-image');
-      const bioWrap = document.querySelector('.bio-image-wrapper');
-      if (bioImg && bioWrap) {
-        gsap.set(bioImg, { scale: 1.2 }); // Start zoomed in
-        gsap.to(bioImg, {
-          scrollTrigger: {
-            trigger: bioWrap,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-          },
-          yPercent: 20, // Move opposite to scroll for depth
-          scale: 1.0, // Subtle zoom out
-          ease: "none"
-        });
-      }
-
-      // 6. HORIZONTAL SCROLL ENHANCED
-      const horizontalSection = document.querySelector(".horizontal-scroll");
-      const wrapper = document.querySelector(".horizontal-wrap");
-      const items = document.querySelectorAll(".horizontal-item");
-
-      if (horizontalSection && wrapper) {
-        let mm = gsap.matchMedia();
-
-        mm.add("(min-width: 769px)", () => {
-          // Calculate movement
-          const xMove = -(wrapper.scrollWidth - window.innerWidth);
-
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: horizontalSection,
-              start: "top top",
-              end: () => "+=" + wrapper.scrollWidth,
-              pin: true,
-              scrub: 0.5,
-              invalidateOnRefresh: true,
+        // 6. Scroll to "DJ Posaxa" (Bio Section)
+        .call(() => {
+          try {
+            // Try to find the element inside iframe
+            const bio = iframe.contentDocument.querySelector('.bio-section');
+            if (bio) {
+              iframe.contentWindow.scrollTo({ top: bio.offsetTop, behavior: 'smooth' });
             }
-          });
+          } catch (e) { console.log("CORS block, using estimation"); }
+        })
+        .to({}, { duration: 3 }) // Scroll time + 2s pause
 
-          tl.to(wrapper, {
-            x: xMove,
-            ease: "none",
-          });
+        // 7. Scroll to "Events" (Carnaval)
+        .call(() => {
+          try {
+            const events = iframe.contentDocument.querySelector('.intro'); // Events section class
+            if (events) {
+              iframe.contentWindow.scrollTo({ top: events.offsetTop, behavior: 'smooth' });
+            }
+          } catch (e) { }
+        })
+        .to({}, { duration: 2 }) // Scroll time + 1s pause
 
-          // Stagger effect for items as they scroll into view
-          // We can animate them based on the container's progress
-          items.forEach((item, index) => {
-            // Simple scale/fade entrance relative to scroll
-            gsap.from(item, {
-              scrollTrigger: {
-                trigger: item,
-                containerAnimation: tl,
-                start: "left 90%",
-                toggleActions: "play none none reverse",
-              },
-              scale: 0.8,
-              opacity: 0,
-              duration: 0.5,
-              ease: "power2.out"
-            });
-          });
+        // 8. Scroll to Gallery and Hover Photos
+        .call(() => {
+          try {
+            const gallery = iframe.contentDocument.querySelector('.section-gallery');
+            if (gallery) {
+              iframe.contentWindow.scrollTo({ top: gallery.offsetTop, behavior: 'smooth' });
+            }
+          } catch (e) { }
+        })
+        .to({}, { duration: 1 }) // Wait for scroll
 
+        // Move cursor to Photo 1 (Simulated coordinates relative to screen)
+        .to(cursor, { x: window.innerWidth * 0.2, y: window.innerHeight * 0.6, duration: 1 })
+        .to({}, { duration: 1 }) // Hover 1s
+
+        // Move cursor to Photo 2
+        .to(cursor, { x: window.innerWidth * 0.5, y: window.innerHeight * 0.6, duration: 0.5 })
+        .to({}, { duration: 1 }) // Hover 1s
+
+        // Move cursor to Photo 3
+        .to(cursor, { x: window.innerWidth * 0.8, y: window.innerHeight * 0.6, duration: 0.5 })
+        .to({}, { duration: 1 }) // Hover 1s
+
+        // 9. Go to Chatbot
+        .to(cursor, { x: window.innerWidth - 50, y: window.innerHeight - 50, duration: 1.5 }) // Bottom right
+        .to(cursor, { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 }) // Click
+        .call(() => {
+          document.getElementById('fake-chatbot-ui').style.display = 'flex';
+        })
+        .to({}, { duration: 0.5 })
+
+        // 10. Type Question
+        .call(() => {
+          const chatInput = document.getElementById('chat-input-text');
+          let text = "Qui és DJ Posaxa?";
+          let i = 0;
+          let interval = setInterval(() => {
+            chatInput.innerText += text.charAt(i);
+            i++;
+            if (i >= text.length) clearInterval(interval);
+          }, 50);
+        })
+        .to({}, { duration: 1.5 }) // Wait for typing
+
+        // 11. Send and Stream Response
+        .call(() => {
+          // Add user message
+          const msgs = document.getElementById('chat-msgs');
+          const userMsg = document.createElement('div');
+          userMsg.className = 'message user';
+          userMsg.innerText = "Qui és DJ Posaxa?";
+          msgs.appendChild(userMsg);
+          document.getElementById('chat-input-text').innerText = "";
+          msgs.scrollTop = msgs.scrollHeight;
+
+          // Simulate Bot Thinking
+          setTimeout(() => {
+            const botMsg = document.createElement('div');
+            botMsg.className = 'message bot';
+            msgs.appendChild(botMsg);
+
+            // Super fast stream text
+            const responseText = `🎧 **DJ Posaxa** (Pol Solanas Ramos) és el jove prodigi de Granollers que està revolucionant la festa! 🔥 Nascut el 2010, combina Reggaeton, Techno i Mashups exclusius en directe. 
+                      
+Ha punxat a llocs mítics com la **NAUB1** pel Carnaval 2026 i la Festa Major de Granollers. La seva filosofia? "La música és l'ànima de la festa". Si busques energia pura, ell és el teu DJ! 🚀`;
+
+            let j = 0;
+            let streamInterval = setInterval(() => {
+              // Add 3 chars at a time for "super fast" effect
+              botMsg.innerText += responseText.substring(j, j + 3);
+              j += 3;
+              msgs.scrollTop = msgs.scrollHeight;
+              if (j >= responseText.length) clearInterval(streamInterval);
+            }, 10); // 10ms per chunk
+
+          }, 500);
         });
-      }
-
-      // 8. VIBE ITEMS STAGGER
-      gsap.from('.vibe-item', {
-        x: -50,
-        duration: 1,
-        stagger: 0.3,
-        scrollTrigger: {
-          trigger: '.section-vibe',
-          start: 'top 65%'
-        }
-      });
-
-      gsap.from('.vibe-image', {
-        x: 50,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: '.vibe-image',
-          start: 'top 75%'
-        }
-      });
-
-      // 9. FULL-WIDTH PARALLAX
-      const fullwidthSection = document.querySelector('.section-fullwidth');
-      if (fullwidthSection) {
-        gsap.to(fullwidthSection, {
-          backgroundPosition: '50% 60%',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: fullwidthSection,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true
-          }
-        });
-      }
-
-      // 11. BACKGROUND COLOR CHANGING (Black <-> Dark Gray)
-      const sections = document.querySelectorAll('[data-color]');
-      sections.forEach(section => {
-        const theme = section.dataset.color;
-        const colorBg = theme === 'light' ? '#0f0f0f' : '#050505'; // Dark Grey vs purely Black
-
-        ScrollTrigger.create({
-          trigger: section,
-          start: "top 50%",
-          end: "bottom 50%",
-          onEnter: () => gsap.to('body', { backgroundColor: colorBg, duration: 0.8 }),
-          onEnterBack: () => gsap.to('body', { backgroundColor: colorBg, duration: 0.8 })
-        });
-      });
     });
   </script>
-
-  <!-- Firebase Logic (Inlined/Module) -->
-  <script type="module">
-    import { auth, database, ref, get, update, push, serverTimestamp, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "./assets/js/firebase-config.js";
-
-    // Logic functionality (simplified for brevity, ensuring it works)
-    const authContainer = document.getElementById('auth-container');
-    const adminLinkContainer = document.getElementById('admin-link-container');
-    const logoutBtn = document.getElementById('logout-button');
-    const googleLoginBtn = document.getElementById('google-login-btn');
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log("User logged in:", user.email);
-        // Check admin
-        const adminRef = ref(database, 'admins/' + user.uid);
-        get(adminRef).then((snapshot) => {
-          if (snapshot.exists() && snapshot.val() === true) {
-            adminLinkContainer.innerHTML = '<a class="nav-link text-warning" href="dj-panel/"><i class="bi bi-shield-lock-fill"></i> Admin</a>';
-          }
-        });
-        authContainer.innerHTML = `<a href="configuracio/"><img src="${user.photoURL}" style="width: 30px; height: 30px; border-radius: 50%;" alt="User Profile"></a>`;
-
-        // Modal specific
-        if (googleLoginBtn) googleLoginBtn.classList.add('d-none');
-        if (logoutBtn) logoutBtn.classList.remove('d-none');
-      } else {
-        authContainer.innerHTML = `<button class="btn btn-sm btn-outline-light" data-bs-toggle="modal" data-bs-target="#authModal">Login</button>`;
-        if (googleLoginBtn) googleLoginBtn.classList.remove('d-none');
-        if (logoutBtn) logoutBtn.classList.add('d-none');
-      }
-    });
-
-    if (googleLoginBtn) {
-      googleLoginBtn.addEventListener('click', () => {
-        const provider = new GoogleAuthProvider();
-        signInWithPopup(auth, provider).then(() => {
-          // Close modal properly
-          const modalEl = document.getElementById('authModal');
-          const modal = bootstrap.Modal.getInstance(modalEl);
-          modal.hide();
-        }).catch((error) => console.error(error));
-      });
-    }
-
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', () => {
-        auth.signOut();
-      });
-    }
-
-    // FAQ ACCORDION
-    document.querySelectorAll('.faq-question').forEach(question => {
-      question.addEventListener('click', () => {
-        const faqItem = question.parentElement;
-        const answer = faqItem.querySelector('.faq-answer');
-        const icon = question.querySelector('i');
-
-        // Toggle active class
-        faqItem.classList.toggle('active');
-
-        // Toggle icon and height
-        if (faqItem.classList.contains('active')) {
-          icon.classList.remove('bi-plus-lg');
-          icon.classList.add('bi-dash-lg');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        } else {
-          icon.classList.remove('bi-dash-lg');
-          icon.classList.add('bi-plus-lg');
-          answer.style.maxHeight = '0';
-        }
-      });
-    });
-
-    // Translation Object (Preserved)
-    window.pageTranslations = {
-      ca: { nav_home: "Inici", hero_title: "Eleva la teva festa al següent nivell", hero_cta: "Reserva Ara" },
-      es: { nav_home: "Inicio", hero_title: "Eleva tu fiesta al siguiente nivel", hero_cta: "Reserva Ahora" },
-      en: { nav_home: "Home", hero_title: "Elevate Your Party to the Next Level", hero_cta: "Book Now" }
-    };
-  </script>
-
-  <script src="assets/js/cookies.js"></script>
-  <script src="assets/js/security.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="assets/js/chatbot.js"></script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DJ Posaxa - Google Search Simulation</title>
+    <title>DJ Posaxa - Mobile Simulation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -36,23 +36,43 @@
 
         body {
             font-family: var(--font-main);
-            background-color: #1a1a1a;
-            min-height: 100vh;
+            background-color: #000;
+            height: 100vh;
+            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: auto;
-            /* Allow scroll to see everything in this giant size */
+            overflow: hidden;
             color: var(--text-color);
-            padding: 50px 0;
+            cursor: none !important;
+        }
+
+        html {
+            cursor: none !important;
+        }
+
+        /* The phone "Screen" - Auto-scaled to FILL your monitor height */
+        .phone-frame {
+            width: 1080px;
+            height: 1920px;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 150px rgba(0, 0, 0, 1);
+            flex-shrink: 0;
+            /* Maximize size based on available screen space */
+            transform: scale(calc(min(100vw / 1080, 100vh / 1920) * 0.98));
+            transform-origin: center;
         }
 
         #mouse-pointer {
             position: fixed;
             width: 60px;
             height: 60px;
-            /* Scaled up */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='white' stroke='black' stroke-width='1.5' d='M8.2,2.2l17.6,17.6l-8.8,0l5.9,10l-3.5,2l-5.9-10l-5.3,5.3L8.2,2.2z'/%3E%3Csvg%3E");
+            /* Scaled up for HD */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='white' stroke='black' stroke-width='1.5' d='M8.2,2.2l17.6,17.6l-8.8,0l5.9,10l-3.5,2l-5.9-10l-5.3,5.3L8.2,2.2z'/%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
             z-index: 100000;
@@ -63,17 +83,14 @@
             transition: transform 0.1s;
         }
 
-        .phone-frame {
-            width: 1080px;
-            height: 1920px;
-            background: #000;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 100px rgba(0, 0, 0, 1);
-            flex-shrink: 0;
-            /* Don't shrink the 1080px width */
+        /* Hide all scrollbars everywhere */
+        *::-webkit-scrollbar {
+            display: none !important;
+        }
+
+        * {
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
         }
 
         .phone-screen {
@@ -105,15 +122,16 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 60px;
+            padding: 100px;
+            background: #fff;
         }
 
         .google-logo {
-            font-size: 10rem;
+            font-size: 15rem;
             font-weight: 700;
-            margin-bottom: 100px;
+            margin-bottom: 140px;
             font-family: 'Arial', sans-serif;
-            letter-spacing: -6px;
+            letter-spacing: -10px;
         }
 
         .logo-g {
@@ -141,26 +159,26 @@
         }
 
         .search-bar {
-            width: 92%;
-            height: 140px;
-            border: 2px solid #dfe1e5;
-            border-radius: 70px;
+            width: 94%;
+            height: 200px;
+            border: 3px solid #dfe1e5;
+            border-radius: 100px;
             display: flex;
             align-items: center;
-            padding: 0 50px;
-            box-shadow: 0 3px 15px rgba(32, 33, 36, 0.1);
+            padding: 0 70px;
+            box-shadow: 0 5px 25px rgba(32, 33, 36, 0.1);
         }
 
         #google-typing {
             color: #202124;
-            font-size: 2.8rem;
+            font-size: 4.8rem;
         }
 
         #search-results {
             background: #f8f9fa;
             padding-top: 150px;
             overflow-y: auto;
-            scrollbar-width: none;
+            color: #000;
         }
 
         .result-card {
@@ -189,7 +207,7 @@
         }
 
         .result-snippet {
-            font-size: 2.2rem;
+            font-size: 2.22rem;
             color: #4d5156;
             line-height: 1.4;
             display: -webkit-box;
@@ -197,7 +215,6 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-
 
         /* WEB VIEW */
         .web-view {
@@ -323,7 +340,7 @@
             background: var(--bg-secondary);
             border-radius: 35px;
             border: 2px solid rgba(255, 255, 255, 0.08);
-            padding: 75px;
+            padding: 60px 80px;
             margin-bottom: 60px;
         }
 
@@ -335,22 +352,24 @@
             border-radius: 12px;
             font-weight: 800;
             display: inline-block;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
 
         .event-name {
             font-family: var(--font-display);
-            font-size: 5rem;
-            margin-bottom: 35px;
+            font-size: 4.8rem;
+            margin-bottom: 25px;
+            line-height: 1.2;
         }
 
         .gallery-sim {
-            margin-top: 60px;
+            margin-top: 50px;
             border-radius: 35px;
             overflow: hidden;
             position: relative;
-            height: 700px;
+            height: 850px;
             background: #000;
+            display: none;
         }
 
         .gallery-img {
@@ -359,58 +378,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            /* Para que se vean completas */
             opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            transform: scale(1.1);
+            transition: opacity 0.5s ease;
+            background: #000;
         }
 
         .gallery-img.active {
             opacity: 1;
-            transform: scale(1);
         }
 
-        .gallery-controls {
-            position: absolute;
-            bottom: 45px;
-            right: 45px;
-            display: flex;
-            gap: 25px;
-            z-index: 5;
-        }
-
-        .gal-btn {
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(30px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-        }
-
-        /* STATS (EVENTS COUNT) */
-        .stat-item {
-            text-align: center;
-            margin-bottom: 90px;
-        }
-
-        .stat-num {
-            font-size: 10rem;
-            font-weight: 900;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 2rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 6px;
-        }
-
-        /* CHATBOT */
         #chat-widget-sim {
             position: absolute;
             bottom: 75px;
@@ -447,7 +425,7 @@
             flex-direction: column;
             opacity: 0;
             transform: translateY(90px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s;
             pointer-events: none;
             overflow: hidden;
         }
@@ -518,39 +496,9 @@
             background: rgba(255, 255, 255, 0.05);
             border: 3px solid rgba(255, 255, 255, 0.1);
             border-radius: 70px;
-            padding: 30px 50px;
+            padding: 30px 45px;
             color: white;
             font-size: 2.5rem;
-        }
-
-        .typing-dots {
-            font-size: 4rem;
-            display: none;
-            margin-left: 60px;
-            margin-bottom: 30px;
-            color: #667eea;
-        }
-
-        .typing-dots span {
-            animation: blink 1.4s infinite;
-            display: inline-block;
-        }
-
-        @keyframes blink {
-            0% {
-                opacity: 0.2;
-                transform: translateY(0);
-            }
-
-            50% {
-                opacity: 1;
-                transform: translateY(-3px);
-            }
-
-            100% {
-                opacity: 0.2;
-                transform: translateY(0);
-            }
         }
 
         .home-indicator {
@@ -580,7 +528,7 @@
                         class="logo-g2">g</span><span class="logo-l">l</span><span class="logo-e">e</span>
                 </div>
                 <div class="search-bar" id="google-search-bar">
-                    <span style="color:#9aa0a6; margin-right:12px; font-size:1.1rem">🔍</span>
+                    <span style="color:#9aa0a6; margin-right:30px; font-size:4rem">🔍</span>
                     <div id="google-typing"></div>
                 </div>
             </div>
@@ -588,28 +536,52 @@
             <!-- SEARCH RESULTS -->
             <div id="search-results" class="section">
                 <div class="result-card" id="main-result">
-                    <div class="result-url">https://www.djposaxa.com <i class="bi bi-caret-down-fill"></i></div>
+                    <div class="result-url">https://www.djposaxa.com</div>
                     <div class="result-title">DJ Posaxa | Web Oficial - La Millor Música per als teus Events</div>
                     <p class="result-snippet">L'experiència musical definitiva amb Pol Solanas (DJ Posaxa). Mashups
-                        exclusius, energia i animació professional per a bodes, festes i clubs.</p>
+                        exclusius i energia professional.</p>
                 </div>
                 <div class="result-card">
                     <div class="result-url">https://ca.wikipedia.org › wiki › DJ_Posaxa</div>
-                    <div class="result-title">DJ Posaxa - Viquipèdia, l'enciclopèdia lliure</div>
-                    <p class="result-snippet">Pol Solanas Ramos (Granollers, 2010), més conegut pel seu nom artístic DJ
-                        Posaxa, és un discjòquei català de música urbana...</p>
-                </div>
-                <div class="result-card">
-                    <div class="result-url">https://www.somgranollers.cat › cultura</div>
-                    <div class="result-title">L'energia de DJ Posaxa conquereix la NAUB1 de Granollers</div>
-                    <p class="result-snippet">Més de 500 persones van gaudir de la sessió de Pol Solanas en el darrer
-                        Carnaval 2026, consolidant-lo com una de les promeses...</p>
+                    <div class="result-title">DJ Posaxa - Viquipèdia</div>
+                    <p class="result-snippet">Pol Solanas Ramos (Granollers, 2010), més conegut com DJ Posaxa, és un
+                        discjòquei català...</p>
                 </div>
                 <div class="result-card">
                     <div class="result-url">https://www.instagram.com › djposaxa</div>
-                    <div class="result-title">DJ POSAXA (@djposaxa) • Fotos i vídeos d'Instagram</div>
-                    <p class="result-snippet">2.4k Seguidors, 500 Seguint. Senteix el vibe de les festes més top.
-                        Contacte per DM per contractacions.</p>
+                    <div class="result-title">DJ POSAXA (@djposaxa) • Instagram</div>
+                    <p class="result-snippet">2.4k Seguidors. Senteix el vibe de les festes més top. Mashups i directes.
+                    </p>
+                </div>
+                <div class="result-card">
+                    <div class="result-url">https://open.spotify.com › artist › djposaxa</div>
+                    <div class="result-title">DJ Posaxa | Spotify</div>
+                    <p class="result-snippet">Escolta els darrers llançamientos i les millors mescles de reggaeton i
+                        techno.</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-url">https://somgranollers.cat › noticia › djposaxa</div>
+                    <div class="result-title">DJ Posaxa triomfa a la NAUB1 - Som Granollers</div>
+                    <p class="result-snippet">El jove Pol Solanas omple el recinte de Granollers en una nit històrica
+                        per a la música local.</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-url">https://soundcloud.com › djposaxa</div>
+                    <div class="result-title">DJ Posaxa - Listen to tracks and mixes</div>
+                    <p class="result-snippet">Stream exclusively mashups and live sessions. Follow DJ Posaxa on
+                        SoundCloud.</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-url">https://www.tiktok.com › @djposaxa</div>
+                    <div class="result-title">DJ POSAXA (@djposaxa) | TikTok</div>
+                    <p class="result-snippet">Mira els vídeos més virals de DJ Posaxa. Mashups i moments top des de la
+                        cabina.</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-url">https://www.facebook.com › djposaxa</div>
+                    <div class="result-title">DJ Posaxa - Pàgina Oficial de Facebook</div>
+                    <p class="result-snippet">Seguiu tota l'actualitat, nous events i sessions en directe de DJ Posaxa.
+                    </p>
                 </div>
             </div>
 
@@ -633,14 +605,6 @@
                     <p class="bio-text" id="bio-writing-2" style="color:#fff; font-weight:600;"></p>
                 </div>
 
-                <!-- Stats Section inside Web Home -->
-                <div class="section-padding" style="background: var(--bg-secondary); margin-top: 20px;">
-                    <div class="stat-item">
-                        <div class="stat-num">+10</div>
-                        <div class="stat-label">Events 2025</div>
-                    </div>
-                </div>
-
                 <!-- Chat button inside web -->
                 <div id="chat-widget-sim">
                     <div id="chat-window-sim">
@@ -649,10 +613,8 @@
                             <span style="font-size: 1.5rem; color: #fff;">&times;</span>
                         </div>
                         <div class="chat-messages-sim" id="chat-msgs-sim">
-                            <div class="msg-sim msg-bot">Hola! Sóc Sigma, la IA de DJ Posaxa. Pregunta'm el que vulguis
-                                sobre el Pol! 🎵</div>
+                            <div class="msg-sim msg-bot">Hola! Sóc Sigma. Pregunta'm el que vulguis! 🎵</div>
                         </div>
-                        <div class="typing-dots" id="typing-dots"><span>.</span><span>.</span><span>.</span></div>
                         <div class="chat-input-area-sim">
                             <div class="chat-input-sim" id="chat-typing-input"></div>
                             <div id="chat-send-sim"
@@ -675,43 +637,41 @@
                     </div>
                 </nav>
                 <div class="section-padding">
-                    <h2 class="section-title">Esdeveniments Recents</h2>
-
-                    <!-- Carnaval Card -->
+                    <h2 class="section-title">Esdeveniments</h2>
                     <div class="event-card">
-                        <span class="event-label">DESTACAT</span>
+                        <span class="event-label">NAUB1</span>
                         <h3 class="event-name">Carnaval 2026</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom:15px;">Nit èpica a la
-                            NAUB1 de Granollers davant de més de 500 persones.</p>
-                        <div class="web-btn" id="view-gal-btn" style="border-color:rgba(255,255,255,0.3)">VER FOTOS I
-                            VIDEOS</div>
-                        <div id="galería-ui" style="display:none;">
-                            <div class="gallery-sim">
-                                <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0039.jpg"
-                                    class="gallery-img active" id="g-0">
-                                <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0052.jpg"
-                                    class="gallery-img" id="g-1">
-                                <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0048.jpg"
-                                    class="gallery-img" id="g-2">
-                                <div class="gallery-controls">
-                                    <div class="gal-btn" id="gal-next"><i class="bi bi-arrow-right"></i></div>
-                                </div>
-                            </div>
+                        <p id="carnaval-text"
+                            style="font-size: 2.22rem; color: var(--text-secondary); margin-bottom: 50px;"></p>
+
+                        <div class="web-btn" id="view-gal-btn" style="border-color:rgba(255,255,255,0.3)">MOSTRAR FOTOS
+                        </div>
+
+                        <div class="gallery-sim" id="event-gallery">
+                            <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0039.jpg"
+                                class="gallery-img active" id="g-0">
+                            <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0046.jpg" class="gallery-img"
+                                id="g-1">
+                            <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0052.jpg" class="gallery-img"
+                                id="g-2">
+                            <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0086.jpg" class="gallery-img"
+                                id="g-3">
                         </div>
                     </div>
 
-                    <!-- Other Events Section -->
-                    <div class="event-card" style="opacity: 0.8;">
-                        <h3 class="event-name" style="font-size: 1.4rem;">Festa Major Granollers</h3>
-                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Disco Inferno XS - Records
-                            inoblidables.</p>
+                    <div class="event-card">
+                        <span class="event-label">FESTA MAJOR</span>
+                        <h3 class="event-name">Granollers 2025</h3>
+                        <p style="font-size: 2.22rem; color: var(--text-secondary); margin-bottom: 50px;">Sessió a
+                            l'esplanada del ROCA UMBERT. Una de les nits més màgiques amb milers de persones.</p>
                     </div>
 
-                    <div class="event-card" style="opacity: 0.8;">
-                        <h3 class="event-name" style="font-size: 1.4rem;">MusiKnviu 2025</h3>
-                        <p style="font-size: 0.8rem; color: var(--text-secondary);">Sessió energètica al Gra Jove.</p>
+                    <div class="event-card">
+                        <span class="event-label">FESTIVAL</span>
+                        <h3 class="event-name">MusiKnviu 2025</h3>
+                        <p style="font-size: 2.22rem; color: var(--text-secondary); margin-bottom: 50px;">El Pol tancant
+                            el festival amb un set d'energia pura que va fer vibrar tot el parc.</p>
                     </div>
-
                 </div>
             </div>
 
@@ -721,7 +681,6 @@
 
     <script>
         const pointer = document.getElementById('mouse-pointer');
-        const API_KEY = "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";
 
         async function moveMouse(targetId, duration = 650) {
             const rect = document.getElementById(targetId).getBoundingClientRect();
@@ -748,105 +707,94 @@
             }
         }
 
-        function addMsg(text, type) {
-            const container = document.getElementById('chat-msgs-sim');
-            const div = document.createElement('div');
-            div.className = `msg-sim msg-${type}`;
-            div.innerHTML = type === 'bot' ? marked.parse(text) : text;
-            container.appendChild(div);
-            container.scrollTop = container.scrollHeight;
-            return div;
-        }
+        async function streamChatbot() {
+            const botMsgDiv = document.createElement('div');
+            botMsgDiv.className = 'msg-sim msg-bot';
+            document.getElementById('chat-msgs-sim').appendChild(botMsgDiv);
 
-        async function streamChatbot(userMessage) {
-            const botMsgDiv = addMsg('', 'bot');
-            const simulatedResponse = `### 🎧 El Fenomen DJ Posaxa
-El Pol Solanas Ramos, artísticament conegut com **DJ Posaxa**, és el jove talent de Granollers (nascut el 2010) que ha revolucionat l'escena musical local. Amb només 14 anys, destaca per la seva maduresa a la cabina i la seva energia inesgotable.
-
----
-
-### 🚀 Trajectòria i Estil
-• **Especialitats:** Reggaeton, Techno, Dembow i Mashups exclusius.
-• **Events Top:** Carnaval 2026 (NAUB1), MusiKnviu 2025 i Festes Majors de Granollers.
-• **Vibe:** Connexió total amb el públic i lectura de pista impecable.
-
----
-
-### 💎 Per què contractar-lo?
-Més que un DJ, el Pol crea **experiències**. Des de bodes fins a grans festivals, adapta el seu set per garantir que la pista mai es buidi. És la combinació perfecta entre tècnica moderna i passió musical. 🔥`;
+            const response = `### El Pol Solanas (DJ Posaxa)
+És la nova referència de la música urbana a Granollers. Nascut el 2010, ha revolucionat les sales amb els seus mashups exclusius. 🔥`;
 
             let currentText = "";
-            const words = simulatedResponse.split(' ');
-
+            const words = response.split(' ');
             for (let word of words) {
                 currentText += word + " ";
                 botMsgDiv.innerHTML = marked.parse(currentText);
                 document.getElementById('chat-msgs-sim').scrollTop = 99999;
-                await new Promise(r => setTimeout(r, 15)); // Velocidad ultra rápida por palabras
+                await new Promise(r => setTimeout(r, 20));
             }
         }
+
         async function run() {
-            await new Promise(r => setTimeout(r, 500));
+            await new Promise(r => setTimeout(r, 3000));
+
+            // 1. Google
             await moveMouse('google-search-bar');
-            await type('google-typing', 'dj posaxa', 70);
-            await new Promise(r => setTimeout(r, 400));
+            await click();
+            await type('google-typing', 'dj posaxa', 80);
+            await new Promise(r => setTimeout(r, 500));
             document.getElementById('google-home').classList.remove('active');
             document.getElementById('search-results').classList.add('active');
 
+            // 2. Click Result
+            await new Promise(r => setTimeout(r, 800));
             await moveMouse('main-result');
             await click();
             document.getElementById('search-results').classList.remove('active');
             document.getElementById('web-home').classList.add('active');
 
-            type('web-hero-title', 'Eleva la teva festa al següent nivell', 25);
-            await new Promise(r => setTimeout(r, 600));
-            type('bio-writing-1', 'DJ Posaxa és el nom artístic de Pol Solanas Ramos, un dels DJs més joves i talentosos de Granollers.', 4);
-            await new Promise(r => setTimeout(r, 800));
-            type('bio-writing-2', 'Mashups explosius i energia inesgotable.', 5);
+            // 3. Home Typing
+            await new Promise(r => setTimeout(r, 500));
+            await type('web-hero-title', 'Eleva la teva festa.', 40);
+            await type('bio-writing-1', 'DJ Posaxa és energia pura a Granollers.', 30);
 
-            await new Promise(r => setTimeout(r, 2000));
+            // 4. To Events
+            await new Promise(r => setTimeout(r, 1000));
             await moveMouse('nav-events-btn');
             await click();
             document.getElementById('web-home').classList.remove('active');
             document.getElementById('web-events').classList.add('active');
 
-            await new Promise(r => setTimeout(r, 1000));
+            // 5. Carnaval Text & Button
+            await new Promise(r => setTimeout(r, 500));
+            await type('carnaval-text', 'Una nit inoblidable amb més de 500 persones vibrant a la NAUB1.', 20);
             await moveMouse('view-gal-btn');
             await click();
             document.getElementById('view-gal-btn').style.display = 'none';
-            document.getElementById('galería-ui').style.display = 'block';
+            document.getElementById('event-gallery').style.display = 'block';
 
+            // 6. Gallery Photos (1s each)
             for (let i = 1; i <= 3; i++) {
-                await new Promise(r => setTimeout(r, 1500));
-                await moveMouse('gal-next');
-                await click();
+                await new Promise(r => setTimeout(r, 1000));
                 document.querySelectorAll('.gallery-img').forEach(img => img.classList.remove('active'));
-                document.getElementById('g-' + (i % 3)).classList.add('active');
+                document.getElementById('g-' + i).classList.add('active');
             }
+            await new Promise(r => setTimeout(r, 1000));
 
-            await new Promise(r => setTimeout(r, 1500));
+            // 7. Chatbot
             document.getElementById('web-events').classList.remove('active');
             document.getElementById('web-home').classList.add('active');
-
-            await new Promise(r => setTimeout(r, 1000));
+            await new Promise(r => setTimeout(r, 500));
             await moveMouse('chat-btn-sim');
             await click();
             document.getElementById('chat-window-sim').classList.add('active');
 
-            await new Promise(r => setTimeout(r, 1000));
+            await new Promise(r => setTimeout(r, 800));
             await moveMouse('chat-typing-input');
+            await click();
             await type('chat-typing-input', 'qui és dj posaxa?', 60);
+
             await moveMouse('chat-send-sim');
             await click();
-
-            const ask = document.getElementById('chat-typing-input').textContent;
+            const userMsg = document.createElement('div');
+            userMsg.className = 'msg-sim msg-user';
+            userMsg.textContent = 'qui és dj posaxa?';
+            document.getElementById('chat-msgs-sim').appendChild(userMsg);
             document.getElementById('chat-typing-input').textContent = '';
-            addMsg(ask, 'user');
-            document.getElementById('typing-dots').style.display = 'block';
-            await new Promise(r => setTimeout(r, 1500));
-            document.getElementById('typing-dots').style.display = 'none';
-            await streamChatbot(ask);
+
+            await streamChatbot();
         }
+
         window.onload = run;
     </script>
 </body>

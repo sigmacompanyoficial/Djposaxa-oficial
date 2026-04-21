@@ -1,0 +1,52 @@
+/* Animations for the DJ mixer interface */
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 5px rgba(0,169,255,0.5); }
+    50% { box-shadow: 0 0 15px rgba(0,169,255,0.8); }
+    100% { box-shadow: 0 0 5px rgba(0,169,255,0.5); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* Apply animations */
+.control-button.active {
+    animation: buttonPress 0.2s ease;
+}
+
+.deck {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.platter.playing {
+    animation: glowPulse 2s infinite;
+}
+
+/* Hover effects */
+.knob:hover::before {
+    box-shadow: 0 0 10px rgba(0,169,255,0.8);
+}
+
+/* Transition effects */
+.track-list li {
+    transition: all 0.3s ease;
+}
+
+.track-list li:hover {
+    transform: translateX(5px);
+    background-color: rgba(0,169,255,0.1);
+}
+
+/* Responsive animations */
+@media (max-width: 1200px) {
+    .deck, .mixer-section {
+        animation: none;
+    }
+}

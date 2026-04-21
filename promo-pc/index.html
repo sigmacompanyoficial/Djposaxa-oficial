@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Posaxa - PC Simulation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root {
+            --google-blue: #4285F4;
+            --google-red: #EA4335;
+            --google-yellow: #FBBC05;
+            --google-green: #34A853;
+            --bg-color: #050505;
+            --bg-secondary: #0f0f0f;
+            --text-color: #ffffff;
+            --text-secondary: #a0aec0;
+            --accent-color: #fff;
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Playfair Display', serif;
+        }
+
+        /* Essential: Hide real cursor so we only see the simulated one */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none !important;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: #1a1a1a;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: var(--text-color);
+        }
+
+        /* The laptop/PC "Screen" */
+        .pc-frame {
+            width: 1920px;
+            height: 1080px;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+            /* Scaling for preview in smaller monitors */
+            transform: scale(0.5);
+            /* You can change this to 1 or any value to fit your screen */
+            transform-origin: center;
+        }
+
+        #mouse-pointer {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='white' stroke='black' stroke-width='1.5' d='M8.2,2.2l17.6,17.6l-8.8,0l5.9,10l-3.5,2l-5.9-10l-5.3,5.3L8.2,2.2z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 999999;
+            pointer-events: none;
+            left: 50%;
+            top: 50%;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+            transition: transform 0.1s;
+        }
+
+        .screen-content {
+            flex: 1;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .section.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* GOOGLE HOME */
+        #google-home {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #fff;
+        }
+
+        .google-logo {
+            font-size: 8rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            font-family: 'Product Sans', Arial, sans-serif;
+            letter-spacing: -4px;
+        }
+
+        .logo-g {
+            color: var(--google-blue);
+        }
+
+        .logo-o1 {
+            color: var(--google-red);
+        }
+
+        .logo-o2 {
+            color: var(--google-yellow);
+        }
+
+        .logo-g2 {
+            color: var(--google-blue);
+        }
+
+        .logo-l {
+            color: var(--google-green);
+        }
+
+        .logo-e {
+            color: var(--google-red);
+        }
+
+        .search-bar-container {
+            width: 45%;
+            height: 65px;
+            border: 1px solid #dfe1e5;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.18);
+            margin-bottom: 40px;
+        }
+
+        .search-btns {
+            display: flex;
+            gap: 15px;
+        }
+
+        .g-btn {
+            background: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            color: #3c4043;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        #google-typing {
+            color: #202124;
+            font-size: 1.5rem;
+        }
+
+        /* SEARCH RESULTS */
+        #search-results {
+            background: #fff;
+            padding: 40px 10%;
+            overflow-y: auto;
+            color: #000;
+        }
+
+        .search-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ebebeb;
+            padding-bottom: 15px;
+        }
+
+        .result-card {
+            margin-bottom: 35px;
+            max-width: 650px;
+        }
+
+        .result-url {
+            font-size: 14px;
+            color: #202124;
+            margin-bottom: 4px;
+        }
+
+        .result-title {
+            font-size: 22px;
+            color: #1a0dab;
+            margin-bottom: 4px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .result-snippet {
+            font-size: 14px;
+            color: #4d5156;
+            line-height: 1.58;
+        }
+
+        /* WEB VIEW SIMULATION */
+        .web-view {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .web-view::-webkit-scrollbar {
+            width: 10px;
+            background: #000;
+        }
+
+        .web-view::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 5px;
+        }
+
+        .web-nav {
+            padding: 25px 80px;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-logo {
+            height: 40px;
+            filter: invert(1);
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 40px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-item {
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.6);
+            transition: 0.3s;
+        }
+
+        .nav-item.active {
+            color: #fff;
+        }
+
+        .hero-section {
+            height: 900px;
+            background-image: url('../Fotos/dj-posaxa-sessio-inici-1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 100px;
+            position: relative;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(5, 5, 5, 0.9), transparent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-label {
+            font-size: 14px;
+            letter-spacing: 5px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 6rem;
+            line-height: 1;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        .section-bio {
+            padding: 150px 100px;
+            display: flex;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .bio-content {
+            flex: 1;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            margin-bottom: 40px;
+        }
+
+        .bio-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        /* EVENTS PAGE */
+        .events-grid {
+            padding: 100px;
+            background: var(--bg-secondary);
+        }
+
+        .event-card {
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            height: 500px;
+            margin-bottom: 50px;
+        }
+
+        .event-img {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-info {
+            width: 50%;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .event-tag {
+            background: #fff;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 900;
+            font-size: 12px;
+            width: fit-content;
+            margin-bottom: 20px;
+        }
+
+        .gallery-container {
+            margin-top: 30px;
+            position: relative;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .gallery-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: 0.8s;
+        }
+
+        .gallery-img.active {
+            opacity: 1;
+        }
+
+        /* CHATBOT */
+        #chat-widget-pc {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 999;
+        }
+
+        #chat-btn-pc {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        #chat-window-pc {
+            position: absolute;
+            bottom: 100px;
+            right: 0;
+            width: 450px;
+            height: 650px;
+            background: #111;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        #chat-window-pc.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-msgs {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            font-size: 16px;
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 15px 20px;
+            border-radius: 20px;
+            line-height: 1.6;
+        }
+
+        .msg-bot {
+            background: rgba(255, 255, 255, 0.05);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .msg-user {
+            background: #667eea;
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input-area {
+            padding: 25px;
+            background: #0a0a0a;
+            display: flex;
+            gap: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .chat-typing-input {
+            flex: 1;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 25px;
+            padding: 0 20px;
+            color: #fff;
+            line-height: 50px;
+            font-size: 15px;
+        }
+
+        .stream-typing-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MOUSE POINTER -->
+    <div id="mouse-pointer"></div>
+
+    <div class="pc-frame" id="pc-container">
+        <div class="screen-content">
+
+            <!-- 1. GOOGLE HOME -->
+            <div id="google-home" class="section active">
+                <div class="google-logo">
+                    <span class="logo-g">G</span><span class="logo-o1">o</span><span class="logo-o2">o</span><span
+                        class="logo-g2">g</span><span class="logo-l">l</span><span class="logo-e">e</span>
+                </div>
+                <div class="search-bar-container" id="g-search-bar">
+                    <i class="bi bi-search" style="color: #9aa0a6; font-size: 1.2rem; margin-right: 15px;"></i>
+                    <div id="google-typing"></div>
+                </div>
+                <div class="search-btns">
+                    <button class="g-btn">Cerca amb Google</button>
+                    <button class="g-btn">Tinc sort</button>
+                </div>
+            </div>
+
+            <!-- 2. SEARCH RESULTS -->
+            <div id="search-results" class="section">
+                <div class="search-header">
+                    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+                        height="30" style="margin-bottom: 20px;">
+                    <div style="display:flex; gap: 20px; color: #5f6368; font-size: 14px;">
+                        <span style="color: #1a73e8; border-bottom: 3px solid #1a73e8; padding-bottom: 10px;">Tot</span>
+                        <span>Imatges</span> <span>Vídeos</span> <span>Notícies</span> <span>Maps</span>
+                    </div>
+                </div>
+                <div class="result-card" id="web-result">
+                    <div class="result-url">https://www.djposaxa.com</div>
+                    <a href="#" class="result-title">DJ Posaxa | Web Oficial - La Millor Música per als teus Events</a>
+                    <p class="result-snippet">L'experiència musical definitiva amb Pol Solanas (DJ Posaxa). Mashups
+                        exclusius, energia i animació professional per a bodes, festes majors i els millors clubs.</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-url">https://www.instagram.com › djposaxa</div>
+                    <a href="#" class="result-title">DJ POSAXA (@djposaxa) • Instagram photos and videos</a>
+                    <p class="result-snippet">Senteix el vibe de les festes més top. Mashups, directes i tota l'energia
+                        de Pol Solanas Ramos.</p>
+                </div>
+            </div>
+
+            <!-- 3. REAL WEB SIMULATION -->
+            <div id="web-simulation" class="section web-view">
+                <nav class="web-nav">
+                    <img src="../Fotos/dj-posaxa-logo.png" class="nav-logo">
+                    <div class="nav-items">
+                        <span class="nav-item active" id="nav-home">Inici</span>
+                        <span class="nav-item" id="nav-events">Events</span>
+                        <span class="nav-item">Mixes</span>
+                        <span class="nav-item">Contacte</span>
+                    </div>
+                </nav>
+
+                <!-- Home Page Content -->
+                <div id="page-home">
+                    <div class="hero-section">
+                        <div class="hero-content">
+                            <div class="hero-label">DJ PROFESSIONAL & PRODUCER</div>
+                            <div class="hero-title" id="web-title-typing"></div>
+                        </div>
+                    </div>
+                    <div class="section-bio" id="bio-anchor">
+                        <div class="bio-content">
+                            <h2 class="section-title">Pol Solanas Ramos</h2>
+                            <p class="bio-text" id="bio-writing">DJ Posaxa és energia pura. Amb una trajectòria
+                                meteòrica a Granollers i rodalies, el Pol ha transformat cada sessió en un record
+                                inoblidable.</p>
+                            <p class="bio-text" style="color: #fff; font-weight: 700;">"La música no es tracta només
+                                d'escoltar, es tracta de sentir."</p>
+                        </div>
+                        <img src="../Fotos/dj-posaxa-pnc-6.jpg"
+                            style="width: 450px; border-radius: 30px; filter: grayscale(0.5);">
+                    </div>
+                </div>
+
+                <!-- Events Page Content -->
+                <div id="page-events" style="display:none;">
+                    <div class="events-grid">
+                        <h2 class="section-title" style="text-align: center; margin-bottom: 80px;">Pròxims & Recents
+                        </h2>
+                        <div class="event-card">
+                            <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0039.jpg" class="event-img">
+                            <div class="event-info">
+                                <span class="event-tag">RECENT</span>
+                                <h3 style="font-size: 3rem; margin-bottom: 20px; font-family: var(--font-display);">
+                                    Carnaval 2026</h3>
+                                <p style="font-size: 1.2rem; color: #a0aec0; margin-bottom: 30px;">Més de 500 persones a
+                                    la NAUB1 vibrant amb el millor reggaeton i techno-house.</p>
+                                <button class="g-btn" id="show-photos-btn"
+                                    style="width: fit-content; padding: 15px 30px; font-weight: 700; background: #fff; color: #000; border-radius: 50px;">MOSTRAR
+                                    FOTOS</button>
+
+                                <div class="gallery-container" id="event-gallery">
+                                    <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0046.jpg"
+                                        class="gallery-img active" id="gal-1">
+                                    <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0052.jpg"
+                                        class="gallery-img" id="gal-2">
+                                    <img src="../Fotos/Carnaval 26/dj-posaxa-carnaval-2026-festa-0086.jpg"
+                                        class="gallery-img" id="gal-3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHATBOT PC -->
+                <div id="chat-widget-pc">
+                    <div id="chat-window-pc">
+                        <div class="chat-header">
+                            <h4 style="color: #fff; font-size: 1.2rem;">🤖 Sigma AI</h4>
+                            <span style="color: #fff; cursor: pointer;">&times;</span>
+                        </div>
+                        <div class="chat-msgs" id="chat-msgs-container">
+                            <div class="msg msg-bot">Hola! Sóc Sigma, l'assistent de DJ Posaxa. Com et puc ajudar avui?
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <div class="chat-typing-input" id="chat-input-box"></div>
+                            <div
+                                style="background: #667eea; width: 50px; height: 50px; border-radius: 25px; display: flex; align-items: center; justify-content: center; color: #fff;">
+                                <i class="bi bi-send-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="chat-btn-pc"><i class="bi bi-chat-dots-fill"
+                            style="color:#fff; font-size:2rem;"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const pointer = document.getElementById('mouse-pointer');
+        const pc = document.getElementById('pc-container');
+
+        // Correct mouse coordinates considering the CSS transform: scale(0.5)
+        // Actually, internal coordinates are what matters for target rectification
+        async function moveMouse(targetId, duration = 800) {
+            const target = document.getElementById(targetId);
+            const rect = target.getBoundingClientRect();
+
+            // To be precise on the "Screen" of the PC Frame
+            // We need to account for the parent transform. 
+            // Better: use the absolute center of the target relative to the body
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+
+            return new Promise(r => {
+                pointer.style.transition = `all ${duration}ms cubic-bezier(0.34, 1.56, 0.64, 1)`;
+                pointer.style.left = x + 'px';
+                pointer.style.top = y + 'px';
+                setTimeout(r, duration);
+            });
+        }
+
+        async function click() {
+            pointer.style.transform = 'scale(0.7)';
+            await new Promise(r => setTimeout(r, 150));
+            pointer.style.transform = 'scale(1)';
+            await new Promise(r => setTimeout(r, 150));
+        }
+
+        async function type(elementId, text, speed = 60) {
+            const el = document.getElementById(elementId);
+            el.textContent = "";
+            for (let char of text) {
+                el.textContent += char;
+                await new Promise(r => setTimeout(r, speed));
+            }
+        }
+
+        async function runSimulation() {
+            await new Promise(r => setTimeout(r, 1000));
+
+            // 1. SEARCH DJ POSAXA
+            await moveMouse('g-search-bar');
+            await click();
+            await type('google-typing', 'dj posaxa', 80);
+            await new Promise(r => setTimeout(r, 500));
+            document.getElementById('google-home').classList.remove('active');
+            document.getElementById('search-results').classList.add('active');
+
+            // 2. CLICK FIRST RESULT
+            await new Promise(r => setTimeout(r, 800));
+            await moveMouse('web-result');
+            await click();
+            document.getElementById('search-results').classList.remove('active');
+            document.getElementById('web-simulation').classList.add('active');
+
+            // 3. SHOW WEB ANIMATIONS
+            await new Promise(r => setTimeout(r, 500));
+            type('web-title-typing', 'Eleva la teva festa al següent nivell.', 40);
+
+            // 4. SCROLL TO BIO & WAIT 2 SECONDS
+            await new Promise(r => setTimeout(r, 1000));
+            document.getElementById('web-simulation').scrollTo({ top: 800, behavior: 'smooth' });
+            await new Promise(r => setTimeout(r, 2000));
+
+            // 5. GO TO EVENTS
+            await moveMouse('nav-events');
+            await click();
+            document.getElementById('page-home').style.display = 'none';
+            document.getElementById('page-events').style.display = 'block';
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-events').classList.add('active');
+            await new Promise(r => setTimeout(r, 1000));
+
+            // 6. SHOW CARNAVAL & WAIT 1 SECOND
+            document.getElementById('web-simulation').scrollTo({ top: 0, behavior: 'smooth' });
+            await new Promise(r => setTimeout(r, 1000));
+
+            // 7. CLICK SHOW PHOTOS (3 PHOTOS, 1S EACH)
+            await moveMouse('show-photos-btn');
+            await click();
+            document.getElementById('show-photos-btn').style.display = 'none';
+            document.getElementById('event-gallery').style.display = 'block';
+
+            for (let i = 1; i <= 3; i++) {
+                await new Promise(r => setTimeout(r, 1000));
+                document.querySelectorAll('.gallery-img').forEach(img => img.classList.remove('active'));
+                document.getElementById('gal-' + i).classList.add('active');
+            }
+
+            // 8. CHATBOT INTERACTION
+            await new Promise(r => setTimeout(r, 1500));
+            await moveMouse('chat-btn-pc');
+            await click();
+            document.getElementById('chat-window-pc').classList.add('active');
+
+            await new Promise(r => setTimeout(r, 1000));
+            await moveMouse('chat-input-box');
+            await click();
+            await type('chat-input-box', 'qui és dj posaxa?', 50);
+
+            // Send
+            await new Promise(r => setTimeout(r, 500));
+            const userMsg = document.createElement('div');
+            userMsg.className = 'msg msg-user';
+            userMsg.textContent = 'qui és dj posaxa?';
+            document.getElementById('chat-msgs-container').appendChild(userMsg);
+            document.getElementById('chat-input-box').textContent = "";
+
+            // Bot Response Flow
+            await new Promise(r => setTimeout(r, 800));
+            const botMsg = document.createElement('div');
+            botMsg.className = 'msg msg-bot';
+            document.getElementById('chat-msgs-container').appendChild(botMsg);
+
+            const responseText = `### El Pol Solanas Ramos (DJ Posaxa)
+És la nova referència de la música urbana i el tech-house a Granollers. Nascut el 2010, ha demostrat una capacitat innata per dominar qualsevol escenari.
+
+**Motius del seu èxit:**
+1. **Mashups propis:** Mescles exclusives que no trobaràs en cap altra sessió.
+2. **Energia NAUB1:** Un dels pocs DJs joves capaços de omplir i mantenir la pista enèrgica durant hores.
+3. **Versatilitat:** S'adapta tant a bodes elegants com a festivals multitudinaris.
+
+*DJ Posaxa no només punxa música, crea el vibe que la teva festa necessita.* 🔥`;
+
+            let currentText = "";
+            const words = responseText.split(' ');
+            for (let word of words) {
+                currentText += word + " ";
+                botMsg.innerHTML = marked.parse(currentText);
+                document.getElementById('chat-msgs-container').scrollTop = 99999;
+                await new Promise(r => setTimeout(r, 20)); // Super fast stream
+            }
+        }
+
+        window.onload = runSimulation;
+    </script>
+</body>
+
+</html>

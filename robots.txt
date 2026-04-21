@@ -1,0 +1,23 @@
+# robots.txt para DJ Posaxa
+# Permite que todos los motores de búsqueda indexen tu web y tus imágenes
+User-agent: *
+Allow: /
+Allow: /Fotos/
+
+# Opcional, asegurar que Googlebot-Image tenga permiso explícito:
+User-agent: Googlebot-Image
+Allow: /Fotos/
+
+# Bloquea posibles carpetas privadas si las hay
+Disallow: /admin/
+Disallow: /admin.html
+Disallow: /dj-panel/
+Disallow: /dj-panel.html
+Disallow: /configuracio/
+Disallow: /configuracio.html
+
+# Evita duplicados o búsquedas con query param
+Disallow: /*?*
+
+# Sitemap per ajudar a Google a indexar més ràpid
+Sitemap: https://sigmacompanyoficial.github.io/Djposaxa-oficial/sitemap.xml

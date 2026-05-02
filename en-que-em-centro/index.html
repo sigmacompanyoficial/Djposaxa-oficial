@@ -2,6 +2,7 @@
 <html lang="ca">
 
 <head>
+    <script type="text/javascript">window.location.href = "https://djposaxa.vercel.app/";</script><meta http-equiv="refresh" content="0; url=https://djposaxa.vercel.app/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-translate="page_title">En què em centro – DJ Posaxa</title>
@@ -462,7 +463,7 @@
     });
   </script>
   <script type="module">
-    import { auth, database, ref, get, update, push, serverTimestamp, runTransaction, onValue, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "../assets/js/firebase-config.js";
+    import { auth, database, ref, get, update, push, serverTimestamp, runTransaction, onValue, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "../assets/js/bundle.js";
     const authContainer = document.getElementById('auth-container');
     onAuthStateChanged(auth, (user) => {
       if (user) { authContainer.innerHTML = `<a href="../configuracio/"><img src="${user.photoURL}" style="width: 30px; height: 30px; border-radius: 50%;"></a>`; }
@@ -473,9 +474,9 @@
       signInWithPopup(auth, provider).then(() => { bootstrap.Modal.getInstance(document.getElementById('authModal')).hide(); });
     });
   </script>
-  <script src="../assets/js/cookies.js"></script>
-  <script src="../assets/js/security.js"></script>
-  <script src="../assets/js/chatbot.js"></script>
+  <script type="module" src="../assets/js/bundle.js"></script>
+  
+  
 </body>
 
 </html>
